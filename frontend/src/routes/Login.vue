@@ -70,11 +70,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  position: absolute;
-  top:30%; left: 30%;
-  margin-top: -100px; margin-left: -100px;
-  
+}
+.user {
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
 }
 
 
