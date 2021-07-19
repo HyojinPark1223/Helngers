@@ -127,6 +127,9 @@ header {
       margin-bottom: 4px;
     }
   }
+  .test {
+    display: inline;
+  }
   @include media-breakpoint-down(sm) {
     .nav {
       display: none;
