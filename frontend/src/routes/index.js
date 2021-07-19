@@ -4,6 +4,7 @@ import Login from './Login'
 import MedalNow from './MedalNow'
 import MuscleArticleList from './MuscleArticleList'
 import MyPage from './MyPage'
+import Challenge from './Challenge'
 
 export default createRouter({
   // Hash 모드, 모든 주소 앞에 #붙음
@@ -29,6 +30,10 @@ export default createRouter({
     {
       path: '/mypage',
       component: MyPage
+    },
+    {
+      path: '/challenge',
+      component: Challenge
     }
   ]
 })
