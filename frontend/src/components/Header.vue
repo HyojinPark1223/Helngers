@@ -1,5 +1,6 @@
 <template>
   <header>
+    <Logo />
     <div class="nav nav-pills">
       <div
         v-for="nav in navigations"
@@ -17,15 +18,15 @@
 </template>
 
 <script>
+import Logo from './Logo'
 
 export default {
+  components: {
+    Logo,
+  },
   data() {
     return {
       navigations: [
-        {
-          name: 'Main',
-          href: '/'
-        },
         {
           name: 'Login',
           href: '/login'
@@ -49,17 +50,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 header {
   height: 70px;
   padding: 0 40px;
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #FFDB59;
+  background-color: rgb(255,219,89, .73);
   .nav-link {
     color: #000;
+  }
+  .logo {
+    margin-right: 20px;
   }
 }
 
