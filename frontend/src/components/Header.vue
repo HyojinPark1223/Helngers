@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -47,6 +48,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+
+header {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #FFDB59;
+  .nav-link {
+    color: #000;
+  }
+}
 
 </style>
