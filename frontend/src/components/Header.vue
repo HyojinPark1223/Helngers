@@ -26,12 +26,20 @@
           {{ nav.name }}
         </RouterLink>
       </div>
+      <div
+        class="profile"
+        @click="toMypage">
+        <img 
+          :src="image" 
+          :alt="name" />
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 import Logo from './Logo'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -58,11 +66,18 @@ export default {
           name: 'Login',
           href: '/login'
         },
-        {
-          name: 'Mypage',
-          href: '/mypage'
-        },
       ]
+    }
+  },
+  computed: {
+    ...mapState('profile', [ // vuex helper
+      'image',
+      'name'
+    ])
+  },
+  methods: {
+    toMypage() {
+      this.$router.push('/mypage')
     }
   }
 }
@@ -80,6 +95,7 @@ header {
   font-size: 23px;
   .nav-link {
     color: #000;
+    padding-top: 12px;
   }
   .logo {
     margin-right: 20px;
@@ -92,6 +108,29 @@ header {
   }
   .push {
     margin-left: auto;
+  }
+  .profile {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    margin: auto;
+    margin-left: 10px;
+    transition: .4s;
+    &:hover {
+      background-color: darken( $gray-200, 10%);
+    }
+    img {
+      width: 100%;
+      margin-bottom: 4px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .nav {
+      display: none;
+    }
   }
 }
 
