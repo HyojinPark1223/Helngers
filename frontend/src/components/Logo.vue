@@ -3,11 +3,19 @@
     to="/"
     class="logo">
     <img
-      src="/"
+      src="../assets/logo.png"
       alt="main" />  
   </RouterLink>
 </template>
 
-<style lang="scss" scoped>
+<script>
+export default {
 
+}
+</script>
+
+<style lang="scss" scoped>
+img {
+  height: 60px;
+}
 </style>
