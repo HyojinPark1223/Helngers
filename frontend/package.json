@@ -43,6 +43,7 @@
   "dependencies": {
     "bootstrap": "^5.0.0-beta3",
     "vue": "^3.0.7",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
   }
 }

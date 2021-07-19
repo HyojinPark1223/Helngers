@@ -9,6 +9,9 @@ import Challenge from './Challenge'
 export default createRouter({
   // Hash 모드, 모든 주소 앞에 #붙음
   history: createWebHashHistory(),
+  scrollBehavior() { // 스크롤 위치 복구.
+    return { top:0 }
+  },
   // webpage 관리
   routes: [
     {
