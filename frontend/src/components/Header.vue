@@ -26,24 +26,19 @@
           {{ nav.name }}
         </RouterLink>
       </div>
-      <div
-        class="profile"
-        @click="toMypage">
-        <img 
-          :src="image" 
-          :alt="name" />
-      </div>
     </div>
+    <MyModal />
   </header>
 </template>
 
 <script>
 import Logo from './Logo'
-import { mapState } from 'vuex'
+import MyModal from '~/components/MyModal'
 
 export default {
   components: {
     Logo,
+    MyModal
   },
   data() {
     return {
@@ -69,17 +64,6 @@ export default {
       ]
     }
   },
-  computed: {
-    ...mapState('profile', [ // vuex helper
-      'image',
-      'name'
-    ])
-  },
-  methods: {
-    toMypage() {
-      this.$router.push('/mypage')
-    }
-  }
 }
 </script>
 
@@ -108,24 +92,6 @@ header {
   }
   .push {
     margin-left: auto;
-  }
-  .profile {
-    width: 40px;
-    height: 40px;
-    padding: 6px;
-    border-radius: 50%;
-    background-color: #fff;
-    cursor: pointer;
-    margin: auto;
-    margin-left: 10px;
-    transition: .4s;
-    &:hover {
-      background-color: darken( $gray-200, 10%);
-    }
-    img {
-      width: 100%;
-      margin-bottom: 4px;
-    }
   }
   .test {
     display: inline;
