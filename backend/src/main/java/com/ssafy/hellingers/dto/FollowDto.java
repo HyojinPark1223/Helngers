@@ -1,6 +1,6 @@
-package com.ssafy.hellingers.dao;
+package com.ssafy.hellingers.dto;
 
-public class FollowDao {
+public class FollowDto {
     private int follow_id;
     private int following_id;   // 팔로우를 거는 계정 아이디(주체)
     private int follower_id;    // 팔로우를 받는 계정 아이디(대상)
