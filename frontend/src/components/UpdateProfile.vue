@@ -1,10 +1,11 @@
 <template>
-  <h1>UpdateProfile</h1>
+  <div>
+    <h1>UpdateProfile</h1>
+  </div>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 

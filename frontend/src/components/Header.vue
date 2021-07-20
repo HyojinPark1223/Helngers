@@ -44,8 +44,8 @@ export default {
     return {
       navigations: [
         {
-          name: '메달 현황',
-          href: '/medalnow'
+          name: '뱃지 현황',
+          href: '/badgenow'
         },
         {
           name: '챌린지',

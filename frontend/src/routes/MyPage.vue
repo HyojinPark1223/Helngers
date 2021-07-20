@@ -1,8 +1,10 @@
 <template>
   <div 
+    v-if="isStatusOn"
     class="MYPAGE">
     <div class="mybanner">
       <h1>마이페이지</h1>
+      <h4>현재 나와 비슷한 친구를 추천해 드려요!</h4>
     </div>
     <div class="mypage">
       <div class="myprofile">
@@ -47,20 +49,20 @@
               </button>
               <button
                 type="button"
-                class="btn btn-primary">
+                class="btn btn-primary"
+                @click="toBadgeNow">
                 뱃지 더보기
               </button>
             </div>
-            <hr />
             <div>
-              <h1>badge</h1>
+              <h1>badge Image</h1>
             </div>
-            <hr />
             <div
               class="footer_bottom">
               <button
                 type="button"
-                class="btn btn-secondary push">
+                class="btn btn-secondary push"
+                @click="toggleOnOff">
                 프로필 수정하기
               </button>
             </div>
@@ -146,14 +148,29 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <UpdateProfile />
+    <button
+      type="button"
+      class="btn btn-secondary push"
+      @click="toggleOnOff">
+      Mypage로 이동
+    </button>
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import UpdateProfile from '~/components/UpdateProfile'
 
 export default {
+  data () {
+    return {
+      isStatusOn: true
+    }
+  },
   components: {
-    
+    UpdateProfile
   },
   computed: {
     ...mapState('profile', [ // vuex helper
@@ -163,9 +180,14 @@ export default {
   },
   methods: {
     toChallenge() {
-      console.log('test')
       this.$router.push('/challenge')
     },
+    toBadgeNow() {
+      this.$router.push('/badgenow')
+    },
+    toggleOnOff() {
+      this.isStatusOn = !this.isStatusOn
+    }
   }
 }
 </script>
@@ -175,7 +197,7 @@ export default {
   font-family: 'Do Hyeon', sans-serif;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
   position: relative;
   padding: 60px 0;
   ::after {
@@ -185,13 +207,17 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -2;
+    z-index: -1;
     background: url('https://url.kr/na8mq2');
-    opacity: 0.1;
+    opacity: 0.2;
   }
   .mybanner {
     text-align: center;
     color: #333;
+    h4 {
+      color: #fff;
+      margin-bottom: 0;
+    }
   }
   .mypage {
     height: 500px;
@@ -199,7 +225,7 @@ export default {
     justify-content: space-around;
     padding-top: 50px;
     .myprofile {
-
+      position: relative;
       .myprofilecard{
         width: 500px;
         height: 456px;
@@ -219,6 +245,7 @@ export default {
             margin-top: 0;
           }
           .footer_top {
+            border-bottom: solid rgb(109, 109, 109);
             display: flex;
             h2 {
               margin: 0;
