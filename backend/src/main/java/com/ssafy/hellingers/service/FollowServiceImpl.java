@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.hellingers.dao.FollowDao;
+import com.ssafy.hellingers.dto.FollowDto;
 import com.ssafy.hellingers.mapper.FollowMapper;
 
 @Service
@@ -15,30 +15,56 @@ public class FollowServiceImpl implements FollowService {
     private FollowMapper followMapper;
 
     @Override
-    public void follow(FollowDao follow) {
+    public void follow(FollowDto follow) {
         followMapper.follow(follow);
     }
 
     @Override
-    public void unfollow(FollowDao follow) {
+    public void unfollow(FollowDto follow) {
         followMapper.unfollow(follow);
     }
 
     @Override
-    public int isFollow(FollowDao follow) {
+    public int isFollow(FollowDto follow) {
         return followMapper.isFollow(follow);
     }
 
     @Override
-    public List<FollowDao> followingList(int following_id) {
+    public List<FollowDto> followingList(int following_id) {
         return followMapper.followingList(following_id);
     }
 
     @Override
-    public List<FollowDao> followerList(int follower_id) {
+    public List<FollowDto> followerList(int follower_id) {
         return followMapper.followerList(follower_id);
     }
 
+    @Override
+    public int checkFollows(FollowDto follow) {
+        return followMapper.checkFollows(follow);
+    }
+
+    @Override
+    public void willFollows(FollowDto follow) {
+        followMapper.willFollows(follow);
+    }
+
+    @Override
+    public void onewayFollows(FollowDto follow) {
+        followMapper.onewayFollows(follow);
+    }
+
+    @Override
+    public void roundFollows(FollowDto follow) {
+        followMapper.roundFollows(follow);
+    }
+
+    @Override
+    public void deleteFollows(FollowDto followDto) {
+        followMapper.deleteFollows(followDto);
+    }
+
+    // 회원 탈퇴
     @Override
     public boolean deleteAllFollow(int user_id) throws SQLException {
         return followMapper.deleteAllFollow(user_id);
