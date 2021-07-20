@@ -40,7 +40,7 @@
         </div>
         <div class="wrap">
           <p>아직 회원이 아니신가요?</p>
-          <router-link to="/user/signup" class="btn--text">가입하기</router-link>
+          <router-link to="/signup" class="btn--text">가입하기</router-link>
         </div>
       </div>
     </div>
@@ -74,7 +74,6 @@ export default {
 .user {
   display: flex;
   justify-content: center;
-  /* text-align: center; */
 }
 
 
