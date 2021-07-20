@@ -25,9 +25,9 @@ export default {
 
 <style lang="scss" scoped>
 footer {
+  background-color: #333;
   padding: 70px 0;
   text-align: center;
-  opacity: .3;
   div {
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@ footer {
     }
     h3 {
       margin-bottom: 0;
-      color: #333;
+      color: #fff;
     }
   }
 }
