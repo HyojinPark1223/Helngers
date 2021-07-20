@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Main from './Main'
 import Login from './Login'
-import MedalNow from './MedalNow'
+import BadgeNow from './BadgeNow'
 import MuscleArticleList from './MuscleArticleList'
 import MyPage from './MyPage'
 import Challenge from './Challenge'
@@ -24,8 +24,8 @@ export default createRouter({
       component: Login
     },
     {
-      path: '/medalnow',
-      component: MedalNow
+      path: '/badgenow',
+      component: BadgeNow
     },
     {
       path: '/musclearticlelist',

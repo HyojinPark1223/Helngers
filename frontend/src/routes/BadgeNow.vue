@@ -1,5 +1,5 @@
 <template>
-  <h1>MedalNow</h1>
+  <h1>BadgeNow</h1>
 </template>
 
 <script>
