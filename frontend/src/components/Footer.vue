@@ -5,11 +5,11 @@
       <RouterLink
         to="/"
         class="footer-logo">
-        <h3>HELNGERS</h3>
+        <h2>HELNGERS</h2>
       </RouterLink>
     </div>
     <a href="https://github.com/HyojinPark1223/Helngers">
-      (c) {{ new Date().getFullYear() }} Helngers Team Github
+      (c) {{ new Date().getFullYear() }}  Helngers  Team  Github
     </a>
   </footer>
 </template>
@@ -35,9 +35,11 @@ footer {
     .footer-logo {
       text-decoration: none;
     }
-    h3 {
+    h2 {
       margin-bottom: 0;
       color: #fff;
+      font-family: 'Do Hyeon', sans-serif;
+      padding: 15px 5px 10px;
     }
   }
 }

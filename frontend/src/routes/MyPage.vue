@@ -34,6 +34,37 @@
               </div>
             </div>
           </div>
+          <div class="mypage_footer">
+            <div class="footer_top">
+              <h2>
+                보유 뱃지
+              </h2>
+              <button
+                type="button"
+                class="btn btn-danger push"
+                @click="toChallenge">
+                진행 챌린지
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary">
+                뱃지 더보기
+              </button>
+            </div>
+            <hr />
+            <div>
+              <h1>badge</h1>
+            </div>
+            <hr />
+            <div
+              class="footer_bottom">
+              <button
+                type="button"
+                class="btn btn-secondary push">
+                프로필 수정하기
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="recommand">
@@ -119,13 +150,23 @@
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
+  components: {
+    
+  },
   computed: {
     ...mapState('profile', [ // vuex helper
       'image',
       'name'
     ])
   },
+  methods: {
+    toChallenge() {
+      console.log('test')
+      this.$router.push('/challenge')
+    },
+  }
 }
 </script>
 
@@ -134,7 +175,7 @@ export default {
   font-family: 'Do Hyeon', sans-serif;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: -1;
   position: relative;
   padding: 60px 0;
   ::after {
@@ -144,7 +185,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: -2;
     background: url('https://url.kr/na8mq2');
     opacity: 0.1;
   }
@@ -156,8 +197,9 @@ export default {
     height: 500px;
     display: flex;
     justify-content: space-around;
-    margin-top: 50px;
+    padding-top: 50px;
     .myprofile {
+
       .myprofilecard{
         width: 500px;
         height: 456px;
@@ -170,6 +212,39 @@ export default {
           width: 200px;
           height: 200px;
           max-width: 130%;
+        }
+        .mypage_footer {
+          height: 200px;
+          hr {
+            margin-top: 0;
+          }
+          .footer_top {
+            display: flex;
+            h2 {
+              margin: 0;
+              padding-top: 12px;
+              padding-left: 10px;
+            }
+            .btn {
+              margin: 10px;
+              width: 80px;
+              font-size: 0.9rem;
+              padding: 3px;
+            }
+            .push {
+              margin-left: auto;
+            }
+          }
+          .footer_bottom {
+            display: flex;
+            .push {
+              margin-left: auto;
+            }
+            .btn {
+              font-size: 0.9rem;
+              padding: 3px;
+            }
+          }
         }
       }
     }

@@ -41,7 +41,7 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-primary"
               @click="toMypage"
               data-bs-dismiss="modal">
               MyPage
