@@ -148,14 +148,20 @@
       </div>
     </div>
   </div>
-  <div v-else>
-    <UpdateProfile />
-    <button
-      type="button"
-      class="btn btn-secondary push"
-      @click="toggleOnOff">
-      Mypage로 이동
-    </button>
+  <div
+    class="MYPAGE_UPDATE"
+    v-else>
+    <UpdateProfile @toggleOnOff="toggleOnOff" />
+    <div class="mypage_btn">
+      <button
+        type="button"
+        class="btn btn-secondary push"
+        @click="toggleOnOff">
+        <h5>
+          Mypage로 이동
+        </h5>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -164,6 +170,7 @@ import { mapState } from 'vuex'
 import UpdateProfile from '~/components/UpdateProfile'
 
 export default {
+  name: 'MyPage',
   data () {
     return {
       isStatusOn: true
@@ -208,14 +215,15 @@ export default {
     top: 0;
     left: 0;
     z-index: -1;
-    background: url('https://url.kr/na8mq2');
+    background: url('https://url.kr/na8mq2') no-repeat center center fixed;
+    background-size: cover;
     opacity: 0.2;
   }
   .mybanner {
     text-align: center;
     color: #333;
     h4 {
-      color: #fff;
+      color: #333;
       margin-bottom: 0;
     }
   }
@@ -285,6 +293,19 @@ export default {
           width: 150px;
           height: 150px;
         }
+      }
+    }
+  }
+}
+.MYPAGE_UPDATE {
+  font-family: 'Do Hyeon', sans-serif;
+  .mypage_btn {
+    display: none;
+    button {
+      width: 450px;
+      margin: 40px auto;
+      h5 {
+        margin-bottom: 0;
       }
     }
   }

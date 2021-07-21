@@ -73,7 +73,7 @@ module.exports = {
         { from: 'static' }
       ]
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
   ],
 
   // 개발 서버 옵션
