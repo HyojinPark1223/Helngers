@@ -2,27 +2,28 @@
   <div class="background">
     <div class="user" id="signup">
       <div class="form-wrap" style="margin-top: 5%; margin-left: 5%">
-        <h3>Signup</h3>
+        <Logo />
+        <br>
         <div class="input-with-label">
-          <label for="username" style="padding: 0 2.5em 0 0;">아이디 :  </label>
+          <label for="username" style="padding: 0 3em 0 0;">아이디 :  </label>
           <input v-model="username" id="username" placeholder="아이디를 입력하세요" type="text" />
           <div clss="error-text"></div>
         </div>
         <br>
         <div class="input-with-label">
-          <label for="nickname" style="padding: 0 2.5em 0 0;">닉네임 :</label>
+          <label for="nickname" style="padding: 0 3em 0 0;">닉네임 :</label>
           <input v-model="nickname" id="nickname" placeholder="닉네임을 입력하세요" type="text" />
           <div clss="error-text"></div>
         </div>
         <br>
         <div class="input-with-label">
-          <label for="email" style="padding: 0 2.5em 0 0;">email :</label>
+          <label for="email" style="padding: 0 3em 0 0;">email :</label>
           <input v-model="email" id="email" placeholder="이메일을 입력하세요" type="text" style="margin-left: 12px;"/>
           <div clss="error-text"></div>
         </div>
         <br>
         <div class="input-with-label">
-          <label for="password" style="padding: 0 1.5em 0 0;">비밀번호 : </label>
+          <label for="password" style="padding: 0 2em 0 0;">비밀번호 : </label>
           <input v-model="password" id="password" placeholder="비밀번호를 입력하세요" type="password"/>
           <div clss="error-text"></div>
         </div>
@@ -57,7 +58,11 @@
 </template>
 
 <script>
+import Logo from '../components/Logo'
 export default {
+  components: {
+    Logo,
+  },
   data() {
     return {
       username: "",
@@ -89,7 +94,7 @@ export default {
 .form-wrap {
   background-color: white;
   width: 700px;
-  height: 400px;
+  height: 500px;
   border: 0;
   outline: 0;
   border-radius: 50px;
