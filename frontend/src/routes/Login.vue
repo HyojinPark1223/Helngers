@@ -1,7 +1,7 @@
 <template>
   <div class="background">
     <div class="user" id="login">
-      <div class="for-sns" style="margin-top: 5%; margin-left: 25%">
+      <div class="for-sns" style="display: flex; flex-direction: column; margin-top: 5%; margin-left: 25%">
         <div class="form-wrap">
           <Logo />
           <br>
