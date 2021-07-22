@@ -119,18 +119,18 @@ export default {
     /* width: 500px;// */
     height: 800px;
     width: 80%;
-    /* padding-top: 10px; */
+    padding-top: 10px;
   
     /* border: 5px black solid; */
     .medal-wrap1, medal-wrap2 {
-      height: 80%;
+      height: 300px;
       /* border: 3px black solid; */
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       .medal-card {
-        height: 80%;
+        height: 60%;
         width: 300px;
         margin-right: 10px;
         margin-left: 10px;
@@ -140,6 +140,10 @@ export default {
           width: 100%;
           padding-right: 15px;
           padding-left: 15px;
+          .our-services:hover h4,
+          .our-services:hover p {
+              color: #fff
+          }
           .our-services {
             margin-top: 75px;
             padding-bottom: 30px;
