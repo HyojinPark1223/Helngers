@@ -155,7 +155,8 @@ export default defineComponent({
   -webkit-transform-style: $style;
 }
 .carousel{
-  padding: 80px 30px;
+  // padding: 80px 100px 80px 30px;
+  padding: 80px 78px 80px 30px;
   .slide {
     margin: 50px 10px;
     .carousel__item {
@@ -189,6 +190,8 @@ export default defineComponent({
         font-size: 20px;
         justify-content: center;
         align-content: center;
+        border-radius: 8px;
+        box-shadow: 0px 15px 15px rgba(10, 10, 10, 0.2);
         .front__inner {
           margin-top: 130px;
           img {
@@ -200,7 +203,7 @@ export default defineComponent({
       .back {
         z-index: 1;
         background-color: $warning;
-        box-shadow: 0px 30px 30px rgba(10, 10, 10, 0.2);
+        box-shadow: 0px 20px 20px rgba(10, 10, 10, 0.2);
         top: -10px;
         right: -10px;
         border-radius: 8px;
