@@ -22,11 +22,12 @@
             <div class="back__inner">
               <h2>챌린지 설명</h2>
               <p>어쩌구 저쩌구</p>
-              <button
+              <div
                 type="button"
-                class="btn btn-danger btn-lg">
+                class="btn btn-danger btn-lg"
+                @click="toggleOnOff">
                 사진 올리기
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -36,6 +37,40 @@
         <Navigation />
       </template>
     </Carousel>
+    <div
+      v-if="isStatusOn"
+      class="test">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            <h4>
+              업로드 할 사진을 첨부해주세요.
+            </h4>
+            <button
+              type="button"
+              class="btn-close"
+              @click="toggleOnOff"
+              aria-label="Close"></button>
+          </div>
+          <div class="card-content">
+            <input
+              class="form-control"
+              type="file"
+              id="formFile" />
+          </div>
+          <div class="card-bottom">
+            <button
+              class="btn btn-secondary cancel"
+              @click="toggleOnOff">
+              취소
+            </button>
+            <button class="btn btn-danger">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,10 +86,12 @@ export default defineComponent({
     Carousel,
     Slide,
     Navigation,
+
   },
   data: () => ({
     // carousel settings
     slides: 10,
+    isStatusOn: false,
     settings: {
       itemsToShow: 1,
       snapAlign: 'center',
@@ -78,6 +115,11 @@ export default defineComponent({
       },
     },
   }),
+  methods: {
+    toggleOnOff() {
+      this.isStatusOn = !this.isStatusOn
+    }
+  }
 });
 </script>
 
@@ -168,6 +210,47 @@ export default defineComponent({
           margin-top: 130px
         }
         @include transform(rotatey(-180deg));
+      }
+    }
+  }
+}
+.card {
+  font-family: 'Do Hyeon', sans-serif;
+  width: 600px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  margin: 0 auto;
+  margin-left: -250px;
+  margin-top: -250px;
+  box-shadow: 0 0 999px 999px rgba(255, 255, 255, 0.678);
+  z-index: 500;
+  .card-body {
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+    }
+    .card-content {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      margin: 30px 0;
+      input {
+        margin-right: 5px;
+      }
+    }
+    .card-bottom {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      button {
+        width: 100px;
+        padding: 3px 10px;
+      }
+      .cancel {
+        margin-right: 20px;
       }
     }
   }
