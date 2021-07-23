@@ -55,6 +55,7 @@
 
 <script>
 import Logo from '../components/Logo'
+import MedalCard from '../components/MedalCard'
 export default {
   components: {
     Logo,
