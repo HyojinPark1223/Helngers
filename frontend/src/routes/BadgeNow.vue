@@ -1,95 +1,58 @@
 <template>
+  <div class="black-bg">
+    <div class="white-bg">
+      <h4>물구나무</h4>
+      <p>상세페이지 내용</p>
+    </div>
+  </div>
   <div class="MYBADGENOW">
     <div class="wrap">
       <div class="medal-wrap1">
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
+        <MedalCard/>
+        <MedalCard/>
+        <MedalCard/>
+        <MedalCard/>
       </div>
       <div class="medal-wrap1">
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="medal-card">
-          <div class="box">
-            <div class="our-services settings">
-                <div class="icon"> <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100px" height="100px"> </div>
-                <h4>물구나무</h4>
-                <p>8/10</p>
-            </div>
-          </div>
-        </div>
+        <MedalCard/>
+        <MedalCard/>
+        <MedalCard/>
+        <MedalCard/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import MedalCard from '../components/MedalCard'
 export default {
+  components: {
+    MedalCard,
+  }
 
 }
 </script>
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Poppins|Ubuntu&display=swap');
+body {
+  margin: 0
+}
+div {
+  box-sizing: border-box;
+}
+
+.black-bg {
+width: 100%; height: 100%;
+background: rgba(0,0,0,0.5);
+position: absolute; padding: 20px;
+}
+.white-bg {
+  width: 100%; background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
 .MYBADGENOW {
   font-family: 'Do Hyeon', sans-serif;
   width: 100%;
@@ -110,7 +73,7 @@ export default {
     z-index: -1;
     background: url('https://url.kr/na8mq2') no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.8;
+    opacity: 0.01;
   }
   .wrap {
     display: flex;
