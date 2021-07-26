@@ -1,10 +1,4 @@
 <template>
-  <!-- <div class="black-bg">
-    <div class="white-bg">
-      <h4>물구나무</h4>
-      <p>상세페이지 내용</p>
-    </div>
-  </div> -->
   <div class="MYBADGENOW">
     <div class="wrap">
       <div class="medal-wrap1">
@@ -41,18 +35,6 @@ body {
 div {
   box-sizing: border-box;
 }
-
-// .black-bg {
-//   width: 100%; height: 100%;
-//   background: rgba(0,0,0,0.5);
-//   position: fixed; padding: 20px;
-//   z-index: -1;
-//   .white-bg {
-//     width: 100%; background: white;
-//     border-radius: 8px;
-//     padding: 20px;
-//   }
-// }
 
 .MYBADGENOW {
   font-family: 'Do Hyeon', sans-serif;
