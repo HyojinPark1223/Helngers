@@ -2,12 +2,16 @@
   <div class="main">
     <div class="menu">
       <h2>OOO 님이 운동하는 동안.. </h2>
-      <input
-        class="push"
-        type="text" />
-      <img
-        src="../assets/search.png"
-        alt="search" />
+      <div class="search push">
+        <input
+          type="text"
+          @focus="searchFocus"
+          @blur="searchBlur" />
+        <img
+          src="../assets/search.png"
+          alt="search"
+          @click="searchFocus" />
+      </div>
       <img
         src="../assets/pencil.png"
         alt="pencil" />
@@ -109,7 +113,25 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    searchFocus() {
+      const searchEl = document.querySelector('.search')
+      const searchInputEl = searchEl.querySelector('input')
+      searchEl.classList.add('focused')
+      searchInputEl.setAttribute('placeholder', '게시물 검색')
+    },
+    searchBlur() {
+      const searchEl = document.querySelector('.search')
+      const searchInputEl = searchEl.querySelector('input')
+      searchEl.classList.remove('focused')
+      searchInputEl.setAttribute('placeholder', '')
+    }
+  }
 }
 </script>
 
@@ -121,17 +143,29 @@ export default {
     justify-content: center;
     align-content: center;
     margin: 50px 60px;
-    input {
-      width: 300px;
-      height: 30px;
-      margin: 5px 10px;
-      background-color: rgba($color: #919191, $alpha: .2);
-      border: none;
-      border-radius: 30px;
+    .search{
+      position: relative;
+      input {
+        width: 100px;
+        height: 30px;
+        margin: 5px 10px;
+        background-color: rgba($color: #919191, $alpha: .2);
+        border: solid rgba($color: #919191, $alpha: .2);
+        outline: none;
+        border-radius: 30px;
+        box-sizing: border-box;
+        transition: width .4s;
+      }
+    }
+    .focused {
+      input{
+        width: 300px;
+        border-color: $primary;
+      }
     }
     img {
       width: 35px;
-      height: 35px;
+      height: 33px;
       margin: 0px 5px;
     }
     h2 {
@@ -151,6 +185,7 @@ export default {
       height: 530px;
       width: 400px;
       border: none;
+      margin: 0 10px;
       .card-body {
         background-color: rgba($color: #e9e9e9, $alpha: .1);
         h6 {
