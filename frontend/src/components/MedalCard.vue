@@ -1,19 +1,32 @@
 <template lang="">
+    <MedalModal/>
     <div class="medal-card">
         <div class="box">
-            <div class="our-services settings">
+            <div class="our-services settings" @click="showModal = true">
                 <div class="icon"> 
                     <img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100" height="100"> 
                 </div>
                 <h4>물구나무</h4>
                 <p>8/10</p>
             </div>
+            <modal v-if="showModal" @close="showModal = false">
+                <!--
+                you can use custom content here to overwrite
+                default content
+                -->
+                <h3 slot="header">custom header</h3>
+            </modal>
         </div>
     </div>
 </template>
 <script>
+import MedalModal from './MedalModal'
+
 export default {
     name: 'MedalCard',
+    components: {
+        MedalModal,
+    }
 }
 </script>
 <style lang="scss" scoped>

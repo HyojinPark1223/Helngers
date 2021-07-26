@@ -1,10 +1,10 @@
 <template>
-  <div class="black-bg">
+  <!-- <div class="black-bg">
     <div class="white-bg">
       <h4>물구나무</h4>
       <p>상세페이지 내용</p>
     </div>
-  </div>
+  </div> -->
   <div class="MYBADGENOW">
     <div class="wrap">
       <div class="medal-wrap1">
@@ -42,16 +42,17 @@ div {
   box-sizing: border-box;
 }
 
-.black-bg {
-width: 100%; height: 100%;
-background: rgba(0,0,0,0.5);
-position: absolute; padding: 20px;
-}
-.white-bg {
-  width: 100%; background: white;
-  border-radius: 8px;
-  padding: 20px;
-}
+// .black-bg {
+//   width: 100%; height: 100%;
+//   background: rgba(0,0,0,0.5);
+//   position: fixed; padding: 20px;
+//   z-index: -1;
+//   .white-bg {
+//     width: 100%; background: white;
+//     border-radius: 8px;
+//     padding: 20px;
+//   }
+// }
 
 .MYBADGENOW {
   font-family: 'Do Hyeon', sans-serif;
@@ -73,7 +74,7 @@ position: absolute; padding: 20px;
     z-index: -1;
     background: url('https://url.kr/na8mq2') no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.01;
+    opacity: 0.05;
   }
   .wrap {
     display: flex;
@@ -85,51 +86,13 @@ position: absolute; padding: 20px;
     padding-top: 10px;
   
     /* border: 5px black solid; */
-    .medal-wrap1, medal-wrap2 {
+    .medal-wrap1 {
       height: 300px;
       /* border: 3px black solid; */
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      .medal-card {
-        height: 60%;
-        width: 300px;
-        margin-right: 10px;
-        margin-left: 10px;
-        /* border: 3px black solid; */
-        .box {
-          position: relative;
-          width: 100%;
-          padding-right: 15px;
-          padding-left: 15px;
-          .our-services:hover h4,
-          .our-services:hover p {
-              color: #fff
-          }
-          .our-services {
-            margin-top: 75px;
-            padding-bottom: 30px;
-            padding: 0 60px;
-            min-height: 198px;
-            text-align: center;
-            border-radius: 30px;
-            background-color: #fff;
-            transition: all .4s ease-in-out;
-            box-shadow: 0 0 25px 0 rgba(20, 27, 202, .17);
-            .icon {
-              margin-bottom: -21px;
-              transform: translateY(-50%);
-              text-align: center
-            }
-          }
-          .settings:hover {
-            box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
-            cursor: pointer;
-            background-image: linear-gradient(-45deg, #dbb023 0%, #e2cc85 100%)
-        }
-        }
-      }
     }
 
   }
