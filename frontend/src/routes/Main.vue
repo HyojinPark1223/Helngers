@@ -1,5 +1,10 @@
 <template>
   <div class="main">
+    <div
+      v-if="isStatusOn"
+      class="create">
+      <CreateMyArticle />
+    </div>
     <div class="menu">
       <h2>OOO 님이 운동하는 동안.. </h2>
       <div class="search push">
@@ -14,97 +19,44 @@
       </div>
       <img
         src="../assets/pencil.png"
-        alt="pencil" />
+        alt="pencil"
+        @click="toggleOnOff" />
     </div>
-    <div class="content">
+    <div class="rating-wrap">
       <div
-        class="card">
-        <img
-          src="https://url.kr/a7td2s"
-          class="card-img-top"
-          alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">
-            title
-          </h5>
-          <p class="card-text">
-            Text
-          </p>
-        </div>
-        <div class="sub-bottom">
-          <p>2021. 7월 26일 / 6개의 댓글</p>
-        </div>
-        <div class="card-body bottom">
+        class="content"
+        v-for="index in contents"
+        :key="index">
+        <div
+          class="card">
           <img
-            src="../assets/profile.png"
-            alt="profile" />
-          <h6>
-            코어는 국력, OOO 님
-          </h6>
-          <img
-            class="push"
-            src="../assets/heart.png"
-            alt="heart" />
-        </div>
-      </div>
-      <div
-        class="card">
-        <img
-          src="https://url.kr/a7td2s"
-          class="card-img-top"
-          alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">
-            title
-          </h5>
-          <p class="card-text">
-            Text
-          </p>
-        </div>
-        <div class="sub-bottom">
-          <p>2021. 7월 26일 / 6개의 댓글</p>
-        </div>
-        <div class="card-body bottom">
-          <img
-            src="../assets/profile.png"
-            alt="profile" />
-          <h6>
-            코어는 국력, OOO 님
-          </h6>
-          <img
-            class="push"
-            src="../assets/heart.png"
-            alt="heart" />
-        </div>
-      </div>
-      <div
-        class="card">
-        <img
-          src="https://url.kr/a7td2s"
-          class="card-img-top"
-          alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">
-            title
-          </h5>
-          <p class="card-text">
-            Text
-          </p>
-        </div>
-        <div class="sub-bottom">
-          <p>2021. 7월 26일 / 6개의 댓글</p>
-        </div>
-        <div class="card-body bottom">
-          <img
-            src="../assets/profile.png"
-            alt="profile" />
-          <h6>
-            코어는 국력, OOO 님
-          </h6>
-          <img
-            class="push"
-            src="../assets/heart.png"
-            alt="heart" />
+            src="https://url.kr/a7td2s"
+            class="card-img-top"
+            alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">
+              title
+            </h5>
+            <p class="card-text">
+              Text
+            </p>
+          </div>
+          <div class="sub-bottom">
+            <p>2021. 7월 26일 / 6개의 댓글</p>
+          </div>
+          <div class="card-body bottom">
+            <img
+              src="../assets/profile.png"
+              alt="profile" 
+              @click="toProfile" />
+            <h6>
+              코어는 국력, OOO 님
+            </h6>
+            <img
+              class="push"
+              src="../assets/heart.png"
+              alt="heart" />
+          </div>
         </div>
       </div>
     </div>
@@ -112,10 +64,15 @@
 </template>
 
 <script>
+import CreateMyArticle from '~/components/CreateMyArticle'
 export default {
+  components: {
+    CreateMyArticle
+  },
   data() {
     return {
-      
+      contents: 5,
+      isStatusOn: false
     }
   },
   methods: {
@@ -130,6 +87,12 @@ export default {
       const searchInputEl = searchEl.querySelector('input')
       searchEl.classList.remove('focused')
       searchInputEl.setAttribute('placeholder', '')
+    },
+    toProfile() {
+      this.$router.push('/mypage')
+    },
+    toggleOnOff() {
+      this.isStatusOn = !this.isStatusOn
     }
   }
 }
@@ -138,6 +101,16 @@ export default {
 <style lang="scss" scoped>
 .main {
   font-family: 'Do Hyeon', sans-serif;
+  position: relative;
+  .create {
+    position: fixed;
+    z-index: 500;
+    width: 800px;
+    top: 150px;
+    right: 320px;
+    background-color: #fff;
+    box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
+  }
   .menu {
     display: flex;
     justify-content: center;
@@ -167,6 +140,7 @@ export default {
       width: 35px;
       height: 33px;
       margin: 0px 5px;
+      cursor: pointer;
     }
     h2 {
       margin-left: 10px;
@@ -175,43 +149,48 @@ export default {
       margin-left: auto;
     }
   }
-  .content {
+  .rating-wrap {
     display: flex;
-    justify-content: space-between;
-    align-content: center;
-    margin: 0 80px 60px 80px;
-    .card {
-      border-radius: 10px;
-      height: 530px;
-      width: 400px;
-      border: none;
-      margin: 0 10px;
-      .card-body {
-        background-color: rgba($color: #e9e9e9, $alpha: .1);
-        h6 {
-          height: 25px;
-          margin: 5px 0 0 10px;
-        }
-        img {
-          width: 25px;
-          height: 25px;
-        }
-        .push {
-        margin-left: auto;
-        }
-        
-      }
-      .sub-bottom {
+    flex-wrap: wrap;
+    justify-content: center;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      margin: 0 50px 100px 50px;
+      .card {
+        border-radius: 10px;
+        height: 350px * 3 / 2;
+        width: 350px;
+        border: none;
+        .card-body {
           background-color: rgba($color: #e9e9e9, $alpha: .1);
-          margin: 0 0 10px 15px;
-          p {
-            margin: 0;
+          h6 {
+            height: 25px;
+            margin: 5px 0 0 10px;
           }
+          img {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+          }
+          .push {
+          margin-left: auto;
+          }
+          
         }
-      .bottom {
-        border-top: solid rgba($color: #919191, $alpha: .2);
-        max-height: 20px;
-        display: flex;
+        .sub-bottom {
+            background-color: rgba($color: #e9e9e9, $alpha: .1);
+            margin: 0 0 10px 15px;
+            p {
+              margin: 0;
+            }
+          }
+        .bottom {
+          border-top: solid rgba($color: #919191, $alpha: .2);
+          max-height: 30px;
+          display: flex;
+        }
       }
     }
   }

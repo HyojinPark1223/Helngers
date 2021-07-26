@@ -1,18 +1,25 @@
 <template>
-	<div v-if="modalChk">
-		<MedalModal/>
-	</div>
-	<div class="medal-card">
-		<div class="box">
-			<div class="our-services settings" @click="showModal">
-				<div class="icon"> 
-					<img src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B" width="100" height="100"> 
-				</div>
-				<h4>물구나무</h4>
-				<p>8/10</p>
-			</div>
-		</div>
-	</div>
+  <div>
+    <div v-if="modalChk">
+      <MedalModal />
+    </div>
+    <div class="medal-card">
+      <div class="box">
+        <div
+          class="our-services settings"
+          @click="showModal">
+          <div class="icon"> 
+            <img
+              src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B"
+              width="100"
+              height="100" /> 
+          </div>
+          <h4>물구나무</h4>
+          <p>8/10</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import MedalModal from './MedalModal'
