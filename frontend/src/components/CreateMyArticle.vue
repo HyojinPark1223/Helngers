@@ -18,6 +18,11 @@
       </div>
       <div class="mb-3 article-title">
         <h4>제목 : </h4>
+        <input
+          type="text"
+          autofocus
+          class="form-control"
+          placeholder="제목을 입력해주세요." />
       </div>
       <div class="mb-3 today">
         <h4>오늘의 운동 : </h4>
@@ -46,11 +51,12 @@
           rows="3"></textarea>
       </div>
       <div class="mb-3 bottom">
-        <button
-          type="submit"
-          class="btn btn-secondary">
-          이미지 첨부
-        </button>
+        <div class="fileUpload">
+          <FileSelect @input="input" />
+          <p v-if="file">
+            {{ file.name }}
+          </p>
+        </div>
         <button
           type="submit"
           class="btn btn-primary">
@@ -62,11 +68,23 @@
 </template>
 
 <script>
+import FileSelect from './FileSelect.vue'
 export default {
+  components: {
+    FileSelect
+  },
+  data() {
+    return {
+      file: null
+    }
+  },
   methods: {
     toProfile() {
       this.$parent.toggleOnOff()
     },
+    input(value) {
+      this.file = value;
+    }
   }
 }
 </script>
@@ -80,7 +98,17 @@ export default {
       justify-content: space-between;
     }
     .article-title {
+      display: flex;
       margin: 0 15px;
+      h4 {
+        margin: 10px 0px;
+      }
+      input {
+        border: none;
+        margin: 10px 10px;
+        height: 30px;
+        width: 400px;
+      }
     }
     .today {
       display: flex;
@@ -101,12 +129,61 @@ export default {
       textarea {
         height: 200px;
         margin-top: 20px;
+        border: none;
+        background-color: rgba($color: #817d7d, $alpha: 0.1);
       }
     }
     .bottom {
       display: flex;
       justify-content: space-between;
       margin: 0 15px;
+      .fileUpload {
+        display: flex;
+        p {
+          margin: 7px 0px 3px 20px;
+        }
+      }
+    }
+  }
+}
+.card {
+  font-family: 'Do Hyeon', sans-serif;
+  width: 600px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  margin: 0 auto;
+  margin-left: -250px;
+  margin-top: -250px;
+  box-shadow: 0 0 999px 999px rgba(255, 255, 255, 0.678);
+  z-index: 500;
+  .card-body {
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+    }
+    .card-content {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      margin: 30px 0;
+      input {
+        margin-right: 5px;
+      }
+    }
+    .card-bottom {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      button {
+        width: 100px;
+        padding: 3px 10px;
+      }
+      .cancel {
+        margin-right: 20px;
+      }
     }
   }
 }
