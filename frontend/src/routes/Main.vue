@@ -1,5 +1,10 @@
 <template>
   <div class="main">
+    <div
+      v-if="isStatusOn"
+      class="create">
+      <CreateMyArticle />
+    </div>
     <div class="menu">
       <h2>OOO 님이 운동하는 동안.. </h2>
       <div class="search push">
@@ -14,7 +19,8 @@
       </div>
       <img
         src="../assets/pencil.png"
-        alt="pencil" />
+        alt="pencil"
+        @click="toggleOnOff" />
     </div>
     <div class="rating-wrap">
       <div
@@ -58,10 +64,15 @@
 </template>
 
 <script>
+import CreateMyArticle from '~/components/CreateMyArticle'
 export default {
+  components: {
+    CreateMyArticle
+  },
   data() {
     return {
-      contents: 5
+      contents: 5,
+      isStatusOn: false
     }
   },
   methods: {
@@ -79,6 +90,9 @@ export default {
     },
     toProfile() {
       this.$router.push('/mypage')
+    },
+    toggleOnOff() {
+      this.isStatusOn = !this.isStatusOn
     }
   }
 }
@@ -87,6 +101,16 @@ export default {
 <style lang="scss" scoped>
 .main {
   font-family: 'Do Hyeon', sans-serif;
+  position: relative;
+  .create {
+    position: fixed;
+    z-index: 500;
+    width: 800px;
+    top: 150px;
+    right: 320px;
+    background-color: #fff;
+    box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
+  }
   .menu {
     display: flex;
     justify-content: center;
@@ -164,7 +188,7 @@ export default {
           }
         .bottom {
           border-top: solid rgba($color: #919191, $alpha: .2);
-          max-height: 20px;
+          max-height: 30px;
           display: flex;
         }
       }
