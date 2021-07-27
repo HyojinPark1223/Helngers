@@ -17,6 +17,20 @@
         alt="pencil"
         @click="toggleOnOff" />
     </div>
+    <div class="singleArticle">
+      <div class="ArticleHeader">
+        <p>카테고리</p>
+        <h1>Title</h1>
+        <p>작성자 이름 . 2021.07.27</p>
+      </div>
+      <div class="ArticleContent">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sapiente accusamus ducimus voluptates. Vitae, alias quidem delectus saepe eveniet illum nihil dicta minus in nostrum hic dolorum minima? Distinctio, alias?</p>
+        <img
+          src="https://url.kr/rjuqsh"
+          alt="ArtileImg"
+          class="card-img" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -83,6 +97,20 @@ export default {
     }
     .push {
       margin-left: auto;
+    }
+  }
+  .singleArticle {
+    text-align: center;
+    width: 600px;
+    margin: 20px auto;
+    cursor: pointer;
+    .ArticleHeader {
+      p {
+        color: #919191;
+      }
+    }
+    .ArticleContent {
+    
     }
   }
 }

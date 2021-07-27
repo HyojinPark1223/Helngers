@@ -157,6 +157,7 @@ export default defineComponent({
 .carousel{
   // padding: 80px 100px 80px 30px;
   padding: 80px 78px 80px 30px;
+  margin-top: 100px;
   .slide {
     margin: 50px 10px;
     .carousel__item {
