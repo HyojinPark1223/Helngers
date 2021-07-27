@@ -6,7 +6,7 @@
         <button
           type="button"
           class="btn-close"
-          @click="toProfile"
+          @click="toMain"
           aria-label="Close"></button>
       </div>
       <div class="mb-3">
@@ -79,7 +79,7 @@ export default {
     }
   },
   methods: {
-    toProfile() {
+    toMain() {
       this.$parent.toggleOnOff()
     },
     input(value) {

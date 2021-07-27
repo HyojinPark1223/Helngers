@@ -5,6 +5,11 @@
       class="create">
       <CreateMyArticle />
     </div>
+    <div
+      v-if="isDetailOn"
+      class="detail">
+      <MyArticleDetail />
+    </div>
     <div class="menu">
       <h2>OOO 님이 운동하는 동안.. </h2>
       <div class="search push">
@@ -28,9 +33,10 @@
         v-for="index in contents"
         :key="index">
         <div
-          class="card">
+          class="card"
+          @click="detailOnOff">
           <img
-            src="https://url.kr/a7td2s"
+            src="https://url.kr/jekuoa"
             class="card-img-top"
             alt="..." />
           <div class="card-body">
@@ -65,14 +71,18 @@
 
 <script>
 import CreateMyArticle from '~/components/CreateMyArticle'
+import MyArticleDetail from '~/components/MyArticleDetail'
+
 export default {
   components: {
-    CreateMyArticle
+    CreateMyArticle,
+    MyArticleDetail
   },
   data() {
     return {
-      contents: 5,
-      isStatusOn: false
+      contents: 6,
+      isStatusOn: false,
+      isDetailOn: false
     }
   },
   methods: {
@@ -93,6 +103,16 @@ export default {
     },
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
+    },
+    detailOnOff() {
+      this.isDetailOn = !this.isDetailOn
+      const main = document.querySelector('body')
+      if (this.isDetailOn) {
+        main.setAttribute('style', 'position: fixed;')
+      }
+      else {
+        main.setAttribute('style', '')
+      }
     }
   }
 }
@@ -102,11 +122,21 @@ export default {
 .main {
   font-family: 'Do Hyeon', sans-serif;
   position: relative;
+  .detail {
+    position: fixed;
+    z-index: 500;
+    width: 800px;
+    top: 100px;
+    right: 320px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
+  }
   .create {
     position: fixed;
     z-index: 500;
     width: 800px;
-    top: 150px;
+    top: 130px;
     right: 320px;
     background-color: #fff;
     box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
@@ -122,8 +152,8 @@ export default {
         width: 100px;
         height: 30px;
         margin: 5px 10px;
-        background-color: rgba($color: #919191, $alpha: .2);
-        border: solid rgba($color: #919191, $alpha: .2);
+        background-color: rgba($color: #919191, $alpha: .1);
+        border: solid rgba($color: #919191, $alpha: .1);
         outline: none;
         border-radius: 30px;
         box-sizing: border-box;
@@ -159,12 +189,12 @@ export default {
       align-content: center;
       margin: 0 50px 100px 50px;
       .card {
-        border-radius: 10px;
+        border-radius: 30px;
         height: 350px * 3 / 2;
         width: 350px;
         border: none;
         .card-body {
-          background-color: rgba($color: #e9e9e9, $alpha: .1);
+          background-color: rgba($color: #e9e9e9, $alpha: .2);
           h6 {
             height: 25px;
             margin: 5px 0 0 10px;
@@ -188,7 +218,7 @@ export default {
           }
         .bottom {
           border-top: solid rgba($color: #919191, $alpha: .2);
-          max-height: 30px;
+          max-height: 60px;
           display: flex;
         }
       }
