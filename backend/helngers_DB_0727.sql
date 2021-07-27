@@ -18,9 +18,10 @@ USE `Helngers` ;
 -- Table `Helngers`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Helngers`.`users` (
-  `id` INT NOT NULL,
-  `username` VARCHAR(45) NULL,
+  `id` BIGINT NOT NULL,
   `email` VARCHAR(45) NULL,
+  `password` VARCHAR(20) NULL,
+  `username` VARCHAR(45) NULL,
   `nickname` VARCHAR(45) NULL,
   `categories` VARCHAR(45) NULL,
   `count` INT NULL,
@@ -40,10 +41,12 @@ ENGINE = InnoDB;
 -- Table `Helngers`.`medals`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Helngers`.`medals` (
-  `id` INT NOT NULL,
+  `id` BIGINT NOT NULL,
   `title` VARCHAR(45) NULL,
   `content` TEXT NULL,
-  `user_id` INT NULL,
+  `present` INT NULL,
+  `goal` INT NULL,
+  `user_id` BIGINT NULL,
   PRIMARY KEY (`id`),
   INDEX `medals_user_id_to_users_id_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `medals_user_id_to_users_id`
@@ -58,14 +61,27 @@ ENGINE = InnoDB;
 -- Table `Helngers`.`challenges`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Helngers`.`challenges` (
-  `id` INT NOT NULL,
+  `id` BIGINT NOT NULL,
   `title` VARCHAR(45) NULL,
   `content` TEXT NULL,
-  `user_id` INT NULL,
   `url` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Helngers`.`columns`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Helngers`.`columns` (
+  `id` BIGINT NOT NULL,
+  `title` VARCHAR(45) NULL,
+  `content` TEXT NULL,
+  `user_id` BIGINT NULL,
+  `comment_id` BIGINT NULL,
+  `created_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  INDEX `challenges_user_id_to_users_id_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `challenges_user_id_to_users_id`
+  INDEX `column_user_id_to_users_id_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `column_user_id_to_users_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `Helngers`.`users` (`id`)
     ON DELETE NO ACTION
@@ -74,13 +90,34 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Helngers`.`articles`
+-- Table `Helngers`.`column_like`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`articles` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Helngers`.`column_like` (
+  `like_target` BIGINT NOT NULL,
+  `liker` BIGINT NULL,
+  PRIMARY KEY (`like_target`),
+  INDEX `like_liker_to_users_id_idx` (`liker` ASC) VISIBLE,
+  CONSTRAINT `column_like_like_target_to_columns_id`
+    FOREIGN KEY (`like_target`)
+    REFERENCES `Helngers`.`columns` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `column_like_liker_to_users_id`
+    FOREIGN KEY (`liker`)
+    REFERENCES `Helngers`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Helngers`.`feeds`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Helngers`.`feeds` (
+  `id` BIGINT NOT NULL,
   `title` VARCHAR(45) NULL,
   `content` TEXT NULL,
-  `user_id` INT NULL,
+  `user_id` BIGINT NULL,
   `article_categories` VARCHAR(30) NULL,
   `created_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
@@ -94,89 +131,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Helngers`.`comments`
+-- Table `Helngers`.`feed_files`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`comments` (
-  `id` INT NOT NULL,
-  `user_id` INT NULL,
-  `article_id` INT NULL,
-  `content` TEXT NULL,
-  `created_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`),
-  INDEX `comments_user_id_to_users_id_idx` (`user_id` ASC) VISIBLE,
-  INDEX `comments_user_id_to_article_id_idx` (`article_id` ASC) VISIBLE,
-  CONSTRAINT `comments_user_id_to_users_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `Helngers`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `comments_user_id_to_article_id`
-    FOREIGN KEY (`article_id`)
-    REFERENCES `Helngers`.`articles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Helngers`.`columns`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`columns` (
-  `id` INT NOT NULL,
-  `title` VARCHAR(45) NULL,
-  `content` TEXT NULL,
-  `user_id` INT NULL,
-  `comment_id` INT NULL,
-  `created_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`),
-  INDEX `column_user_id_to_users_id_idx` (`user_id` ASC) VISIBLE,
-  INDEX `columns_comment_id_to_comments_id_idx` (`comment_id` ASC) VISIBLE,
-  CONSTRAINT `column_user_id_to_users_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `Helngers`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `columns_comment_id_to_comments_id`
-    FOREIGN KEY (`comment_id`)
-    REFERENCES `Helngers`.`comments` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Helngers`.`like`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`like` (
-  `like_target` INT NOT NULL,
-  `liker` INT NULL,
-  PRIMARY KEY (`like_target`),
-  INDEX `like_liker_to_users_id_idx` (`liker` ASC) VISIBLE,
-  CONSTRAINT `like_like_target_to_columns_id`
-    FOREIGN KEY (`like_target`)
-    REFERENCES `Helngers`.`columns` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `like_liker_to_users_id`
-    FOREIGN KEY (`liker`)
-    REFERENCES `Helngers`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Helngers`.`article_files`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`article_files` (
-  `id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Helngers`.`feed_files` (
+  `id` BIGINT NOT NULL,
   `url` VARCHAR(300) NULL,
-  `article_id` INT NULL,
+  `feed_id` BIGINT NULL,
   PRIMARY KEY (`id`),
-  INDEX `article_files_article_id_to_article_id_idx` (`article_id` ASC) VISIBLE,
-  CONSTRAINT `article_files_article_id_to_article_id`
-    FOREIGN KEY (`article_id`)
-    REFERENCES `Helngers`.`articles` (`id`)
+  INDEX `article_files_article_id_to_article_id_idx` (`feed_id` ASC) VISIBLE,
+  CONSTRAINT `feed_files_feed_id_to_feed_id`
+    FOREIGN KEY (`feed_id`)
+    REFERENCES `Helngers`.`feeds` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Helngers`.`column_comments`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Helngers`.`column_comments` (
+  `id` BIGINT NOT NULL,
+  `content` TEXT NULL,
+  `column_id` BIGINT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `column_comments_column_id_to_columns_id_idx` (`column_id` ASC) VISIBLE,
+  CONSTRAINT `column_comments_column_id_to_columns_id`
+    FOREIGN KEY (`column_id`)
+    REFERENCES `Helngers`.`columns` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -186,9 +169,9 @@ ENGINE = InnoDB;
 -- Table `Helngers`.`column_files`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Helngers`.`column_files` (
-  `id` INT NOT NULL,
+  `id` BIGINT NOT NULL,
   `url` VARCHAR(300) NULL,
-  `column_id` INT NULL,
+  `column_id` BIGINT NULL,
   PRIMARY KEY (`id`),
   INDEX `column_files_column_id_to_column_id_idx` (`column_id` ASC) VISIBLE,
   CONSTRAINT `column_files_column_id_to_column_id`
@@ -200,16 +183,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Helngers`.`article_like`
+-- Table `Helngers`.`feed_like`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Helngers`.`article_like` (
-  `like_target` INT NOT NULL,
-  `liker` INT NULL,
+CREATE TABLE IF NOT EXISTS `Helngers`.`feed_like` (
+  `like_target` BIGINT NOT NULL,
+  `liker` BIGINT NULL,
   PRIMARY KEY (`like_target`),
   INDEX `article_like_liker_to_users_id_idx` (`liker` ASC) VISIBLE,
   CONSTRAINT `article_like_like_target_to_articles_id`
     FOREIGN KEY (`like_target`)
-    REFERENCES `Helngers`.`articles` (`id`)
+    REFERENCES `Helngers`.`feeds` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `article_like_liker_to_users_id`
@@ -224,8 +207,8 @@ ENGINE = InnoDB;
 -- Table `Helngers`.`followings`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Helngers`.`followings` (
-  `users_id` INT NOT NULL,
-  `users_id1` INT NOT NULL,
+  `users_id` BIGINT NOT NULL,
+  `users_id1` BIGINT NOT NULL,
   PRIMARY KEY (`users_id`, `users_id1`),
   INDEX `fk_users_has_users_users2_idx` (`users_id1` ASC) VISIBLE,
   INDEX `fk_users_has_users_users1_idx` (`users_id` ASC) VISIBLE,
@@ -237,6 +220,48 @@ CREATE TABLE IF NOT EXISTS `Helngers`.`followings` (
   CONSTRAINT `follower`
     FOREIGN KEY (`users_id1`)
     REFERENCES `Helngers`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Helngers`.`challenges_has_users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Helngers`.`challenges_has_users` (
+  `challenges_id` BIGINT NOT NULL,
+  `users_id` BIGINT NOT NULL,
+  `isAchieve` TINYINT NULL,
+  `achievedDate` TIMESTAMP NULL,
+  PRIMARY KEY (`challenges_id`, `users_id`),
+  INDEX `fk_challenges_has_users_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_challenges_has_users_challenges1_idx` (`challenges_id` ASC) VISIBLE,
+  CONSTRAINT `fk_challenges_has_users_challenges1`
+    FOREIGN KEY (`challenges_id`)
+    REFERENCES `Helngers`.`challenges` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_challenges_has_users_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `Helngers`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Helngers`.`feed_comments`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Helngers`.`feed_comments` (
+  `id` BIGINT NOT NULL,
+  `content` TEXT NULL,
+  `feed_id` BIGINT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `feed_comments_feed_id_to_feeds_id_idx` (`feed_id` ASC) VISIBLE,
+  CONSTRAINT `feed_comments_feed_id_to_feeds_id`
+    FOREIGN KEY (`feed_id`)
+    REFERENCES `Helngers`.`feeds` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
