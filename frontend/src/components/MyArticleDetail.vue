@@ -6,7 +6,7 @@
         <div class="col-md-7">
           <img
             src="https://url.kr/jekuoa"
-            class="img-fluid rounded-start"
+            class="img-fluid rounded-start detailImg"
             alt="MyImage" />
         </div>
         <div class="col-md-5">
@@ -78,10 +78,11 @@ export default {
   height: 600px;
   border: 0;
   margin: 16px;
-  img {
+  .detailImg {
     height: 600px;
     width: 430px;
     border-radius: 15px;
+    box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
   }
   .cardtitle {
     display: flex;
