@@ -69,16 +69,19 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  height: 70px;
+  height: 50px;
+  width: 100%;
   padding: 0 40px;
   display: flex;
   align-items: center;
-  position: relative;
-  background-color: rgb(255,219,89, .73);
+  position: fixed;
+  background-color: rgb(255,219,89, 1);
   font-family: 'Do Hyeon', sans-serif;
-  font-size: 23px;
+  font-size: 20px;
+  z-index: 100;
+  top: 0;
   .nav-link {
-    color: #000;
+    color: rgb(255, 255, 255);
     padding-top: 12px;
   }
   .logo {

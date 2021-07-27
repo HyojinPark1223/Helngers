@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      contents: 6,
+      contents: 50,
       isStatusOn: false,
       isDetailOn: false
     }
@@ -122,6 +122,7 @@ export default {
 .main {
   font-family: 'Do Hyeon', sans-serif;
   position: relative;
+  margin-top: 100px;
   .detail {
     position: fixed;
     z-index: 500;
@@ -187,12 +188,19 @@ export default {
       display: flex;
       justify-content: space-between;
       align-content: center;
-      margin: 0 50px 100px 50px;
+      margin: 0 30px 50px 30px;
       .card {
-        border-radius: 30px;
-        height: 350px * 3 / 2;
-        width: 350px;
+        border-radius: 15px;
+        height: 250px * 3 / 2;
+        width: 250px;
         border: none;
+        box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.05);
+          transition: 1s;
+          box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
         .card-body {
           background-color: rgba($color: #e9e9e9, $alpha: .2);
           h6 {
@@ -214,12 +222,23 @@ export default {
             margin: 0 0 10px 15px;
             p {
               margin: 0;
+              font-size: 12px;
+              color: #919191;
             }
           }
         .bottom {
           border-top: solid rgba($color: #919191, $alpha: .2);
-          max-height: 60px;
+          max-height: 40px;
           display: flex;
+          padding: 8px 13px;
+          h6 {
+            font-size: 14px;
+            margin: 3px 0 0 10px;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+          }
         }
       }
     }
