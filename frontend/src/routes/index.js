@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Main from './Main'
+import Home from './Home'
 import Login from './Login'
 import BadgeNow from './BadgeNow'
 import MuscleArticleList from './MuscleArticleList'
@@ -18,6 +19,10 @@ export default createRouter({
     {
       path: '/',
       component: Main
+    },
+    {
+      path: '/home',
+      component: Home
     },
     {
       path: '/login',

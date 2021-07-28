@@ -4,8 +4,7 @@
     <div
       type="button"
       class="profile"
-      data-bs-toggle="modal"
-      data-bs-target="#MyModal">
+      @click="tomodalOnOff">
       <img 
         :src="image" 
         :alt="name" />
@@ -13,11 +12,8 @@
 
     <!-- Modal -->
     <div
-      class="modal fade"
-      id="MyModal"
-      tabindex="-1"
-      aria-labelledby="MyModalLabel"
-      aria-hidden="true">
+      v-if="modalStatusOn"
+      class="Mymodal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -29,8 +25,8 @@
             <button
               type="button"
               class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
+              @click="tomodalOnOff">
+            </button>
           </div>
           <div class="modal-body">
             <img 
@@ -61,6 +57,11 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  data() {
+    return {
+      modalStatusOn : false
+    }
+  },
   computed: {
     ...mapState('profile', [ // vuex helper
       'image',
@@ -71,6 +72,9 @@ export default {
     toMypage() {
       this.$router.push('/mypage')
     },
+    tomodalOnOff() {
+      this.modalStatusOn = !this.modalStatusOn
+    }
   }
 }
 </script>
@@ -98,23 +102,25 @@ div {
       margin-bottom: 4px;
     }
   }
-  #MyModal {
-    top: 6%;
-  }
-  .modal-dialog {
-    width: 250px;
-    position: absolute;
-    top: 5px;
-    right: 35px;
-    .modal-body {
-      text-align: center;
-    }
-    .modal-footer {
-      justify-content: center;
-    }
-    img {
-      width: 100px;
-      height: 100px;
+  .Mymodal {
+    .modal-dialog {
+      width: 250px;
+      position: absolute;
+      top: 30px;
+      right: 35px;
+      .modal-header {
+      
+      }
+      .modal-body {
+        text-align: center;
+      }
+      .modal-footer {
+        justify-content: center;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
     }
   }
 }

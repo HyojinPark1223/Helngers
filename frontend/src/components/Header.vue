@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <div class="container">
     <Logo />
     <div class="nav nav-pills">
       <div
@@ -8,8 +8,9 @@
         class="nav-item">
         <RouterLink 
           :to="nav.href"
+          class="nav-link"
           active-class="active"
-          class="nav-link">
+          @click="addActive">
           {{ nav.name }}
         </RouterLink>
       </div>
@@ -27,8 +28,8 @@
         </RouterLink>
       </div>
     </div>
-    <MyModal />
-  </header>
+    <MyModal class="mymodal" />
+  </div>
 </template>
 
 <script>
@@ -43,6 +44,10 @@ export default {
   data() {
     return {
       navigations: [
+        {
+          name: '운동 기록',
+          href: '/'
+        },
         {
           name: '뱃지 현황',
           href: '/badgenow'
@@ -68,21 +73,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
+.container {
   height: 50px;
-  width: 100%;
+  width: 86%;
   padding: 0 40px;
+  margin: 10px 100px;
   display: flex;
   align-items: center;
   position: fixed;
-  background-color: rgb(255,219,89, 1);
+  background-color: rgb(255,219,89, .8);
+  border-radius: 20px;
   font-family: 'Do Hyeon', sans-serif;
   font-size: 20px;
   z-index: 100;
   top: 0;
+  .mymodal {
+    z-index: 100;
+  }
   .nav-link {
     color: rgb(255, 255, 255);
     padding-top: 12px;
+    cursor: pointer;
+    &.active {
+      color: #000;
+    }
   }
   .logo {
     margin-right: 20px;
