@@ -15,7 +15,8 @@
             <div
               class="content"
               v-for="content in contents"
-              :key="content.name">
+              :key="content.name"
+              @click="toMain">
               <div
                 class="card"
                 @click="detailOnOff">
@@ -37,8 +38,7 @@
                 <div class="card-body bottom">
                   <img
                     src="../assets/profile.png"
-                    alt="profile" 
-                    @click="toProfile" />
+                    alt="profile" />
                   <h6>
                     {{ content.user }}
                   </h6>
@@ -86,6 +86,11 @@ export default {
             image: 'https://url.kr/a3c6ne'
           }
         ]
+      }
+    },
+    methods: {
+      toMain() {
+        this.$router.push('/')
       }
     }
 }
