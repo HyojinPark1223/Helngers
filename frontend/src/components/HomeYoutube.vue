@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="youtube__cover">
-        <h1>여러분의 운동을 Helngers가 응원합니다!</h1>
+        <h1>여러분의 운동을 <span>Helngers</span>가 응원합니다!</h1>
         <p>Helngers are rooting for your exercise!</p>
       </div>
     </section>
@@ -76,6 +76,9 @@ export default defineComponent( {
       font-family: 'Do Hyeon', sans-serif;
       color: #fff;
       font-size: 4rem;
+      span {
+        color: orange;
+      }
     }
     p {
       font-family: 'Do Hyeon', sans-serif;
