@@ -126,7 +126,7 @@ export default {
         duration: .5,
         y : 0,
         opacity: 1,
-        ease: 'back',
+        ease: 'Power1-in',
         onComplete: done
       })
     }
