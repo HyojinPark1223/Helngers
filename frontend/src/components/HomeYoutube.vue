@@ -5,7 +5,7 @@
         <div id="player">
           <YouTube
             style="width: 100%;height: 100%;position: relative;"
-            src="https://www.youtube.com/watch?v=H-AcDBLqxi4"
+            src="https://youtube.com/H-AcDBLqxi4?t=7&autoplay=1&mute=1"
             @ready="onReady"
             ref="youtube" />
         </div>
