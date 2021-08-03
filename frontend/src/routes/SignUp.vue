@@ -1,40 +1,73 @@
 <template>
   <div class="background">
-    <div class="user" id="signup">
-      <div class="form-wrap" style="margin-top: 5%; margin-left: 5%">
+    <div
+      class="user"
+      id="signup">
+      <div
+        class="form-wrap"
+        style="margin-top: 5%; margin-left: 5%">
         <Logo />
-        <br>
+        <br />
         <div class="input-with-label">
-          <label for="username" style="padding: 0 3em 0 0;">아이디 :  </label>
-          <input v-model="username" id="username" placeholder="아이디를 입력하세요" type="text" />
+          <label
+            for="nickname"
+            style="padding: 0 3em 0 0;">닉네임 :</label>
+          <input
+            v-model="nickname"
+            id="nickname"
+            placeholder="닉네임을 입력하세요"
+            type="text" />
           <div clss="error-text"></div>
         </div>
-        <br>
+        <br />
         <div class="input-with-label">
-          <label for="nickname" style="padding: 0 3em 0 0;">닉네임 :</label>
-          <input v-model="nickname" id="nickname" placeholder="닉네임을 입력하세요" type="text" />
+          <label
+            for="email"
+            style="padding: 0 3em 0 0;">email :</label>
+          <input
+            v-model="email"
+            id="email"
+            placeholder="이메일을 입력하세요"
+            type="text"
+            style="margin-left: 12px;" />
+          <div>
+            <button
+              type="button"
+              class="button-form"
+              style="margin-left: 200px; margin-top: 5px;">
+              인증하기
+            </button>
+          </div>
           <div clss="error-text"></div>
         </div>
-        <br>
+        <br />
         <div class="input-with-label">
-          <label for="email" style="padding: 0 3em 0 0;">email :</label>
-          <input v-model="email" id="email" placeholder="이메일을 입력하세요" type="text" style="margin-left: 12px;"/>
+          <label
+            for="password"
+            style="padding: 0 2em 0 0;">비밀번호 : </label>
+          <input
+            v-model="password"
+            id="password"
+            placeholder="비밀번호를 입력하세요"
+            type="password" />
           <div clss="error-text"></div>
         </div>
-        <br>
+        <br />
         <div class="input-with-label">
-          <label for="password" style="padding: 0 2em 0 0;">비밀번호 : </label>
-          <input v-model="password" id="password" placeholder="비밀번호를 입력하세요" type="password"/>
+          <label
+            for="passwordchk"
+            style="margin-left:0;">비밀번호확인 :</label>
+          <input
+            v-model="passwordchk"
+            id="passwordchk"
+            placeholder="비밀번호를 입력하세요"
+            type="password" />
           <div clss="error-text"></div>
         </div>
-        <br>
-        <div class="input-with-label">
-          <label for="passwordchk" style="margin-left:0;">비밀번호확인 :</label>
-          <input v-model="passwordchk" id="passwordchk" placeholder="비밀번호를 입력하세요" type="password" />
-          <div clss="error-text"></div>
-        </div>
-        <br>
-        <button type="button" class="button-form">
+        <br />
+        <button
+          type="button"
+          class="button-form">
           회원가입
         </button>
 
@@ -44,10 +77,24 @@
             <div class="bar"></div>
           </div>
           <div>
-            <img style="margin-right: 5px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/600px-Google_%22G%22_Logo.svg.png" alt="" width="40" height="40">
+            <img
+              style="margin-right: 5px;"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/600px-Google_%22G%22_Logo.svg.png"
+              alt=""
+              width="40"
+              height="40" />
 
-            <img style="margin-right: 8px;" src="https://image.rocketpunch.com/company/5466/naver_logo.png?s=400x400&t=inside" alt="" width="40" height="40">
-            <img src="https://blog.kakaocdn.net/dn/Sq4OD/btqzlkr13eD/dYwFnscXEA6YIOHckdPDDk/img.jpg" alt="" width="40" height="40">
+            <img
+              style="margin-right: 8px;"
+              src="https://image.rocketpunch.com/company/5466/naver_logo.png?s=400x400&t=inside"
+              alt=""
+              width="40"
+              height="40" />
+            <img
+              src="https://blog.kakaocdn.net/dn/Sq4OD/btqzlkr13eD/dYwFnscXEA6YIOHckdPDDk/img.jpg"
+              alt=""
+              width="40"
+              height="40" />
           </div>
           <!-- <kakaoLogin :component="component" />
           <GoogleLogin :component="component" /> -->

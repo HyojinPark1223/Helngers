@@ -4,14 +4,12 @@ import com.ssafy.hellingers.model.Medal;
 import com.ssafy.hellingers.repository.MedalRepository;
 import com.ssafy.hellingers.service.MedalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("medals")
 public class MedalController {

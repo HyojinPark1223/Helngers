@@ -2,16 +2,16 @@
   <div class="MYBADGENOW">
     <div class="wrap">
       <div class="medal-wrap1">
-        <MedalCard/>
-        <MedalCard/>
-        <MedalCard/>
-        <MedalCard/>
+        <MedalCard />
+        <MedalCard />
+        <MedalCard />
+        <MedalCard />
       </div>
       <div class="medal-wrap1">
-        <MedalCard/>
-        <MedalCard/>
-        <MedalCard/>
-        <MedalCard/>
+        <MedalCard />
+        <MedalCard />
+        <MedalCard />
+        <MedalCard />
       </div>
     </div>
   </div>
@@ -19,11 +19,23 @@
 
 <script>
 import MedalCard from '../components/MedalCard'
+import axios from 'axios'
 export default {
   components: {
     MedalCard,
+  },
+  async created() {
+      axios({
+        method: 'get',
+        url: 'http://localhost:8080/medals/list/',
+      })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
   }
-
 }
 </script>
 
