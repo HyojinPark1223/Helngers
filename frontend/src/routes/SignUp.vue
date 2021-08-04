@@ -104,7 +104,7 @@ export default {
       flex-direction: column;
       justify-content: center;
       .for-sns {
-        border: black 1px;
+        border: black;
         width: 600px;
         height: 500px;
         display: flex; 
