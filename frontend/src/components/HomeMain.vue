@@ -5,7 +5,7 @@
       <div
         class="container"
         data-aos="fade-up"
-        data-aos-duration="1000">
+        data-aos-duration="1500">
         <div class="mainExplain">
           <div
             class="col-md-10">
