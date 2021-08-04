@@ -2,102 +2,71 @@
   <div class="background">
     <div
       class="user"
-      id="signup">
+      id="login">
       <div
-        class="form-wrap"
-        style="margin-top: 5%; margin-left: 5%">
-        <Logo />
-        <br />
-        <div class="input-with-label">
-          <label
-            for="nickname"
-            style="padding: 0 3em 0 0;">닉네임 :</label>
-          <input
-            v-model="nickname"
-            id="nickname"
-            placeholder="닉네임을 입력하세요"
-            type="text" />
-          <div clss="error-text"></div>
-        </div>
-        <br />
-        <div class="input-with-label">
-          <label
-            for="email"
-            style="padding: 0 3em 0 0;">email :</label>
-          <input
-            v-model="email"
-            id="email"
-            placeholder="이메일을 입력하세요"
-            type="text"
-            style="margin-left: 12px;" />
-          <div>
+        class="for-sns">
+        <div class="form-wrap">
+          <Logo class="Logo" />
+          <div class="input-with-label">
+            <label
+              for="nickName">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input
+              v-model="nickName"
+              placeholder="닉네임을 입력하세요."
+              type="text" />
+            <div clss="error-text"></div>
+          </div>
+          <div class="input-with-label">
+            <label
+              for="email">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input
+              v-model="email"
+              placeholder="이메일을 입력하세요"
+              type="text" />
+            <div clss="error-text"></div>
+          </div>
+          <div class="input-with-label">
+            <label
+              for="email">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input
+              v-model="password"
+              placeholder="비밀번호를 입력하세요"
+              type="text" />
+            <div clss="error-text"></div>
+          </div>
+          <div class="input-with-label">
+            <label
+              for="password">비밀번호 확인</label>
+            <input
+              v-model="password"
+              placeholder="비밀번호를 입력하세요"
+              type="password" />
+            <div clss="error-text"></div>
+          </div>
+          <div class="button-div">
             <button
-              type="button"
-              class="button-form"
-              style="margin-left: 200px; margin-top: 5px;">
-              인증하기
+              class="btn btn-primary"
+              @click="toSignup">
+              SIGN UP
             </button>
           </div>
-          <div clss="error-text"></div>
-        </div>
-        <br />
-        <div class="input-with-label">
-          <label
-            for="password"
-            style="padding: 0 2em 0 0;">비밀번호 : </label>
-          <input
-            v-model="password"
-            id="password"
-            placeholder="비밀번호를 입력하세요"
-            type="password" />
-          <div clss="error-text"></div>
-        </div>
-        <br />
-        <div class="input-with-label">
-          <label
-            for="passwordchk"
-            style="margin-left:0;">비밀번호확인 :</label>
-          <input
-            v-model="passwordchk"
-            id="passwordchk"
-            placeholder="비밀번호를 입력하세요"
-            type="password" />
-          <div clss="error-text"></div>
-        </div>
-        <br />
-        <button
-          type="button"
-          class="button-form">
-          회원가입
-        </button>
-
-        <div class="sns-login">
-          <div class="text">
-            <p>SNS 간편 회원가입</p>
-            <div class="bar"></div>
+          <div class="add-option">
+            <div class="wrap">
+              <p>SNS 간편 회원가입</p>
+            </div>
           </div>
-          <div>
+          <div
+            class="sns-login">
             <img
-              style="margin-right: 5px;"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/600px-Google_%22G%22_Logo.svg.png"
-              alt=""
-              width="40"
-              height="40" />
-
+              src="https://me2.kr/0wmie"
+              alt="google" />
             <img
-              style="margin-right: 8px;"
-              src="https://image.rocketpunch.com/company/5466/naver_logo.png?s=400x400&t=inside"
-              alt=""
-              width="40"
-              height="40" />
+              src="https://me2.kr/rh1k0"
+              alt="naver" />
             <img
-              src="https://blog.kakaocdn.net/dn/Sq4OD/btqzlkr13eD/dYwFnscXEA6YIOHckdPDDk/img.jpg"
-              alt=""
-              width="40"
-              height="40" />
+              src="https://me2.kr/vxczh"
+              alt="kakao" />
           </div>
-          <!-- <kakaoLogin :component="component" />
-          <GoogleLogin :component="component" /> -->
         </div>
       </div>
     </div>
@@ -106,64 +75,93 @@
 
 <script>
 import Logo from '../components/Logo'
+
 export default {
   components: {
     Logo,
   },
   data() {
     return {
-      username: "",
-      nickname: "",
       email: "",
       password: "",
-      passwordchk: "",
+    }
+  },
+  methods: {
+    toSignup() {
+      this.$router.push('/signup')
     }
   }
-
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 .background {
-  height: 800px;
-  background-color: rgb(255,219,89, .73);
-}
-
-#password, #email, #username, #nickname, #passwordchk {
-  background-color: #c8c8c8;
-  border-radius: 10px;
-  border: 0;
-  outline: 0;
-  
-  margin-left: 5px;
-}
-.form-wrap {
-  background-color: white;
-  width: 700px;
-  height: 500px;
-  border: 0;
-  outline: 0;
-  border-radius: 50px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.user {
-  display: flex;
-  justify-content: center;
-}
-.button-form {
-  background-color: rgb(255,219,89, .73);
-  border-radius: 10px;
-  border: 0;
-  outline: 0;
-  color: white;
-
-}
-
-
-
+    height: 800px;
+    background-color: rgb(255,219,89, .73);
+    font-family: 'Do Hyeon', sans-serif;
+    .user {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .for-sns {
+        border: black 1px;
+        width: 600px;
+        height: 500px;
+        display: flex; 
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        margin: 10% auto;
+        .form-wrap {
+          background-color: white;
+          width: 600px;
+          height: 800px;
+          border: 0;
+          outline: 0;
+          border-radius: 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .Logo {
+            margin-bottom: 20px;
+          }
+          .input-with-label {
+            margin: 10px 0;
+            input {
+              margin-left: 15px;
+              background-color: #f1e5e5;
+              border-radius: 10px;
+              border: 0;
+              outline: 0;
+            }
+          }
+          .button-div {
+            display: flex;
+            button {
+              margin: 15px 10px;
+              width: 250px;
+              height: 32px;
+              font-size: 15px;
+            }
+          }
+          .add-option {
+            margin: 10px 0 0;
+            color: rgb(192, 190, 190);
+          }
+          .sns-login {
+            width: 600px;
+            display: flex; 
+            justify-content: center;
+            margin-top: 10px;
+            img {
+              width: 35px;
+              height: 35px;
+              margin: 0 5px;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>
