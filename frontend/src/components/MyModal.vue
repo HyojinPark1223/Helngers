@@ -71,6 +71,7 @@ export default {
   methods: {
     toMypage() {
       this.$router.push('/mypage')
+      this.modalStatusOn = !this.modalStatusOn
     },
     tomodalOnOff() {
       this.modalStatusOn = !this.modalStatusOn
@@ -108,9 +109,6 @@ div {
       position: absolute;
       top: 30px;
       right: 35px;
-      .modal-header {
-      
-      }
       .modal-body {
         text-align: center;
       }
