@@ -1,16 +1,22 @@
 <template>
   <div>
-    <section class="introMain">
-      <div class="container">
+    <section
+      class="introMain">
+      <div
+        class="container"
+        data-aos="fade-up"
+        data-aos-duration="1000">
         <div class="mainExplain">
-          <div class="col-md-10">
+          <div
+            class="col-md-10">
             <h3 class="mb-4">
               하루하루 운동을 기록하고, 나와 비슷한 친구와 함께 성장해요!
             </h3>
             <P>서로 응원하고 같이하면 어느새 목표치 달성!</P>
           </div>
         </div>
-        <div class="mainCard">
+        <div
+          class="mainCard">
           <div class="rating-wrap">
             <div
               class="content"
@@ -57,7 +63,11 @@
 </template>
 
 <script>
+import AOS from 'aos'
 export default {
+  created() {
+    AOS.init()
+  },
   data() {
       return {
         contents: [

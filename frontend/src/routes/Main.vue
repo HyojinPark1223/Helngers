@@ -146,7 +146,7 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 50px 60px;
+    margin: 150px 150px;
     .search{
       position: relative;
       input {
