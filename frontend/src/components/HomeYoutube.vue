@@ -10,19 +10,28 @@
             ref="youtube" />
         </div>
       </div>
-      <div class="youtube__cover">
-        <h1>여러분의 운동을 <span>Helngers</span>가 응원합니다!</h1>
-        <p>Helngers are rooting for your exercise!</p>
+      <div
+        class="youtube__cover">
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="1000">
+          <h1>여러분의 운동을 <span>Helngers</span>가 응원합니다!</h1>
+          <p>Helngers are rooting for your exercise!</p>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import AOS from 'aos'
 import { defineComponent } from 'vue'
 import YouTube from 'vue3-youtube'
 
 export default defineComponent( {
+  created() {
+    AOS.init()
+  },
   components: { YouTube },
   methods: {
     onReady() {

@@ -123,7 +123,7 @@ export default {
     const enter = (el, done) => {
       // console.log('starting to enter - make transition')
       gsap.to(el, {
-        duration: .5,
+        duration: .3,
         y : 0,
         opacity: 1,
         ease: 'Power1-in',

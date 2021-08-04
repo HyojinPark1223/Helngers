@@ -1,7 +1,10 @@
 <template>
   <section class="challenge">
     <div class="inner">
-      <div class="text-group">
+      <div
+        class="text-group"
+        data-aos="fade-right"
+        data-aos-duration="1000">
         <img
           src="../assets/challenge.png"
           alt="challenge" />
@@ -22,7 +25,11 @@
 </template>
 
 <script>
+import AOS from 'aos'
 export default {
+  created() {
+    AOS.init()
+  },
   methods: {
     toChallnege() {
       this.$router.push('/challenge')

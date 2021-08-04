@@ -222,6 +222,7 @@ export default {
   .mybanner {
     text-align: center;
     color: #333;
+    margin-top: 80px;
     h4 {
       color: #333;
       margin-bottom: 0;
@@ -232,6 +233,7 @@ export default {
     display: flex;
     justify-content: space-around;
     padding-top: 50px;
+    margin-bottom: 100px;
     .myprofile {
       position: relative;
       .myprofilecard{

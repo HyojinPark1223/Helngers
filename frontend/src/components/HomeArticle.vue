@@ -1,6 +1,9 @@
 <template>
   <section class="article">
-    <div class="inner">
+    <div
+      class="inner"
+      data-aos="fade-left"
+      data-aos-duration="1000">
       <div class="text-group">
         <h1>Today's Muscle</h1>
         <p>전문가의 정확한 운동방법까지 오늘의 꿀팁을 배워보세요~!</p>
@@ -19,7 +22,11 @@
 </template>
 
 <script>
+import AOS from 'aos'
 export default {
+  created() {
+    AOS.init()
+  },
   methods: {
     toMusclearticlelist() {
       this.$router.push('/musclearticlelist')
