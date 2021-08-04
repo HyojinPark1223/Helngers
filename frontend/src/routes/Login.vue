@@ -43,18 +43,18 @@
               <p>비밀번호를 잊으셨나요?</p>
             </div>
           </div>
-        </div>
-        <div
-          class="sns-login">
-          <img
-            src="https://me2.kr/0wmie"
-            alt="google" />
-          <img
-            src="https://me2.kr/rh1k0"
-            alt="naver" />
-          <img
-            src="https://me2.kr/vxczh"
-            alt="kakao" />
+          <div
+            class="sns-login">
+            <img
+              src="https://me2.kr/0wmie"
+              alt="google" />
+            <img
+              src="https://me2.kr/rh1k0"
+              alt="naver" />
+            <img
+              src="https://me2.kr/vxczh"
+              alt="kakao" />
+          </div>
         </div>
       </div>
     </div>
@@ -129,31 +129,29 @@ export default {
           .button-div {
             display: flex;
             button {
-              margin: 10px 20px;
+              margin: 15px 10px;
+              width: 100px;
               height: 32px;
               font-size: 15px;
             }
           }
           .add-option {
             margin: 10px 0;
-            color: rgb(100, 100, 100);
+            color: rgb(192, 190, 190);
           }
-        }
-        .sns-login {
-          width: 600px;
-          display: flex; 
-          margin-top: 10px;
-          img {
-            width: 35px;
-            height: 35px;
-            &:first-child {
-              margin-left: auto;
+          .sns-login {
+            width: 600px;
+            display: flex; 
+            justify-content: center;
+            margin-top: 10px;
+            img {
+              width: 35px;
+              height: 35px;
+              margin: 0 5px;
             }
           }
         }
       }
     }
   }
-
-
 </style>
