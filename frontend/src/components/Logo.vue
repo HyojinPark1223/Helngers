@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    to="/home"
+    to="/"
     class="logo">
     <img
       src="../assets/logo.png"
