@@ -101,6 +101,7 @@ AWS(EC2) 서버로 배포하였다.
         <li>Swagger</li>
         <li>Spring Boot</li>
         <li>Spring Security</li>
+        <li>JavaMailSender</li>
         <li>MySQL</li>
         <li>NGINX</li>
         <li>E2C</li>
