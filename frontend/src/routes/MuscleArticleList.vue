@@ -5,8 +5,17 @@
       class="create">
       <CreateMuscleArticle />
     </div>
+    <section class="banner">
+      <div
+        class="container"
+        data-aos="fade-up"
+        data-aos-duration="1000">
+        <h1>Today's Muschle!</h1>
+        <p>오늘의 근육을 채워보아요~!</p>
+      </div>
+    </section>
     <div class="menu">
-      <h2>오늘의 근육을 채워보아요~!</h2>
+      <!-- <h2>오늘의 근육을 채워보아요~!</h2> -->
       <div class="search push">
         <input
           type="text"
@@ -44,7 +53,12 @@
 
 <script>
 import CreateMuscleArticle from '../components/CreateMuscleArticle.vue'
+import AOS from 'aos'
+
 export default {
+  created() {
+    AOS.init()
+  },
   components: {
     CreateMuscleArticle,
   },
@@ -95,7 +109,6 @@ export default {
 .muscleArticle {
   font-family: 'Do Hyeon', sans-serif;
   position: relative;
-  margin-top: 100px;
   .create {
     position: fixed;
     margin: 0 auto;
@@ -106,11 +119,37 @@ export default {
     background-color: #fff;
     box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
   }
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(255, 255, 255, 0.1)), url('https://han.gl/HHZ57');
+    h1 {
+      font-family: 'Anton', sans-serif;
+      color: #fff;
+      text-align: center;
+      font-size: 60px;
+      margin-top: 140px;
+    }
+    p {
+      color: rgb(156, 155, 155);
+      text-align: center;
+      font-size: 20px;
+    }
+  }
   .menu {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 150px 300px;
+    margin: 50px 200px;
+    z-index: 10;
     .search{
       position: relative;
       input {
@@ -147,7 +186,7 @@ export default {
   .singleArticle {
     text-align: center;
     width: 600px;
-    margin: 100px auto;
+    margin: 50px auto;
     cursor: pointer;
     .ArticleHeader {
       p {

@@ -48,7 +48,7 @@ export default {
       navigations: [
         {
           name: '운동 기록',
-          href: '/'
+          href: '/main'
         },
         {
           name: '뱃지 현황',
