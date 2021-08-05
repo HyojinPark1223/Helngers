@@ -18,11 +18,11 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      component: Main
+      component: Home
     },
     {
-      path: '/home',
-      component: Home
+      path: '/main',
+      component: Main
     },
     {
       path: '/login',

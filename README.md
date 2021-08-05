@@ -94,20 +94,30 @@ AWS(EC2) 서버로 배포하였다.
         <li>axios: </li>
     </ul>
 </details>
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe3be68ed6b7c6e79712d339188d55ec43841a1a
 <details>
     <summary>BackEnd Tech Stack</summary>
     <ul>
         <li>Swagger</li>
         <li>Spring Boot</li>
         <li>Spring Security</li>
+<<<<<<< HEAD
         <li>JavaMailSender</li>
+=======
+>>>>>>> fe3be68ed6b7c6e79712d339188d55ec43841a1a
         <li>MySQL</li>
         <li>NGINX</li>
         <li>E2C</li>
     </ul>
 </details>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fe3be68ed6b7c6e79712d339188d55ec43841a1a
 <details>
     <summary>ETC</summary>
     <ul>

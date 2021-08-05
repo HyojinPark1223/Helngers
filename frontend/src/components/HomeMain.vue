@@ -5,7 +5,7 @@
       <div
         class="container"
         data-aos="fade-up"
-        data-aos-duration="1000">
+        data-aos-duration="1500">
         <div class="mainExplain">
           <div
             class="col-md-10">
@@ -16,7 +16,9 @@
           </div>
         </div>
         <div
-          class="mainCard">
+          class="mainCard"
+          data-aos="flip-up"
+          data-aos-duration="1000">
           <div class="rating-wrap">
             <div
               class="content"

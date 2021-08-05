@@ -135,10 +135,11 @@ export default {
   }
   .create {
     position: fixed;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
     z-index: 500;
     width: 800px;
-    top: 130px;
-    right: 320px;
     background-color: #fff;
     box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
   }
@@ -146,7 +147,7 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 150px 150px;
+    margin: 150px 300px;
     .search{
       position: relative;
       input {

@@ -3,7 +3,7 @@ package com.ssafy.hellingers.controller;
 import com.ssafy.hellingers.model.Account;
 import com.ssafy.hellingers.model.Challenge;
 import com.ssafy.hellingers.service.AccountService;
-import com.ssafy.hellingers.service.AccountServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
