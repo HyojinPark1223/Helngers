@@ -94,18 +94,19 @@ AWS(EC2) 서버로 배포하였다.
         <li>axios: </li>
     </ul>
 </details>
-
 <details>
     <summary>BackEnd Tech Stack</summary>
     <ul>
         <li>Swagger</li>
         <li>Spring Boot</li>
         <li>Spring Security</li>
+        <li>JavaMailSender</li>
         <li>MySQL</li>
         <li>NGINX</li>
         <li>E2C</li>
     </ul>
 </details>
+
 
 <details>
     <summary>ETC</summary>
