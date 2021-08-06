@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import HomeBanner from '~/components/HomeBanner'
-import HomeMain from '~/components/HomeMain'
-import HomeYoutube from '~/components/HomeYoutube'
-import HomeChallenge from '~/components/HomeChallenge'
-import HomeArticle from '~/components/HomeArticle'
+import HomeBanner from '~/components/HomeChild/HomeBanner'
+import HomeMain from '~/components/HomeChild/HomeMain'
+import HomeYoutube from '~/components/HomeChild/HomeYoutube'
+import HomeChallenge from '~/components/HomeChild/HomeChallenge'
+import HomeArticle from '~/components/HomeChild/HomeArticle'
 
 export default {
   components: {

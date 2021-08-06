@@ -15,7 +15,7 @@
       </div>
     </section>
     <div class="menu">
-      <!-- <h2>오늘의 근육을 채워보아요~!</h2> -->
+      <h3>전문가들의 운동 꿀팁 챙기기!</h3>
       <div class="search push">
         <input
           type="text"
@@ -137,9 +137,10 @@ export default {
       text-align: center;
       font-size: 60px;
       margin-top: 140px;
+      text-shadow: 1px 1px 3px #000;
     }
     p {
-      color: rgb(156, 155, 155);
+      color: rgb(228, 226, 226);
       text-align: center;
       font-size: 20px;
     }
@@ -150,6 +151,9 @@ export default {
     align-content: center;
     margin: 50px 200px;
     z-index: 10;
+    h3 {
+      margin: 5px 0;
+    }
     .search{
       position: relative;
       input {

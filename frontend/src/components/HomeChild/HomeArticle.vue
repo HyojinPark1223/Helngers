@@ -15,7 +15,7 @@
         </button>
       </div>
       <img
-        src="../assets/trophy.png"
+        src="../../assets/trophy.png"
         alt="throphy" />
     </div>
   </section>

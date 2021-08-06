@@ -78,7 +78,7 @@ export default defineComponent( {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .3);
-    background-image : url("../assets/video_cover_pattern.png");
+    background-image : url("../../assets/video_cover_pattern.png");
     text-align: center;
     h1 {
       margin-top: 200px;
