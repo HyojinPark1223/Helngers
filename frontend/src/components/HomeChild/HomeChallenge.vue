@@ -6,7 +6,7 @@
         data-aos="fade-right"
         data-aos-duration="1000">
         <img
-          src="../assets/challenge.png"
+          src="../../assets/challenge.png"
           alt="challenge" />
         <h1>Challenge</h1>
         <p>

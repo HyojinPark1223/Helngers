@@ -47,11 +47,11 @@ export default {
     return {
       navigations: [
         {
-          name: '운동 기록',
+          name: '피드',
           href: '/main'
         },
         {
-          name: '뱃지 현황',
+          name: '뱃지',
           href: '/badgenow'
         },
         {
@@ -92,7 +92,7 @@ export default {
     display: flex;
     align-items: center;
     position: fixed;
-    background-color: rgb(255,219,89, .8);
+    background-color: rgb(255,219,89);
     border-radius: 20px;
     font-family: 'Do Hyeon', sans-serif;
     font-size: 20px;
