@@ -44,11 +44,7 @@
         </select>
       </div>
       <div class="mb-3 articleText">
-        <textarea
-          class="form-control"
-          id="exampleFormControlTextarea1"
-          placeholder="게시글을 작성해주세요."
-          rows="3"></textarea>
+        <Tiptap />
       </div>
       <div class="mb-3 bottom">
         <div class="fileUpload">
@@ -69,13 +65,16 @@
 
 <script>
 import FileSelect from './FileSelect.vue'
+import Tiptap from './Tiptap.vue'
+
 export default {
   components: {
-    FileSelect
+    FileSelect,
+    Tiptap
   },
   data() {
     return {
-      file: null
+      file: null,
     }
   },
   methods: {
@@ -84,15 +83,18 @@ export default {
     },
     input(value) {
       this.file = value;
-    }
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .createForm {
+  overflow: auto;
   form {
     padding: 30px;
+    overflow-y: scroll;
+    height: 730px;
     .createHeader {
       display: flex;
       justify-content: space-between;
@@ -116,10 +118,11 @@ export default {
       justify-content: space-between;
       h4 {
         margin: 5px 0;
+        width: 160px;
       }
       .form-select {
-        margin-left: 5px;
-        max-width: 550px;
+        margin-left: 10px;
+        max-width: 100%;
         border: none;
       }
     }
