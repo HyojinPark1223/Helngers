@@ -111,11 +111,11 @@ export default {
   position: relative;
   .create {
     position: fixed;
-    margin: 0 auto;
+    margin: 20px auto;
     left: 0;
     right: 0;
     z-index: 500;
-    width: 800px;
+    width: 1000px;
     background-color: #fff;
     box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
   }
