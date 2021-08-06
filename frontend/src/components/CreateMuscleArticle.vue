@@ -47,12 +47,6 @@
         <Tiptap />
       </div>
       <div class="mb-3 bottom">
-        <div class="fileUpload">
-          <FileSelect @input="input" />
-          <p v-if="file">
-            {{ file.name }}
-          </p>
-        </div>
         <button
           type="submit"
           class="btn btn-primary">
@@ -64,25 +58,19 @@
 </template>
 
 <script>
-import FileSelect from './FileSelect.vue'
 import Tiptap from './Tiptap.vue'
 
 export default {
   components: {
-    FileSelect,
     Tiptap
   },
   data() {
     return {
-      file: null,
     }
   },
   methods: {
     toMain() {
       this.$parent.toggleOnOff()
-    },
-    input(value) {
-      this.file = value;
     },
   }
 }
@@ -138,13 +126,10 @@ export default {
     }
     .bottom {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin: 0 15px;
-      .fileUpload {
-        display: flex;
-        p {
-          margin: 7px 0px 3px 20px;
-        }
+      button {
+        width: 150px;
       }
     }
   }
