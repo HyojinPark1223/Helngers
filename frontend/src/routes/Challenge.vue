@@ -5,10 +5,10 @@
         class="container"
         data-aos="fade-up"
         data-aos-duration="1000">
-        <h1>Today's Challenge</h1>
+        <h1>Challenge Now!</h1>
         <p>하루하루 챌린지를 완료해서 뱃지를 모아보세요!</p>
       </div>
-    </section>
+    </section> 
     <div class="container">
       <Carousel
         :settings="settings"
@@ -179,7 +179,7 @@ export default defineComponent({
     z-index: -1;
     overflow: hidden;
     background-repeat: no-repeat;
-    background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(255, 255, 255, 0.1)), url('https://han.gl/pQpmF');
+    background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(255, 255, 255, 0.1)), url('https://han.gl/F8N1I');
     h1 {
       font-family: 'Anton', sans-serif;
       color: #fff;
@@ -217,7 +217,7 @@ export default defineComponent({
         @include transform(rotatey(-180deg));
       }
       @include transform-style(preserve-3d);
-      @include transition(1s);
+      @include transition(1.5s);
 
       .front, .back {
         width: 100%;
