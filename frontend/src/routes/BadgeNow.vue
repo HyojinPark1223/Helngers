@@ -150,49 +150,49 @@
           id="back"
           role="tabpanel"
           aria-labelledby="profile-tab">
-          등
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="shoulder"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          어깨
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="arm"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          팔
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="lower"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          하체
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="running"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          유산소
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="special"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          Special
+          <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="event"
           role="tabpanel"
           aria-labelledby="contact-tab">
-          Event
+          <MedalCard />
         </div>
       </div>
     </section>
