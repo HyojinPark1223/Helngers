@@ -9,11 +9,11 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="email">이메일&nbsp;&nbsp;</label>
+              for="email">username&nbsp;&nbsp;</label>
             <input
               v-model="formData.username"
               id="email"
-              placeholder="이메일을 입력하세요"
+              placeholder="username을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
           </div>
@@ -66,7 +66,7 @@
 import Logo from '../components/Logo'
 import UserService from '../services/user.service'
 import User from '../models/user'
-import vuex from 'vuex'
+// import vuex from 'vuex'
 
 export default {
   components: {
@@ -74,13 +74,13 @@ export default {
   },
   data() {
     return {
-      FormData: new User('', ''),
+      formData: new User('', ''),
       loading: false,
     }
   },
   methods: {
     login() {
-      UserService.login(this.FormData).then(
+      UserService.login(this.formData).then(
         response => {
           console.log(response.data)
         },

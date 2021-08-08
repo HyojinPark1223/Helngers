@@ -9,19 +9,19 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="nickName">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              for="nickName">username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
               v-model="formData.username"
-              placeholder="닉네임을 입력하세요."
+              placeholder="username을 입력하세요."
               type="text" />
             <div clss="error-text"></div>
           </div>
           <div class="input-with-label">
             <label
-              for="email">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              for="email">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
               v-model="formData.name"
-              placeholder="이메일을 입력하세요"
+              placeholder="name을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
           </div>
