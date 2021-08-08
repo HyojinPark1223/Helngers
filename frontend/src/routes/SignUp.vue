@@ -11,7 +11,7 @@
             <label
               for="nickName">닉네임&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="nickName"
+              v-model="formData.username"
               placeholder="닉네임을 입력하세요."
               type="text" />
             <div clss="error-text"></div>
@@ -20,7 +20,7 @@
             <label
               for="email">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="email"
+              v-model="formData.name"
               placeholder="이메일을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
@@ -29,7 +29,7 @@
             <label
               for="email">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="password"
+              v-model="formData.password"
               placeholder="비밀번호를 입력하세요"
               type="text" />
             <div clss="error-text"></div>
@@ -46,7 +46,8 @@
           <div class="button-div">
             <button
               class="btn btn-primary"
-              @click="toSignup">
+              @click="Signup"
+              :disabled="loading">
               SIGN UP
             </button>
           </div>
@@ -74,7 +75,11 @@
 </template>
 
 <script>
+import UserService from '../services/user.service';
+import User from '../models/user';
 import Logo from '../components/Logo'
+// import axios from 'axios'
+// import vuex from 'vuex'
 
 export default {
   components: {
@@ -82,13 +87,38 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
+      // email: "",
+      // password: "",
+        formData: new User('', '', ''),
+        loading: false,
+        submitted: false,
     }
   },
   methods: {
-    toSignup() {
-      this.$router.push('/signup')
+    // ...vuex.mapActions(['updateUser']),
+    // Signup() {
+    //   axios({
+    //     method: 'post',
+    //     url: 'http://localhost:8080/api/user/',
+    //     data: this.fomrData
+    //   })
+    //     .then(res => {
+    //       console.log(res)
+    //     })
+    //     .catch(err => {
+    //       console.log(err)
+    //     })
+    // }
+    Signup() {
+      UserService.register(this.formData).then(
+        () => {
+          console.log('요청')
+          this.$router.push('/login')
+        },
+
+      ).then(() => {
+        this.loading = false
+      })
     }
   }
 }
