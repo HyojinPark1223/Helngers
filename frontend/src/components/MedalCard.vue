@@ -18,7 +18,10 @@
           v-for="slide in slides"
           :key="slide"
           class="slide">
-          <div class="carousel__item">
+          <div
+            class="carousel__item"
+            @click="showModal">
+            {{ slide }}
           </div>
           <div class="progress">
             <div
@@ -53,6 +56,7 @@
           :key="slide"
           class="slide">
           <div class="carousel__item">
+            {{ slide }}
           </div>
           <div class="progress">
             <div
@@ -87,6 +91,7 @@
           :key="slide"
           class="slide">
           <div class="carousel__item">
+            {{ slide }}
           </div>
           <div class="progress">
             <div
@@ -108,11 +113,14 @@
   </div>
 </template>
 <script>
-import MedalModal from './MedalModal'
+import MedalModal from './MedalModal';
+import { defineComponent } from 'vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
 
-export default {
-	name: 'MedalCard',
+import 'vue3-carousel/dist/carousel.css';
+
+export default defineComponent({
+	name: 'Breakpoints',
 	components: {
 		MedalModal,
     Carousel,
@@ -133,16 +141,12 @@ export default {
       breakpoints: {
         // 700px and up
         700: {
-          itemsToShow: 4,
+          itemsToShow: 2,
           snapAlign: 'center',
         },
         // 1024 and up
         1024: {
           itemsToShow: 5,
-          snapAlign: 'start',
-        },
-        1474: {
-          itemsToShow: 6,
           snapAlign: 'start',
         },
       },
@@ -153,8 +157,14 @@ export default {
 			this.modalChk = !this.modalChk
 		}
 	},
-}
+});
 </script>
+<style>
+.carousel__prev,
+.carousel__next {
+  background-color: #333;
+}
+</style>
 <style lang="scss" scoped>
 .material-icons {
   font-size: 40px;
@@ -168,26 +178,29 @@ export default {
     margin: 5px 5px;
   }
 }
+
 .carousel{
   .slide {
-    margin: 20px 10px 40px;
-    display: block;
+    margin: 20px 0 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     .carousel__item {
       font-family: 'Do Hyeon', sans-serif;
-      height: 100px;
-      width: 100px;
+      height: 120px;
+      width: 120px;
       border-radius: 50%;
       background-color: $primary;
       color: var(--carousel-color-white);
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 10px;
-      position: relative;
+      cursor: pointer;
     }
     .progress {
       width: 70px;
-      margin: 20px 0 20px 27px;
+      margin: 20px 0 20px;
     }
   }
 }
