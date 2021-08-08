@@ -11,7 +11,7 @@
             <label
               for="email">이메일&nbsp;&nbsp;</label>
             <input
-              v-model="email"
+              v-model="formData.username"
               id="email"
               placeholder="이메일을 입력하세요"
               type="text" />
@@ -21,7 +21,7 @@
             <label
               for="password">비밀번호</label>
             <input
-              v-model="password"
+              v-model="formData.password"
               id="password"
               placeholder="비밀번호를 입력하세요"
               type="password" />
@@ -29,7 +29,8 @@
           </div>
           <div class="button-div">
             <button
-              class="btn btn-primary">
+              class="btn btn-primary"
+              @click="login">
               LOGIN
             </button>
             <button
@@ -63,6 +64,9 @@
 
 <script>
 import Logo from '../components/Logo'
+import UserService from '../services/user.service'
+import User from '../models/user'
+import vuex from 'vuex'
 
 export default {
   components: {
@@ -70,11 +74,20 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
+      FormData: new User('', ''),
+      loading: false,
     }
   },
   methods: {
+    login() {
+      UserService.login(this.FormData).then(
+        response => {
+          console.log(response.data)
+        },
+        // response.data.password = this.FormData.password
+        console.log('로긴')
+      )
+    },
     toSignup() {
       this.$router.push('/signup')
     }
