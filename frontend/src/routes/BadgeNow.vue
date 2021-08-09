@@ -19,12 +19,12 @@
           role="presentation">
           <button
             class="nav-link active"
-            id="home-tab"
+            id="chest-tab"
             data-bs-toggle="tab"
             data-bs-target="#chest"
             type="button"
             role="tab"
-            aria-controls="home"
+            aria-controls="chest"
             aria-selected="true">
             가슴
           </button>
@@ -34,12 +34,12 @@
           role="presentation">
           <button
             class="nav-link"
-            id="profile-tab"
+            id="back-tab"
             data-bs-toggle="tab"
             data-bs-target="#back"
             type="button"
             role="tab"
-            aria-controls="profile"
+            aria-controls="back"
             aria-selected="false">
             등
           </button>
@@ -49,12 +49,12 @@
           role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="shoulder-tab"
             data-bs-toggle="tab"
             data-bs-target="#shoulder"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="shoulder"
             aria-selected="false">
             어깨
           </button>
@@ -64,12 +64,12 @@
           role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="arm-tab"
             data-bs-toggle="tab"
             data-bs-target="#arm"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="arm"
             aria-selected="false">
             팔
           </button>
@@ -79,12 +79,12 @@
           role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="lower-tab"
             data-bs-toggle="tab"
             data-bs-target="#lower"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="lower"
             aria-selected="false">
             하체
           </button>
@@ -94,12 +94,12 @@
           role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="running-tab"
             data-bs-toggle="tab"
             data-bs-target="#running"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="running"
             aria-selected="false">
             유산소
           </button>
@@ -109,29 +109,14 @@
           role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="special-tab"
             data-bs-toggle="tab"
             data-bs-target="#special"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="special"
             aria-selected="false">
             Special
-          </button>
-        </li>
-        <li
-          class="nav-item"
-          role="presentation">
-          <button
-            class="nav-link"
-            id="contact-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#event"
-            type="button"
-            role="tab"
-            aria-controls="contact"
-            aria-selected="false">
-            Event
           </button>
         </li>
       </ul>
@@ -142,56 +127,49 @@
           class="tab-pane fade show active"
           id="chest"
           role="tabpanel"
-          aria-labelledby="home-tab">
+          aria-labelledby="chest-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="back"
           role="tabpanel"
-          aria-labelledby="profile-tab">
+          aria-labelledby="back-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="shoulder"
           role="tabpanel"
-          aria-labelledby="contact-tab">
+          aria-labelledby="shoulder-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="arm"
           role="tabpanel"
-          aria-labelledby="contact-tab">
+          aria-labelledby="arm-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="lower"
           role="tabpanel"
-          aria-labelledby="contact-tab">
+          aria-labelledby="lower-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="running"
           role="tabpanel"
-          aria-labelledby="contact-tab">
+          aria-labelledby="running-tab">
           <MedalCard />
         </div>
         <div
           class="tab-pane fade"
           id="special"
           role="tabpanel"
-          aria-labelledby="contact-tab">
-          <MedalCard />
-        </div>
-        <div
-          class="tab-pane fade"
-          id="event"
-          role="tabpanel"
-          aria-labelledby="contact-tab">
+          aria-labelledby="special-tab">
           <MedalCard />
         </div>
       </div>
@@ -204,7 +182,7 @@ import AOS from 'aos'
 import MedalCard from '~/components/MedalCard'
 export default {
   components: {
-    MedalCard
+    MedalCard,
   },
   async created() {
     AOS.init()
