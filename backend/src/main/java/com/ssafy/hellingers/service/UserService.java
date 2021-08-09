@@ -24,24 +24,24 @@ public class UserService implements IUserService
     public User saveUser(User user)
     {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setCreateDate(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         //기본 설정은 is USER.
         user.setRole(Role.ROLE_USER);
         return userRepository.save(user);
     }
 
     @Override
-    public User changeRole(Role newRole, String username)
+    public User changeRole(Role newRole, String nickname)
     {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException());
+        User user = userRepository.findByNickname(nickname).orElseThrow(() -> new RuntimeException());
         user.setRole(newRole);
         return userRepository.save(user);
     }
 
     @Override
-    public User findByUsername(String username)
+    public User findByNickname(String nickname)
     {
-        return userRepository.findByUsername(username).orElse(null);
+        return userRepository.findByNickname(nickname).orElse(null);
     }
 
     @Override

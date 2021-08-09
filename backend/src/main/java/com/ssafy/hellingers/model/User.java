@@ -1,75 +1,64 @@
 package com.ssafy.hellingers.model;
 
+//import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+//import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 
 @Data // getter, setter...
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
-
-//    @Column(name = "nickname")
-//    private String name;
-
-    @Column(name = "username", unique = true, nullable = false)
-    private String username;
-
-    @Column(name = "nickname")
-    private String nickname;
 
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "nickname", nullable = false)
+    private String nickname;
 
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "categories", nullable = false)
+//    private String categories;
 
-    @Column(name = "categories")
-    private String categories;
-
-
+    @ColumnDefault("0")
     @Column(name = "count")
     private int count;
 
+    @ColumnDefault("0")
     @Column(name = "comment_count")
     private int comment_count;
 
-
+    @ColumnDefault("1")
     @Column(name = "level")
     private int level;
 
     @Column(name = "introduce")
     private String introduce;
 
+    @ColumnDefault("0")
     @Column(name = "point")
-    private int point;
+    private Integer point;
 
-    @Column(name = "dead")
-    private int dead;
+    @Column(name = "period")
+    private Integer period;
 
-    @Column(name = "squat")
-    private int squat;
+    @Column(name = "purpose")
+    private Integer purpose;
 
-    @Column(name = "bench")
-    private int bench;
-
-
-    @Column(name = "create_date")
-    private LocalDateTime createDate;
-
-
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
