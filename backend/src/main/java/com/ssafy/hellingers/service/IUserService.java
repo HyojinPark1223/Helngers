@@ -12,7 +12,7 @@ public interface IUserService
 
     User changeRole(Role newRole, String username);
 
-    User findByUsername(String username);
+    User findByNickname(String nickname);
 
     User deleteUser(Long userId);
 

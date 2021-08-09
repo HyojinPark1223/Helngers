@@ -31,9 +31,9 @@ public class UserController
     @PostMapping
     public ResponseEntity<?> register(@RequestBody @Valid UserDto user) //@Valid provides validation check
     {
-        if (userService.findByUsername(user.getUsername()) != null)
+        if (userService.findByNickname(user.getNickname()) != null)
         {
-            //Username 은 유니크해야
+            //Nickname 은 유니크해야
             return new ResponseEntity<>(HttpStatus.CONFLICT);//409
         }
         //dto를 모델 객체로 변환한 다음 서비스와 함께 저장합니다.
@@ -53,7 +53,7 @@ public class UserController
             //여기에 로그아웃 리디렉션도 있으므로 OK로 간주합니다. httpStatus -> 오류가 없습니다.
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        User user = userService.findByUsername(principal.getName());
+        User user = userService.findByNickname(principal.getName());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

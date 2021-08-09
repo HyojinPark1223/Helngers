@@ -11,36 +11,36 @@ import javax.validation.constraints.NotBlank;
 public class UserDto //Data Transfer Object
 {
     @NotBlank
-    private String name;
+    private String email;
 
     @NotBlank
-    private String username;
+    private String nickname;
 
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String introduce;
+
 
     private Long id;
-    private String email;
-    private String nickname;
     private String categories;
     private int count;
     private int comment_count;
     private int level;
-    private String introduce;
     private int point;
-    private int dead;
-    private int squat;
-    private int bench;
+    private int period;
+    private int purpose;
 
 
 
     public User convertToUser()
     {
         User user = new User();
-        user.setName(name);
-        user.setUsername(username);
+        user.setEmail(email);
+        user.setNickname(nickname);
         user.setPassword(password);
+        user.setIntroduce(introduce);
         return user;
     }
 }
