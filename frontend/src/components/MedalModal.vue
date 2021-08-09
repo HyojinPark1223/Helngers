@@ -61,16 +61,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .black-bg {
+.black-bg {
   width: 100%; height: 100%;
-  background-color: rgba(59, 54, 48, 0.205);
+  background-color: rgba(189, 186, 186, 0.5);
   z-index: 1000;
   position: fixed; padding: 20px;
   top: 0px;
   left: 0px;
   .white-bg {
     width: 50%; 
-    height: 70%;
+    height: 60%;
     margin-left: 25%;
     margin-top: 10%;
     background: white;
@@ -79,7 +79,6 @@ export default {
     padding: 20px;
     display: flex;
     flex-direction: column;
-
     .modal-header {
       width: 100%;
       height: 20px;
@@ -124,10 +123,7 @@ export default {
         align-items: center;
         justify-content: center;
       }
-
-
     }
   }
-
 }
 </style>

@@ -28,7 +28,7 @@ export default {
       paddingTop: 0,
       paddingBottom: 0,
       scrollY: 0,
-      defaultHeight: 34,
+      defaultHeight: 1,
     }
   },
   created() {
