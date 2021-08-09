@@ -3,7 +3,7 @@
     <div class="white-bg">
       <div class="modal-header">
         <button
-          @click="closep"
+          @click="close"
           type="submit"
           class="btn-close"
           aria-label="Close">
@@ -11,20 +11,29 @@
       </div>
       <div class="modal-body">
         <div class="body-left">
-          <div><h2>물구나무</h2></div>
-          <div>
+          <div class="left-header">
             <img
-              src="https://t1.daumcdn.net/cfile/tistory/99DBCD4E5A82385D1B"
-              width="100px"
-              height="100px" />
+              src="../assets/fitness.png"
+              alt="badge_image" />
+            <div class="title">
+              <h2>데드리프트 고수</h2>
+              <P>560명(25▲)</P>
+            </div>
           </div>
-          <div>
-            <img
-              src="https://mblogthumb-phinf.pstatic.net/20160902_126/rbamtori_1472800583452FW8NT_GIF/helixbar.gif?type=w800"
-              width="50px"
-              height="50px" />
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 50%;"
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100">
+              50%
+            </div>
           </div>
-          <div class="dtail-box">
+          <div class="detail">
+            <p>데드리프트는 ~~한 운동입니다.</p>
+            <p>(운동 설명)</p>
           </div>
         </div>
         <div class="body-right">
@@ -38,9 +47,16 @@
 export default {
     name: 'MedalModal',
     methods: {
-      closep() {
+      close() {
         this.$parent.showModal()
       },
+    },
+    data() {
+      return {
+        badges: {
+          img_path: require('../assets/badge/chest.png')
+        }
+      }
     }
 }
 </script>
@@ -48,7 +64,6 @@ export default {
   .black-bg {
   width: 100%; height: 100%;
   background-color: rgba(59, 54, 48, 0.205);
-
   z-index: 1000;
   position: fixed; padding: 20px;
   top: 0px;
@@ -78,14 +93,28 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        .dtail-box {
-          width: 100%;
-          height: 80%;
-          
-          background-color: #f7e6ae;
-          border-radius: 5px;
-          
+        .left-header {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          img {
+            width: 100px;
+            height: 100px;
+          }
+          .title {
+            text-align: center;
+            padding: 20px 0 10px 30px;
+          }
+        }
+        .progress {
+          width: 250px;
+          margin: 20px 0 20px;
+        }
+        .detail {
+          width: 350px;
+          height: 150px;
+          background-color: $primary;
+          text-align: center;
         }
       }
       .body-right {

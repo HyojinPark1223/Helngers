@@ -9,35 +9,30 @@
         <p>하루하루 챌린지를 완료해서 뱃지를 모아보세요!</p>
       </div>
     </section> 
-    <div class="container">
+    <section class="container">
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
         class="carousel">
         <Slide
-          v-for="slide in slides"
+          v-for="{slide, i} in slides"
           :key="slide"
-          class="slide">
+          class="slide"
+          :class="{ active: i === activeItem}">
           <div class="carousel__item">
-            <div class="front">
-              <div class="front__inner">
+            <div class="challengeCard">
+              <div class="challengeCard__inner">
                 <h2>오늘의 챌린지!</h2>
                 <br />
                 <img
                   src="../assets/fitness.png"
                   alt="fitness" />
-              </div>
-            </div>
-            <div class="back">
-              <div class="back__inner">
-                <h2>챌린지 설명</h2>
-                <p>어쩌구 저쩌구</p>
-                <div
+                <!-- <div
                   type="button"
                   class="btn btn-danger btn-lg"
                   @click="toggleOnOff">
                   사진 올리기
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -81,7 +76,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -106,6 +101,7 @@ export default defineComponent({
     // carousel settings
     slides: 10,
     isStatusOn: false,
+    activeItem: null,
     settings: {
       itemsToShow: 1,
       snapAlign: 'center',
@@ -132,42 +128,16 @@ export default defineComponent({
   methods: {
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
-    }
+    },
+    selectItem(i) {
+        this.activeItem = i;
+        console.log(i)
+    },
   }
 });
 </script>
 
 <style lang="scss" scoped>
-@mixin backface-visibility($visibility: hidden) {
-  backface-visibility: $visibility;
-  -webkit-backface-visibility: $visibility;
-  -moz-backface-visibility: $visibility;
-  -ms-backface-visibility: $visibility;
-  -o-backface-visibility: $visibility;
-}
-
-@mixin transition($time){
-  transition: $time;
-  -webkit-transition: $time;
-  -moz-transition: $time;
-  -o-transition: $time;
-}
-
-@mixin transform($transformation) {
-  transform: $transformation;
-  -webkit-transform: $transformation;
-  -moz-transform: $transformation;
-  -ms-transform: $transformation;
-  -o-transform: $transformation;  
-}
-
-@mixin transform-style($style){
-   transform-style: $style;
-  -moz-transform-style: $style;
-  -o-transform-style: $style;
-  -ms-transform-style: $style;
-  -webkit-transform-style: $style;
-}
 .banner {
     position: relative;
     width: 100%;
@@ -195,106 +165,88 @@ export default defineComponent({
       font-size: 20px;
     }
   }
-.carousel{
-  // padding: 80px 100px 80px 30px;
-  padding: 80px 78px 80px 30px;
-  .slide {
-    margin: 50px 10px;
-    .carousel__item {
-      font-family: 'Do Hyeon', sans-serif;
-      min-height: 400px;
-      width: 300px;
-      background-color: $primary;
-      color: var(--carousel-color-white);
-      font-size: 20px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 10px;
-      position: relative;
-      &:hover {
-        @include transform(rotatey(-180deg));
-      }
-      @include transform-style(preserve-3d);
-      @include transition(1.5s);
-
-      .front, .back {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        @include backface-visibility;
-      }
-
-      .front {
-        z-index:3;
+.container {
+  .carousel{
+    // padding: 80px 100px 80px 30px;
+    padding: 80px 78px 80px 30px;
+    .slide {
+      margin: 50px 0 50px 10px;
+      .carousel__item {
+        font-family: 'Do Hyeon', sans-serif;
+        min-height: 400px;
+        width: 300px;
+        background-color: $primary;
+        color: var(--carousel-color-white);
         font-size: 20px;
-        justify-content: center;
-        align-content: center;
         border-radius: 8px;
-        box-shadow: 0px 15px 15px rgba(10, 10, 10, 0.2);
-        .front__inner {
-          margin-top: 130px;
-          img {
-            width: 100px;
-            height: 100px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .challengeCard {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index:3;
+          font-size: 20px;
+          justify-content: center;
+          align-content: center;
+          border-radius: 8px;
+          box-shadow: 0px 15px 15px rgba(10, 10, 10, 0.2);
+          .challengeCard__inner {
+            margin-top: 130px;
+            img {
+              width: 100px;
+              height: 100px; 
+            }
           }
         }
-      }
-      .back {
-        z-index: 1;
-        background-color: $warning;
-        box-shadow: 0px 20px 20px rgba(10, 10, 10, 0.2);
-        top: -10px;
-        right: -10px;
-        border-radius: 8px;
-        justify-content: center;
-        align-content: center;
-        .back__inner {
-          margin-top: 130px
+        &:hover {
+          transform: scale(1.05);
+          transition: 1s;
+          box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
         }
-        @include transform(rotatey(-180deg));
       }
     }
   }
-}
-.card {
-  font-family: 'Do Hyeon', sans-serif;
-  width: 600px;
-  height: 200px;
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  margin: 0 auto;
-  margin-left: -250px;
-  margin-top: -250px;
-  box-shadow: 0 0 999px 999px rgba(255, 255, 255, 0.678);
-  z-index: 500;
-  .card-body {
-    .card-title {
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
-    }
-    .card-content {
-      display: flex;
-      justify-content: space-around;
-      align-content: center;
-      margin: 30px 0;
-      input {
-        margin-right: 5px;
+  .card {
+    font-family: 'Do Hyeon', sans-serif;
+    width: 600px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    margin: 0 auto;
+    margin-left: -250px;
+    margin-top: -250px;
+    box-shadow: 0 0 999px 999px rgba(255, 255, 255, 0.678);
+    z-index: 500;
+    .card-body {
+      .card-title {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
       }
-    }
-    .card-bottom {
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      button {
-        width: 100px;
-        padding: 3px 10px;
+      .card-content {
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        margin: 30px 0;
+        input {
+          margin-right: 5px;
+        }
       }
-      .cancel {
-        margin-right: 20px;
+      .card-bottom {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        button {
+          width: 100px;
+          padding: 3px 10px;
+        }
+        .cancel {
+          margin-right: 20px;
+        }
       }
     }
   }

@@ -50,7 +50,6 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
-        :wrap-around="true"
         class="carousel">
         <Slide
           v-for="slide in slides"
@@ -86,7 +85,6 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
-        :wrap-around="true"
         class="carousel">
         <Slide
           v-for="slide in slides"
