@@ -45,14 +45,14 @@
                 </div>
                 <div class="card-body bottom">
                   <img
-                    src="../assets/profile.png"
+                    src="../../assets/profile.png"
                     alt="profile" />
                   <h6>
                     {{ content.user }}
                   </h6>
                   <img
                     class="push"
-                    src="../assets/heart.png"
+                    src="../../assets/heart.png"
                     alt="heart" />
                 </div>
               </div>

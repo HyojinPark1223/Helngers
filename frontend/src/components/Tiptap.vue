@@ -75,35 +75,31 @@
           redo
         </span>
       </button>
+      <button @click="addImage">
+        <span class="material-icons">
+          image
+        </span>
+      </button>
       <button
         @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
         :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
-        <h1>h1</h1>
+        <h3>
+          H1
+        </h3>
       </button>
       <button
         @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
         :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
-        <h2>h2</h2>
+        <h3>
+          H2
+        </h3>
       </button>
       <button
         @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">
-        <h3>h3</h3>
-      </button>
-      <button
-        @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
-        :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }">
-        <h4>h4</h4>
-      </button>
-      <button
-        @click="editor.chain().focus().toggleHeading({ level: 5 }).run()"
-        :class="{ 'is-active': editor.isActive('heading', { level: 5 }) }">
-        <h5>h5</h5>
-      </button>
-      <button
-        @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-        :class="{ 'is-active': editor.isActive('heading', { level: 6 }) }">
-        <h6>h6</h6>
+        <h3>
+          H3
+        </h3>
       </button>
     </div>
     <editor-content
@@ -116,7 +112,7 @@
 <script>
 import { Editor, EditorContent, BubbleMenu  } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import Placeholder from '@tiptap/extension-placeholder'
+import Image from '@tiptap/extension-image'
 
 export default {
   components: {
@@ -129,7 +125,15 @@ export default {
       editor: null,
     }
   },
+  methods: {
+    addImage() {
+      const url = window.prompt('URL')
 
+      if (url) {
+        this.editor.chain().focus().setImage({ src: url }).run()
+      }
+    }
+  },
   mounted() {
     this.editor = new Editor({
       content: `
@@ -147,12 +151,7 @@ export default {
       `,
       extensions: [
         StarterKit,
-        Placeholder.configure({
-          showOnlyCurrent: false,
-          placeholder: () => {
-            return "Paragraph Placeholder";
-          }
-        })
+        Image,
       ],
     })
   },
@@ -166,7 +165,7 @@ export default {
 <style lang="scss" scoped>
 /* Basic editor styles */
 .content {
-  background-color: #ebe7e7a2;
+  background-color: #f5f5f5e8;
 }
 .ProseMirror {
   > * + * {
@@ -258,9 +257,20 @@ export default {
   }
 }
 .menubar {
+  display: flex;
+  justify-content: left;
+  align-content: center;
   button {
     border: none;
     background-color: #fff;
+    span {
+      padding-top: 8px;
+      height: 43px;
+    }
+    h3 {
+      margin: 0;
+      font-size: 23px;
+    }
   }
 }
 </style>
