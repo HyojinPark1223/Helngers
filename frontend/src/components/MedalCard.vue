@@ -50,6 +50,7 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
+        :wrap-around="true"
         class="carousel">
         <Slide
           v-for="slide in slides"
@@ -85,6 +86,7 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
+        :wrap-around="true"
         class="carousel">
         <Slide
           v-for="slide in slides"
@@ -162,6 +164,12 @@ export default defineComponent({
 <style>
 .carousel__prev,
 .carousel__next {
+  background-color: #333;
+}
+.carousel__pagination-button {
+  background-color: rgba(51, 51, 51, 0.541);
+}
+.carousel__pagination-button--active {
   background-color: #333;
 }
 </style>

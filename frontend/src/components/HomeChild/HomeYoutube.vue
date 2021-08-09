@@ -5,8 +5,11 @@
         <div id="player">
           <YouTube
             style="width: 100%;height: 100%;position: relative;"
-            src="https://youtube.com/H-AcDBLqxi4?t=7&autoplay=1&mute=1"
+            :src="loopPlaylists"
             @ready="onReady"
+            :vars="{
+              'loop':true
+            }"
             ref="youtube" />
         </div>
       </div>
@@ -32,9 +35,19 @@ export default defineComponent( {
   created() {
     AOS.init()
   },
+  data() {
+    return {
+      loopPlaylists: [
+        // 'https://www.youtube.com/watch?v=Rm_aiDpkGmQ',
+        'https://www.youtube.com/watch?v=H-AcDBLqxi4&t=1s'
+      ]
+    }
+  },
   components: { YouTube },
   methods: {
     onReady() {
+      this.$refs.youtube.player.mute()
+      this.$refs.youtube.player.setLoop(this.loopPlaylists)
       this.$refs.youtube.playVideo()
     },
   } 
