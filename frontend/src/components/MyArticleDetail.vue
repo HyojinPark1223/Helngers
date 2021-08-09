@@ -66,10 +66,9 @@ export default {
   },
   methods: {
     toMain() {
-      this.$parent.detailOnOff()
+      this.$parent.detailOff()
     },
-  }
-
+  },
 }
 </script>
 

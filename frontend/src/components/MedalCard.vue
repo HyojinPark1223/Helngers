@@ -50,6 +50,7 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
+        @click="showModal"
         class="carousel">
         <Slide
           v-for="slide in slides"
@@ -85,6 +86,7 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
+        @click="showModal"
         class="carousel">
         <Slide
           v-for="slide in slides"
@@ -203,6 +205,12 @@ export default defineComponent({
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      &:hover {
+        transform: scale(1.05);
+        transition: 1s;
+        background-color: rgb(221, 53, 53);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      }
     }
     .progress {
       width: 70px;

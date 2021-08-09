@@ -10,6 +10,7 @@
       class="detail">
       <MyArticleDetail />
     </div>
+  
     <section class="banner">
       <div
         class="container"
@@ -43,7 +44,7 @@
         :key="index">
         <div
           class="card"
-          @click="detailOnOff">
+          @click="detailOn">
           <img
             src="https://url.kr/jekuoa"
             class="card-img-top"
@@ -95,7 +96,8 @@ export default {
     return {
       contents: 50,
       isStatusOn: false,
-      isDetailOn: false
+      isDetailOn: false,
+      scrollY : 0
     }
   },
   methods: {
@@ -117,15 +119,22 @@ export default {
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
     },
-    detailOnOff() {
+    detailOn() {
       this.isDetailOn = !this.isDetailOn
+      this.scrollY = window.scrollY;
+      // console.log(this.scrollY)
       const main = document.querySelector('body')
       if (this.isDetailOn) {
         main.setAttribute('style', 'position: fixed;')
       }
-      else {
+    },
+    detailOff() {
+      this.isDetailOn = !this.isDetailOn
+      const main = document.querySelector('body')
+      if (!this.isDetailOn) {
         main.setAttribute('style', '')
       }
+      window.scrollTo(0, this.scrollY)
     }
   }
 }
@@ -139,7 +148,7 @@ export default {
     position: fixed;
     z-index: 500;
     width: 800px;
-    top: 100px;
+    top: 70px;
     right: 320px;
     background-color: #fff;
     border-radius: 20px;
@@ -148,10 +157,11 @@ export default {
   .create {
     position: fixed;
     margin: 0 auto;
+    top: 80px;
     left: 0;
     right: 0;
     z-index: 500;
-    width: 800px;
+    width: 60%;
     background-color: #fff;
     box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
   }
