@@ -22,12 +22,12 @@
           @focus="searchFocus"
           @blur="searchBlur" />
         <img
-          src="../assets/search.png"
+          src="../../assets/search.png"
           alt="search"
           @click="searchFocus" />
       </div>
       <img
-        src="../assets/pencil.png"
+        src="../../assets/pencil.png"
         alt="pencil"
         @click="toggleOnOff" />
     </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import CreateMuscleArticle from '../components/CreateMuscleArticle.vue'
+import CreateMuscleArticle from './CreateMuscleArticle.vue'
 import AOS from 'aos'
 
 export default {

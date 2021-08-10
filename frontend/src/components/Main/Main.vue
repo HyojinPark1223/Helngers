@@ -28,12 +28,12 @@
           @focus="searchFocus"
           @blur="searchBlur" />
         <img
-          src="../assets/search.png"
+          src="../../assets/search.png"
           alt="search"
           @click="searchFocus" />
       </div>
       <img
-        src="../assets/pencil.png"
+        src="../../assets/pencil.png"
         alt="pencil"
         @click="toggleOnOff" />
     </div>
@@ -62,7 +62,7 @@
           </div>
           <div class="card-body bottom">
             <img
-              src="../assets/profile.png"
+              src="../../assets/profile.png"
               alt="profile" 
               @click="toProfile" />
             <h6>
@@ -70,7 +70,7 @@
             </h6>
             <img
               class="push"
-              src="../assets/heart.png"
+              src="../../assets/heart.png"
               alt="heart" />
           </div>
         </div>
@@ -80,8 +80,8 @@
 </template>
 
 <script>
-import CreateMyArticle from '~/components/CreateMyArticle'
-import MyArticleDetail from '~/components/MyArticleDetail'
+import CreateMyArticle from './CreateMyArticle'
+import MyArticleDetail from './MyArticleDetail'
 import AOS from 'aos'
 
 export default {

@@ -167,7 +167,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import UpdateProfile from '~/components/UpdateProfile'
+import UpdateProfile from './UpdateProfile'
 
 export default {
   name: 'MyPage',
@@ -190,7 +190,7 @@ export default {
       this.$router.push('/challenge')
     },
     toBadgeNow() {
-      this.$router.push('/badgenow')
+      this.$router.push('/medal')
     },
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn

@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Main from './Main'
-import Home from './Home'
+import Main from '../components/Main/Main'
+import Home from '../components/Home/Home'
 import Login from './Login'
-import BadgeNow from './BadgeNow'
-import MuscleArticleList from './MuscleArticleList'
-import MyPage from './MyPage'
-import Challenge from './Challenge'
+import Medal from '../components/Medal/Medal'
+import MuscleArticle from '../components/MuscleArticle/MuscleArticle'
+import MyPage from '../components/MyPage/MyPage'
+import Challenge from '../components/Challenge/Challenge'
 import SignUp from './SignUp'
 
 export default createRouter({
@@ -29,12 +29,12 @@ export default createRouter({
       component: Login
     },
     {
-      path: '/badgenow',
-      component: BadgeNow
+      path: '/medal',
+      component: Medal
     },
     {
-      path: '/musclearticlelist',
-      component: MuscleArticleList
+      path: '/musclearticle',
+      component: MuscleArticle
     },
     {
       path: '/mypage',
