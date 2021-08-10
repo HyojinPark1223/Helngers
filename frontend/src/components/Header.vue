@@ -36,7 +36,7 @@
 
 <script>
 import Logo from './Logo'
-import MyModal from '~/components/MyModal'
+import MyModal from './MyPage/MyModal.vue'
 
 export default {
   components: {
@@ -51,8 +51,8 @@ export default {
           href: '/main'
         },
         {
-          name: '뱃지',
-          href: '/badgenow'
+          name: '메달',
+          href: '/medal'
         },
         {
           name: '챌린지',
@@ -60,7 +60,7 @@ export default {
         },
         {
           name: '오늘의 머슬',
-          href: '/musclearticlelist'
+          href: '/musclearticle'
         },
       ],
       user_navigations: [

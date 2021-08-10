@@ -17,7 +17,7 @@
 
 <script>
 import AOS from 'aos'
-import MedalCard from '~/components/MedalCard'
+import MedalCard from './MedalCard'
 export default {
   components: {
     MedalCard,

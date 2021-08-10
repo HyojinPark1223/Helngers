@@ -12,7 +12,7 @@
         <div class="col-md-5">
           <div class="cardtitle">
             <img
-              src="../assets/profile.png"
+              src="../../assets/profile.png"
               alt="profile" 
               @click="toProfile" />
             <h4>
@@ -44,7 +44,7 @@
               <h6>20명의 사람이 좋아합니다.</h6>
               <img
                 class="push"
-                src="../assets/heart.png"
+                src="../../assets/heart.png"
                 alt="heart" />
             </div>
           </div>
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import MyArticleComment from '~/components/MyArticleComment'
+import MyArticleComment from './MyArticleComment'
 
 export default {
   components: {

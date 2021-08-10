@@ -26,7 +26,7 @@
                 <h2>오늘의 챌린지!</h2>
                 <br />
                 <img
-                  src="../assets/fitness.png"
+                  src="../../assets/fitness.png"
                   alt="fitness" />
                 <!-- <div
                   type="button"
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import ChallengeModal from '../components/ChallengeModal.vue'
+import ChallengeModal from './ChallengeModal.vue'
 import { defineComponent } from 'vue';
 import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';

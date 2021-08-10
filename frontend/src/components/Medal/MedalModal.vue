@@ -13,7 +13,7 @@
         <div class="body-left">
           <div class="left-header">
             <img
-              src="../assets/fitness.png"
+              src="../../assets/fitness.png"
               alt="badge_image" />
             <div class="title">
               <h2>데드리프트 고수</h2>
@@ -54,7 +54,7 @@ export default {
     data() {
       return {
         badges: {
-          img_path: require('../assets/badge/chest.png')
+          img_path: require('../../assets/badge/chest.png')
         }
       }
     }
