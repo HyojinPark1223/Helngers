@@ -102,7 +102,7 @@ export default {
     },
     methods: {
       toMain() {
-        this.$router.push('/')
+        this.$router.push('/main')
       }
     }
 }

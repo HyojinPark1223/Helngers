@@ -9,7 +9,7 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="nickName">username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              for="nickName">username&nbsp;&nbsp;</label>
             <input
               v-model="formData.username"
               placeholder="username을 입력하세요."

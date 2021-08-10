@@ -15,12 +15,13 @@
         :breakpoints="breakpoints"
         class="carousel">
         <Slide
-          v-for="{slide, i} in slides"
+          v-for="{slide} in slides"
           :key="slide"
-          class="slide"
-          :class="{ active: i === activeItem}">
+          class="slide">
           <div class="carousel__item">
-            <div class="challengeCard">
+            <div
+              @click="modalOnOff"
+              class="challengeCard">
               <div class="challengeCard__inner">
                 <h2>오늘의 챌린지!</h2>
                 <br />
@@ -77,10 +78,16 @@
         </div>
       </div>
     </section>
+    <section
+      class="detail"
+      v-if="cModal">
+      <ChallengeModal />
+    </section>
   </div>
 </template>
 
 <script>
+import ChallengeModal from '../components/ChallengeModal.vue'
 import { defineComponent } from 'vue';
 import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
@@ -96,12 +103,14 @@ export default defineComponent({
     Carousel,
     Slide,
     Navigation,
+    ChallengeModal
   },
   data: () => ({
     // carousel settings
     slides: 10,
     isStatusOn: false,
     activeItem: null,
+    cModal: false,
     settings: {
       itemsToShow: 1,
       snapAlign: 'center',
@@ -116,23 +125,22 @@ export default defineComponent({
       },
       // 1024 and up
       1024: {
-        itemsToShow: 2,
-        snapAlign: 'start',
-      },
-      1474: {
         itemsToShow: 3,
         snapAlign: 'start',
       },
+      // 1474: {
+      //   itemsToShow: 3,
+      //   snapAlign: 'start',
+      // },
     },
   }),
   methods: {
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
     },
-    selectItem(i) {
-        this.activeItem = i;
-        console.log(i)
-    },
+    modalOnOff() {
+      this.cModal = !this.cModal
+    }
   }
 });
 </script>
@@ -166,6 +174,7 @@ export default defineComponent({
     }
   }
 .container {
+  max-width: 1000px;
   .carousel{
     // padding: 80px 100px 80px 30px;
     padding: 80px 78px 80px 30px;
@@ -174,7 +183,7 @@ export default defineComponent({
       .carousel__item {
         font-family: 'Do Hyeon', sans-serif;
         min-height: 400px;
-        width: 300px;
+        width: 250px;
         background-color: $primary;
         color: var(--carousel-color-white);
         font-size: 20px;
@@ -193,6 +202,7 @@ export default defineComponent({
           align-content: center;
           border-radius: 8px;
           box-shadow: 0px 15px 15px rgba(10, 10, 10, 0.2);
+          cursor: pointer;
           .challengeCard__inner {
             margin-top: 130px;
             img {
@@ -250,5 +260,15 @@ export default defineComponent({
       }
     }
   }
+}
+.detail {
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  z-index: 500;
+  width: 60%; height: 60%;
+  background-color: rgba(189, 186, 186, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
 }
 </style>
