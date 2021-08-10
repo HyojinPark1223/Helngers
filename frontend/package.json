@@ -50,6 +50,7 @@
     "gsap": "^3.7.1",
     "sass-loader": "^10.2.0",
     "vue": "^3.0.7",
+    "vue-image-upload-resize": "^2.3.0",
     "vue-router": "^4.0.10",
     "vue-youtube": "^1.4.0",
     "vue3-carousel": "^0.1.23",

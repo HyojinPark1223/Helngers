@@ -9,7 +9,7 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="email">username&nbsp;&nbsp;</label>
+              for="email">username&nbsp;</label>
             <input
               v-model="formData.username"
               id="email"
@@ -19,7 +19,7 @@
           </div>
           <div class="input-with-label">
             <label
-              for="password">비밀번호</label>
+              for="password">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
               v-model="formData.password"
               id="password"
