@@ -33,16 +33,8 @@ public class UserController
     @Autowired
     JwtService jwtService;
 
-//    //POST http://localhost:8080/api/user/get
-//    @PostMapping("/get")
-//    public String login2( @RequestBody User user) {
-//        // 이메일 비밀번호 검증 과정
-//
-//        System.out.println("111111111111111111111111111111111111111");
-//        String jwt = jwtService.create("email", user.getEmail(), "access_token");
-//
-//        return jwt;
-//    }
+    // 운동 경력이 들어가는 API (POST)
+    // 운동 목적이 들어가는 API (POST)
 
 
     //POST http://localhost:8080/api/user -data {user form}
@@ -50,33 +42,25 @@ public class UserController
     public ResponseEntity<?> register(@RequestBody @Valid UserDto user) //@Valid provides validation check
     {
         if(userService.findByEmail(user.getEmail()) != null) {
-            // Email 은 유니크해야
 
+            // Email 은 유니크해야
             return new ResponseEntity<>("EMAIL_ERROR",HttpStatus.CONFLICT);//409
         }
         if (userService.findByNickname(user.getNickname()) != null) {
-            //Nickname은 유니크해야
 
+            //Nickname은 유니크해야
             return new ResponseEntity<>("NICKNAME_ERROR", HttpStatus.CONFLICT);//409
         }
         //dto를 모델 객체로 변환한 다음 서비스와 함께 저장합니다.
         userService.saveUser(user.convertToUser());
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+
+        String temp = user.getEmail();
+        System.out.println(temp);
+        User returnUser =  userService.findByEmail(temp);
+
+        return new ResponseEntity<>(returnUser, HttpStatus.CREATED);
     }
 
-    //GET http://localhost:8080/api/user/login -> 앞에서 설명한 보안 로그인 경로와 동일해야 합니다.
-    //이것은 로그아웃 경로에도 사용됩니다. 로그 아웃 후 -> Spring은 로그인 경로로 리디렉션합니다.
-//    @GetMapping("/login")
-//    public ResponseEntity<?> login(HttpServletRequest request) //We can take it like also; Principal principal
-//    {
-//        String jwt = jwtService.create("email", request., "access_token");
-//        return jwt;
-//        User user = userService.findByEmail();
-//        return new ResponseEntity<>(user, HttpStatus.OK);
-//
-//        // 이메일 비밀번호 검증 과정
-//
-//    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user, HttpServletRequest request) //We can take it like also; Principal principal
