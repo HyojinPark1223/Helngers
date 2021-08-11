@@ -36,6 +36,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(lg) {
+  .article {
+    .inner {
+      margin-right: 200px !important;
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  .article {
+    .inner {
+      margin-right: 100px !important;
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .article {
+    .inner {
+      margin-right: 50px !important;
+      .text-group {
+        p {
+          font-size: 13px !important;
+        }
+      }
+    }
+  }
+}
 .article {
   background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(255, 255, 255, 0.1)), url('https://url.kr/p6gjw5');
   background-repeat: no-repeat;

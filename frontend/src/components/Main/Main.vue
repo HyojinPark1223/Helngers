@@ -5,12 +5,13 @@
       class="create">
       <CreateMyArticle />
     </div>
-    <div
-      v-if="isDetailOn"
-      class="detail">
-      <MyArticleDetail />
-    </div>
-  
+    <transition name="slide-fade">
+      <div
+        v-if="isDetailOn"
+        class="detail">
+        <MyArticleDetail @close="detailOff" />
+      </div>
+    </transition>
     <section class="banner">
       <div
         class="container"
@@ -21,7 +22,9 @@
       </div>
     </section>
     <div class="menu">
-      <h3>OOO 님이 운동하는 동안.. </h3>
+      <div class="subtitle">
+        <h3>OOO 님이 운동하는 동안.. </h3>
+      </div>
       <div class="search push">
         <input
           type="text"
@@ -31,11 +34,11 @@
           src="../../assets/search.png"
           alt="search"
           @click="searchFocus" />
+        <img
+          src="../../assets/pencil.png"
+          alt="pencil"
+          @click="toggleOnOff" />
       </div>
-      <img
-        src="../../assets/pencil.png"
-        alt="pencil"
-        @click="toggleOnOff" />
     </div>
     <div class="rating-wrap">
       <div
@@ -141,18 +144,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(md) {
+.menu {
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+}
+.subtitle {
+  margin: 3px auto !important;
+  justify-content: center !important;
+}
+.search {
+  margin: 3px auto !important;
+  justify-content: center !important;
+  input {
+    width: 190px !important;
+    margin: 5px 0 !important;
+  }
+}
+.focused {
+    input{
+      width: 190px !important;
+      border-color: $primary !important;
+    }
+  }
+}
 .main {
   font-family: 'Do Hyeon', sans-serif;
   position: relative;
   .detail {
     position: fixed;
     z-index: 500;
-    width: 800px;
-    top: 70px;
-    right: 320px;
+    width: 60%;
+    height: 85%;
+    top: 10%;
+    left: 20%;
     background-color: #fff;
     border-radius: 20px;
-    box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
+    box-shadow: 0 0 999px 999px rgba(41, 40, 40, 0.747);
+    &.slide-fade-enter-active {
+      transition: all .5s ease-out;
+    }
+    &.slide-fade-leave-active {
+      transition: all 0.3s translateY(-20px);;
+    }
+    &.slide-fade-enter-from,
+    .slide-fade-leave-to {
+      transform: translateY(20px);
+      opacity: 0;
+    }
   }
   .create {
     position: fixed;
@@ -195,14 +235,20 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 80px 150px;
-    h3 {
-      margin: 5px 0;
+    margin: 100px 20%;
+    .subtitle {
+      min-width: 280px;
+      h3 {
+        margin: 5px 0px;
+      }
     }
     .search{
-      position: relative;
+      min-width: 300px;
+      display: flex;
+      justify-content: flex-end;
+      align-content: center;
       input {
-        width: 100px;
+        width: 200px;
         height: 30px;
         margin: 5px 10px;
         background-color: rgba($color: #919191, $alpha: .1);
@@ -236,6 +282,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0 30px;
     .content {
       display: flex;
       justify-content: space-between;
@@ -243,8 +290,8 @@ export default {
       margin: 0 30px 50px 30px;
       .card {
         border-radius: 15px;
-        height: 250px * 3 / 2;
-        width: 250px;
+        height: 290px * 3 / 2;
+        width: 290px;
         border: none;
         box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
         cursor: pointer;

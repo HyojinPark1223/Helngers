@@ -62,12 +62,9 @@ export default {
     Logo,
     MyModal
   },
-  created() {
-      window.addEventListener('resize', this.handleResize);
-      this.handleResize();
-    },
-  unmounted() {
-      window.removeEventListener('resize', this.handleResize);
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   },
   methods: {
     toggleClass(){
@@ -76,7 +73,7 @@ export default {
     handleResize() {
       this.window.width = window.innerWidth;
         if (window.innerWidth >= 1100) {
-        this.toggleClass();
+        this.isActive = false
         }
     }
   },

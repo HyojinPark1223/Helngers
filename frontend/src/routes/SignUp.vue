@@ -125,6 +125,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(md) {
+  .background {
+    .user {
+      .for-sns {
+        width: 80% !important;
+        .form-wrap {
+          width: 80% !important;
+          margin: 30px auto !important;
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .background {
+    .user {
+      .for-sns {
+        width: 80% !important;
+        .form-wrap {
+          width: 80% !important;
+          margin: 30px auto !important;
+        }
+      }
+    }
+  }
+}
 .background {
     height: 800px;
     background-color: rgb(255,219,89, .73);

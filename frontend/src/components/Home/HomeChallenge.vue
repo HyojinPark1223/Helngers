@@ -39,6 +39,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(lg) {
+  .challenge {
+    .inner {
+      .text-group {
+        margin-left: 100px !important;
+      }
+    }    
+  }
+}
+@include media-breakpoint-down(md) {
+  .challenge {
+    .inner {
+      .text-group {
+        margin-left: 30px !important;
+      }
+    }    
+  }
+}
+@include media-breakpoint-down(sm) {
+  .challenge {
+    .inner {
+      .text-group {
+        margin-left: 0px !important;
+        img {
+          width: 1500px !important;
+        }
+        h1 {
+          font-size: 80px !important;
+        }
+      }
+    }    
+  }
+}
 .challenge {
   background-image: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(255, 255, 255, 0.1)) ,url('https://url.kr/7egcm5');
   background-repeat: no-repeat;
