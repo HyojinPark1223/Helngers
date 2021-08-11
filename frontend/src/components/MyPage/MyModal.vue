@@ -44,7 +44,8 @@
             </button>
             <button
               type="button"
-              class="btn btn-secondary">
+              class="btn btn-secondary"
+              @click="logOut">
               Logout
             </button>
           </div>
@@ -56,6 +57,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import UserService from '../../services/user.service'
+import vuex from 'vuex'
 export default {
   data() {
     return {
@@ -69,13 +72,27 @@ export default {
     ])
   },
   methods: {
+    ...vuex.mapActions(['updateUser']),
     toMypage() {
       this.$router.push('/mypage')
       this.modalStatusOn = !this.modalStatusOn
     },
     tomodalOnOff() {
       this.modalStatusOn = !this.modalStatusOn
+    },
+    logOut() {
+      console.log('로그아웃')
+      localStorage.removeItem("currentUser")
     }
+    // logOut() {
+    //   console.log('logOut 함수')
+    //   UserService.logOut().then(
+    //     response => {
+    //       console.log(response)
+    //       this.updateUser(response.data)
+    //     }
+    //   )
+    // }
   }
 }
 </script>

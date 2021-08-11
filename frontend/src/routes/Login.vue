@@ -9,11 +9,11 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="email">username&nbsp;</label>
+              for="email">email&nbsp;</label>
             <input
-              v-model="formData.username"
+              v-model="formData.email"
               id="email"
-              placeholder="username을 입력하세요"
+              placeholder="email을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
           </div>
@@ -66,7 +66,7 @@
 import Logo from '../components/Logo'
 import UserService from '../services/user.service'
 import User from '../models/user'
-// import vuex from 'vuex'
+import vuex from 'vuex'
 
 export default {
   components: {
@@ -75,14 +75,23 @@ export default {
   data() {
     return {
       formData: new User('', ''),
-      loading: false,
     }
   },
   methods: {
+    ...vuex.mapActions(['updateUser']),
     login() {
+      console.log('로긴 누른 state')
+      console.log(this.$store.state)
       UserService.login(this.formData).then(
         response => {
+          // console.log(response)
           console.log(response.data)
+          console.log('id')
+          console.log(response.data.id)
+          console.log(this.$store.state)
+          console.log('업데이트 전')
+
+          this.updateUser(response.data)
         },
         // response.data.password = this.FormData.password
         console.log('로긴')

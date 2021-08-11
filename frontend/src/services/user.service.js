@@ -1,25 +1,26 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/user/';
+const API_URL = 'http://localhost:8080/';
 
 class UserService {
 
     login(user) {
-        //btoa: Basic64 encryption
-        const header = {
-            authorization: 'Basic ' + btoa(user.username + ':' + user.password)
-        };
-
-        return axios.get(API_URL + 'login', {headers: header});
+        console.log(user)
+        // const header = {
+        //     authorization: 'Basic ' + btoa(user.username + ':' + user.password)
+        // };
+        // let obj = {user.email, user.password}
+        // console.log(obj)
+        return axios.post(API_URL + 'login', user);
     }
 
-    logOut() {
-        return axios.post(API_URL + 'logout', {});
-    }
+    // logOut() {
+    //     return axios.post(API_URL + 'logout', {});
+    // }
 
-    register(user) {
+    signUp(user) {
       console.log('레지')
-      return axios.post(API_URL, user);
+      return axios.post(API_URL + 'signup', user);
     }
 
     changeRole(username, role) {

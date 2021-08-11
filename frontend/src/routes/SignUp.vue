@@ -9,38 +9,38 @@
           <Logo class="Logo" />
           <div class="input-with-label">
             <label
-              for="nickName">username&nbsp;&nbsp;</label>
+              for="nickName">nickname&nbsp;&nbsp;</label>
             <input
-              v-model="formData.username"
-              placeholder="username을 입력하세요."
+              v-model="formData.nickname"
+              placeholder="nickname을 입력하세요."
               type="text" />
             <div clss="error-text"></div>
           </div>
           <div class="input-with-label">
             <label
-              for="email">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              for="email">email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="formData.name"
-              placeholder="name을 입력하세요"
+              v-model="formData.email"
+              placeholder="email을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
           </div>
           <div class="input-with-label">
             <label
-              for="email">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+              for="password">password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
               v-model="formData.password"
-              placeholder="비밀번호를 입력하세요"
+              placeholder="password를 입력하세요"
               type="text" />
             <div clss="error-text"></div>
           </div>
           <div class="input-with-label">
             <label
-              for="password">비밀번호 확인</label>
+              for="introduce">introduce</label>
             <input
-              v-model="password"
-              placeholder="비밀번호를 입력하세요"
-              type="password" />
+              v-model="formData.introduce"
+              placeholder="introduce를 입력하세요"
+              type="text" />
             <div clss="error-text"></div>
           </div>
           <div class="button-div">
@@ -87,30 +87,14 @@ export default {
   },
   data() {
     return {
-      // email: "",
-      // password: "",
-        formData: new User('', '', ''),
+        formData: new User('', '', '', ''),
         loading: false,
         submitted: false,
     }
   },
   methods: {
-    // ...vuex.mapActions(['updateUser']),
-    // Signup() {
-    //   axios({
-    //     method: 'post',
-    //     url: 'http://localhost:8080/api/user/',
-    //     data: this.fomrData
-    //   })
-    //     .then(res => {
-    //       console.log(res)
-    //     })
-    //     .catch(err => {
-    //       console.log(err)
-    //     })
-    // }
     Signup() {
-      UserService.register(this.formData).then(
+      UserService.signUp(this.formData).then(
         () => {
           console.log('요청')
           this.$router.push('/login')
