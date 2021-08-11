@@ -4,7 +4,8 @@ import com.ssafy.hellingers.dto.UserDto;
 import com.ssafy.hellingers.model.Role;
 import com.ssafy.hellingers.model.User;
 import com.ssafy.hellingers.service.EmailService;
-import com.ssafy.hellingers.service.IUserService;
+import com.ssafy.hellingers.service.UserService;
+import com.ssafy.hellingers.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,28 +14,50 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 
 @RestController
 //따라서 엔드포인트에 도달하려면 api/user/**가 될 수 있습니다.
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 public class UserController
 {
     @Autowired
     private EmailService emailService;
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
+
+    @Autowired
+    JwtService jwtService;
+
+//    //POST http://localhost:8080/api/user/get
+//    @PostMapping("/get")
+//    public String login2( @RequestBody User user) {
+//        // 이메일 비밀번호 검증 과정
+//
+//        System.out.println("111111111111111111111111111111111111111");
+//        String jwt = jwtService.create("email", user.getEmail(), "access_token");
+//
+//        return jwt;
+//    }
+
 
     //POST http://localhost:8080/api/user -data {user form}
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid UserDto user) //@Valid provides validation check
     {
-        if (userService.findByNickname(user.getNickname()) != null)
-        {
-            //Nickname 은 유니크해야
-            return new ResponseEntity<>(HttpStatus.CONFLICT);//409
+        if(userService.findByEmail(user.getEmail()) != null) {
+            // Email 은 유니크해야
+
+            return new ResponseEntity<>("EMAIL_ERROR",HttpStatus.CONFLICT);//409
+        }
+        if (userService.findByNickname(user.getNickname()) != null) {
+            //Nickname은 유니크해야
+
+            return new ResponseEntity<>("NICKNAME_ERROR", HttpStatus.CONFLICT);//409
         }
         //dto를 모델 객체로 변환한 다음 서비스와 함께 저장합니다.
         userService.saveUser(user.convertToUser());
@@ -43,18 +66,32 @@ public class UserController
 
     //GET http://localhost:8080/api/user/login -> 앞에서 설명한 보안 로그인 경로와 동일해야 합니다.
     //이것은 로그아웃 경로에도 사용됩니다. 로그 아웃 후 -> Spring은 로그인 경로로 리디렉션합니다.
-    @GetMapping("/login")
-    public ResponseEntity<?> login(HttpServletRequest request) //We can take it like also; Principal principal
+//    @GetMapping("/login")
+//    public ResponseEntity<?> login(HttpServletRequest request) //We can take it like also; Principal principal
+//    {
+//        String jwt = jwtService.create("email", request., "access_token");
+//        return jwt;
+//        User user = userService.findByEmail();
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//
+//        // 이메일 비밀번호 검증 과정
+//
+//    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User user, HttpServletRequest request) //We can take it like also; Principal principal
     {
-        //인증 정보는 Spring Security의 요청에 따라 저장됩니다.
-        Principal principal = request.getUserPrincipal();
-        if (principal == null || principal.getName() == null)
-        {
-            //여기에 로그아웃 리디렉션도 있으므로 OK로 간주합니다. httpStatus -> 오류가 없습니다.
-            return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            Optional<User> loginUser = userService.login(user.getEmail(), user.getPassword());
+            String jwt = jwtService.create("email", user.getEmail(), "access_token");
+            return new ResponseEntity<>(jwt, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        User user = userService.findByNickname(principal.getName());
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>("ID_OR_PASSWORD_WRONG", HttpStatus.NOT_FOUND);
+
+        // 이메일 비밀번호 검증 과정
+
     }
 
     //PUT http://localhost:8080/api/user/{username}/change/{role}
