@@ -24,14 +24,8 @@ public class Medal {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "present")
-    private Integer present;
-
     @Column(name = "goal")
     private Integer goal;
-
-    @Column(name = "user_id")
-    private Long user_id;
 
 
 }

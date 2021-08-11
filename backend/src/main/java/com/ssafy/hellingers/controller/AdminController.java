@@ -1,7 +1,7 @@
 package com.ssafy.hellingers.controller;
 
 import com.ssafy.hellingers.model.User;
-import com.ssafy.hellingers.service.IUserService;
+import com.ssafy.hellingers.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController
 {
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     //GET http://localhost:8080/api/admin/all
     // ADMIN 만 접근 가능
@@ -24,9 +24,9 @@ public class AdminController
 
     //DELETE http://localhost:8080/api/admin/{userId}
     @DeleteMapping("{userId}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long userId)
+    public ResponseEntity<?> deleteUser(@PathVariable String email)
     {
-        User user = userService.deleteUser(userId);
+        User user = userService.deleteUser(email);
         return ResponseEntity.ok(user);
     }
 }
