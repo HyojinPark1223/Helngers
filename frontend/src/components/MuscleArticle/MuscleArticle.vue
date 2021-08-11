@@ -34,6 +34,7 @@
     <div
       class="singleArticle"
       v-for="article in articles"
+      @click="toSingle"
       :key="article.user">
       <div class="ArticleHeader">
         <p>{{ article.category }}</p>
@@ -101,6 +102,9 @@ export default {
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
     },
+    toSingle() {
+      this.$router.push('/singlearticle')
+    }
   }
 }
 </script>

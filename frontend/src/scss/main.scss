@@ -1,12 +1,13 @@
 // Default variable overrides
 // 기본 컬러 커스텀,, variables 위쪽에 명시
 $primary: rgb(255,219,89, .73);
-$container-max-widths: (
-  sm: 540px,
-  md: 704px,
-  lg: 924px,
-  xl: 1140px,
-  xxl: 1364px
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1100px,
+  xxl: 1400px
 );
 
 $modal-backdrop-opacity: 0;

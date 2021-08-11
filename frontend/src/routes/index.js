@@ -7,6 +7,7 @@ import MuscleArticle from '../components/MuscleArticle/MuscleArticle'
 import MyPage from '../components/MyPage/MyPage'
 import Challenge from '../components/Challenge/Challenge'
 import SignUp from './SignUp'
+import SingleArticle from '../components/MuscleArticle/SingleArticle'
 
 export default createRouter({
   // Hash 모드, 모든 주소 앞에 #붙음
@@ -47,6 +48,10 @@ export default createRouter({
     {
       path: '/signup',
       component: SignUp
+    },
+    {
+      path: '/singlearticle',
+      component: SingleArticle
     }
   ]
 })
