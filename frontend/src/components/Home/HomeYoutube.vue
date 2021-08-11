@@ -55,6 +55,33 @@ export default defineComponent( {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(lg) {
+  .youtube {
+    .youtube__cover {
+      h1 {
+        font-size: 3rem !important;
+      }
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  .youtube {
+    .youtube__cover {
+      h1 {
+        font-size: 2rem !important;
+      }
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .youtube {
+    .youtube__cover {
+      h1 {
+        font-size: 2rem !important;
+      }
+    }
+  }
+}
 .youtube {
   position: relative;
   height: 500px;

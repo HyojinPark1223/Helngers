@@ -10,13 +10,17 @@
         class="container"
         data-aos="fade-up"
         data-aos-duration="1000">
-        <h1>Today's Muschle!</h1>
+        <h1>Today's Muscle!</h1>
         <p>오늘의 근육을 채워보아요~!</p>
       </div>
     </section>
     <div class="menu">
-      <h3>전문가들의 운동 꿀팁 챙기기!</h3>
-      <div class="search push">
+      <div class="subtitle col-8">
+        <h3>
+          전문가들의 운동 꿀팁 챙기기!
+        </h3>
+      </div>
+      <div class="search col-4">
         <input
           type="text"
           @focus="searchFocus"
@@ -25,14 +29,14 @@
           src="../../assets/search.png"
           alt="search"
           @click="searchFocus" />
+        <img
+          src="../../assets/pencil.png"
+          alt="pencil"
+          @click="toggleOnOff" />
       </div>
-      <img
-        src="../../assets/pencil.png"
-        alt="pencil"
-        @click="toggleOnOff" />
     </div>
     <div
-      class="singleArticle"
+      class="singleArticle container"
       v-for="article in articles"
       @click="toSingle"
       :key="article.user">
@@ -110,6 +114,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(md) {
+.menu {
+  flex-direction: column !important;
+  align-content: center !important;
+  justify-content: center !important;
+}
+.subtitle {
+  margin: 3px auto !important;
+  justify-content: center !important;
+}
+.search {
+  margin: 3px auto !important;
+  justify-content: center !important;
+  input {
+    width: 180px !important;
+    margin: 5px 0 !important;
+  }
+}
+.focused {
+    input{
+      width: 180px !important;
+      border-color: $primary !important;
+    }
+  }
+}
 .muscleArticle {
   font-family: 'Do Hyeon', sans-serif;
   position: relative;
@@ -153,15 +182,20 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 50px 200px;
-    z-index: 10;
-    h3 {
-      margin: 5px 0;
+    margin: 50px 20%;
+    .subtitle {
+      min-width: 280px;
+      h3 {
+        margin: 5px 0px;
+      }
     }
     .search{
-      position: relative;
+      min-width: 300px;
+      display: flex;
+      justify-content: flex-end;
+      align-content: center;
       input {
-        width: 100px;
+        width: 150px;
         height: 30px;
         margin: 5px 10px;
         background-color: rgba($color: #919191, $alpha: .1);
@@ -174,7 +208,7 @@ export default {
     }
     .focused {
       input{
-        width: 300px;
+        width: 330px;
         border-color: $primary;
       }
     }
@@ -193,7 +227,7 @@ export default {
   }
   .singleArticle {
     text-align: center;
-    width: 600px;
+    width: 50%;
     margin: 50px auto;
     cursor: pointer;
     .ArticleHeader {

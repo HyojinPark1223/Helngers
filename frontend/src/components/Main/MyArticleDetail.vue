@@ -3,7 +3,7 @@
     <div
       class="card mb-3">
       <div class="row g-0">
-        <div class="col-md-7">
+        <div class="col-md-7 cardImage">
           <img
             src="https://url.kr/jekuoa"
             class="img-fluid rounded-start detailImg"
@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     toMain() {
-      this.$parent.detailOff()
+      this.$emit('close');
     },
   },
 }
@@ -77,11 +77,14 @@ export default {
   height: 600px;
   border: 0;
   margin: 16px;
-  .detailImg {
-    height: 600px;
-    width: 430px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
+  .cardImage {
+    padding: 10px 20px 20px 20px;
+    .detailImg {
+      height: 600px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
+    }
   }
   .cardtitle {
     display: flex;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="singleArticle">
+      class="singleArticle container">
       <div class="ArticleHeader">
         <p>{{ article.category }}</p>
         <h1>{{ article.title }}</h1>
@@ -40,7 +40,7 @@ data() {
 .singleArticle {
   font-family: 'Do Hyeon', sans-serif;
   text-align: center;
-  width: 600px;
+  width: 50%;
   margin: 150px auto;
   cursor: pointer;
   .ArticleHeader {
