@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @RestController
 //따라서 엔드포인트에 도달하려면 api/user/**가 될 수 있습니다.
-@RequestMapping("/api/user")
+@RequestMapping("/")
 public class UserController
 {
     @Autowired
@@ -46,7 +46,7 @@ public class UserController
 
 
     //POST http://localhost:8080/api/user -data {user form}
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody @Valid UserDto user) //@Valid provides validation check
     {
         if(userService.findByEmail(user.getEmail()) != null) {
