@@ -57,7 +57,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import UserService from '../../services/user.service'
 import vuex from 'vuex'
 export default {
   data() {
@@ -84,15 +83,7 @@ export default {
       console.log('로그아웃')
       localStorage.removeItem("currentUser")
     }
-    // logOut() {
-    //   console.log('logOut 함수')
-    //   UserService.logOut().then(
-    //     response => {
-    //       console.log(response)
-    //       this.updateUser(response.data)
-    //     }
-    //   )
-    // }
+
   }
 }
 </script>

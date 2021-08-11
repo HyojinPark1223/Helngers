@@ -67,6 +67,7 @@ import Logo from '../components/Logo'
 import UserService from '../services/user.service'
 import User from '../models/user'
 import vuex from 'vuex'
+import axios from 'axios'
 
 export default {
   components: {
@@ -87,13 +88,32 @@ export default {
           // console.log(response)
           console.log(response.data)
           console.log('id')
-          console.log(response.data.id)
-          console.log(this.$store.state)
+          // console.log(response.id)
+          console.log(this.$store.state.user_id)
+          console.log(this.$store.state.user)
           console.log('업데이트 전')
-
+        
           this.updateUser(response.data)
+
+          this.$router.push('/main')
+          let token = this.$store.state.user
+          let config = {
+            headers: {
+              "access-token": token
+            }
+          }
+          let id = this.$store.state.user_id
+          axios
+            .get(`http://localhost:8080/medals/${id}`, config)
+            .then(res => {
+              console.log(res)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+
         },
-        // response.data.password = this.FormData.password
+        
         console.log('로긴')
       )
     },
