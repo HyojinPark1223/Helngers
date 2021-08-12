@@ -22,10 +22,16 @@
       </div>
     </section>
     <div class="menu">
-      <div class="subtitle">
+      <div
+        class="subtitle"
+        data-aos="fade-right"
+        data-aos-duration="1000">
         <h3>OOO 님이 운동하는 동안.. </h3>
       </div>
-      <div class="search push">
+      <div
+        class="search push"
+        data-aos="fade-left"
+        data-aos-duration="1000">
         <input
           type="text"
           @focus="searchFocus"
@@ -47,7 +53,9 @@
         :key="index">
         <div
           class="card"
-          @click="detailOn">
+          @click="detailOn"
+          data-aos="zoom-in-up"
+          data-aos-durations="1000">
           <img
             src="https://url.kr/jekuoa"
             class="card-img-top"
@@ -77,6 +85,13 @@
               alt="heart" />
           </div>
         </div>
+      </div>
+    </div>
+    <div id="to-top">
+      <div
+        class="material-icons"
+        @click="toTop">
+        arrow_upward
       </div>
     </div>
   </div>
@@ -138,7 +153,10 @@ export default {
         main.setAttribute('style', '')
       }
       window.scrollTo(0, this.scrollY)
-    }
+    },
+    toTop() {
+      window.scrollTo(0,0)
+    },
   }
 }
 </script>
@@ -342,5 +360,21 @@ export default {
       }
     }
   }
+}
+#to-top {
+  position: fixed;
+  bottom:30px;
+  right: 30px;
+  z-index: 9;
+  width: 42px;
+  height: 42px;
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <div class="background">
     <div
+      data-aos="zoom-in"
+      data-aos-duration="1000"
       class="user"
       id="login">
       <div
@@ -75,6 +77,7 @@
 </template>
 
 <script>
+import AOS from 'aos'
 import UserService from '../services/user.service';
 import User from '../models/user';
 import Logo from '../components/Logo'
@@ -82,6 +85,9 @@ import Logo from '../components/Logo'
 // import vuex from 'vuex'
 
 export default {
+  created() {
+    AOS.init()
+  },
   components: {
     Logo,
   },

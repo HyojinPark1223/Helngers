@@ -48,6 +48,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta3",
     "gsap": "^3.7.1",
+    "lodash": "^4.17.21",
     "sass-loader": "^10.2.0",
     "vue": "^3.0.7",
     "vue-image-upload-resize": "^2.3.0",

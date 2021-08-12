@@ -57,8 +57,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import UserService from '../../services/user.service'
+// import UserService from '../../services/user.service'
 import vuex from 'vuex'
+
 export default {
   data() {
     return {

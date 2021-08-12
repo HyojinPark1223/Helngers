@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     toChallenge() {
-      this.$parent.modalOnOff()
+      this.$emit('close')
     },
     selectImage () {
           this.$refs.fileInput.click()

@@ -47,7 +47,6 @@
             src="https://url.kr/k2d8g4"
             class="d-block w-100"
             alt="main2" />
-
           <div class="carousel-caption d-none d-md-block">
             <h1>Break me down to build me up.</h1>
             <p>원하는 몸을 위해 지금의 몸을 부수자.</p>
@@ -58,7 +57,6 @@
             src="https://url.kr/vtyu25"
             class="d-block w-100"
             alt="main3" />
-
           <div class="carousel-caption d-none d-md-block">
             <h1>There is no shortcut. You have to keep plugging away.</h1>
             <p>계속 노력해야 해요. 지름길은 없어요.</p>
@@ -140,6 +138,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@include media-breakpoint-down(md) {
+.carousel-control-prev, .carousel-control-next {
+  display: none;
+}
+}
+@include media-breakpoint-down(sm) {
+.carousel-control-prev, .carousel-control-next {
+  display: none;
+}
+}
 .home {
   #carouselMyCaptions {
     width: 100%;
@@ -168,6 +176,9 @@ export default {
           text-shadow: 1px 1px 3px #000;
         }
       }
+    }
+    .carousel-control-prev, .carousel-control-next {
+      margin: 100px 100px 0 100px;
     }
   }
 }
