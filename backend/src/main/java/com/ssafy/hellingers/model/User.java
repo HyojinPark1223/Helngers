@@ -49,13 +49,13 @@ public class User
 
     @ColumnDefault("0")
     @Column(name = "point")
-    private Integer point;
+    private int point;
 
     @Column(name = "period")
-    private Integer period;
+    private int period;
 
     @Column(name = "purpose")
-    private Integer purpose;
+    private int purpose;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
