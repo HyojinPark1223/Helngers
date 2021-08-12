@@ -12,10 +12,21 @@
         arrow_upward
       </div>
     </div>
+    <div class="popups">
+      <div
+        class="popup"
+        data-aos="fade-left"
+        data-aos-duration="1000">
+        <img
+          src="../../assets/popup.png"
+          alt="Popup" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import AOS from 'aos'
 import HomeBanner from './HomeBanner'
 import HomeMain from './HomeMain'
 import HomeYoutube from './HomeYoutube'
@@ -23,6 +34,9 @@ import HomeChallenge from './HomeChallenge'
 import HomeArticle from './HomeArticle'
 
 export default {
+  created() {
+    AOS.init()
+  },
   components: {
     HomeBanner,
     HomeMain,
@@ -54,5 +68,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.popups {
+  position: fixed;
+  top: 100px;
+  right: 12px;
+  z-index: 100;
+  .popup {
+    border-radius: 30px;
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,.15);
+    cursor: pointer;
+    img {
+      width: 140px;
+      height: 230px;
+      border-radius: 30px;
+    }
+  }
 }
 </style>

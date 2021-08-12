@@ -43,10 +43,52 @@
         <div
           class="hamburger"
           v-if="isActive">
-          <h4>피드</h4>
-          <h4>메달</h4>
-          <h4>챌린지</h4>
-          <h4>오늘의 머슬</h4>
+          <RouterLink
+            to="/main"
+            tag="div"
+            class="routerlink"
+            @click="toggleClass">
+            <h4>피드</h4>
+          </RouterLink>
+          <RouterLink
+            to="/medal"
+            tag="div"
+            class="routerlink"
+            @click="toggleClass">
+            <h4>메달</h4>
+          </RouterLink>
+          <RouterLink
+            to="/challenge"
+            tag="div"
+            class="routerlink"
+            @click="toggleClass">
+            <h4>챌린지</h4>
+          </RouterLink>
+          <RouterLink
+            to="/musclearticle"
+            tag="div"
+            class="routerlink"
+            @click="toggleClass">
+            <h4>오늘의 머슬</h4>
+          </RouterLink>
+          <div class="user">
+            <RouterLink
+              to="/login"
+              tag="div"
+              class="routerlink"
+              @click="toggleClass">
+              <p>Login</p>
+            </RouterLink>
+            <!-- <p>Logout</p> -->
+            <RouterLink
+              to="/signup"
+              tag="div"
+              class="routerlink"
+              @click="toggleClass">
+              <p>Signup</p>
+            </RouterLink>
+            <!-- <p>MyPage</p> -->
+          </div>
         </div>
       </transition>
     </div>
@@ -192,8 +234,8 @@ export default {
     .hamburger {
       margin-top: 10px;
       width: 100%;
-      padding: 20px;
-      color: #fff;
+      height: 200px;
+      padding: 10px;
       &.slide-fade-enter-active {
         transition: all 1.3s ease-out;
       }
@@ -205,13 +247,32 @@ export default {
         transform: translateY(-20px);
         opacity: 0;
       }
-      h4 {
+      .routerlink {
         cursor: pointer;
+        text-decoration: none;
+        color: #fff;
         &:hover {
           color: #333;
         }
       }
-
+      .user {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        font-size: 13px;
+        cursor: pointer;
+        p {
+          margin: 0 5px;
+        }
+        .routerlink {
+          cursor: pointer;
+          text-decoration: none;
+          color: rgb(102, 102, 102);
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
     }
   }
 }
