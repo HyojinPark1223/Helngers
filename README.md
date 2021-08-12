@@ -68,7 +68,7 @@
 
 ### 배포
 
-📌Helngers
+📌Helngers()
 
 AWS(EC2) 서버로 배포하였다.
 
@@ -100,13 +100,13 @@ AWS(EC2) 서버로 배포하였다.
     <ul>
         <li>Swagger</li>
         <li>Spring Boot</li>
-        <li>Spring Security</li>
         <li>JavaMailSender</li>
         <li>MySQL</li>
         <li>NGINX</li>
         <li>E2C</li>
     </ul>
 </details>
+
 
 <details>
     <summary>ETC</summary>
@@ -119,6 +119,7 @@ AWS(EC2) 서버로 배포하였다.
         <li>Discord</li>
     </ul>
 </details>
+
 
 
 
@@ -141,8 +142,10 @@ AWS(EC2) 서버로 배포하였다.
 - Team Leader
 - Backend
 - Server
+- Database
 - UCC
 - Design
+- AWS
 
 
 
@@ -152,6 +155,7 @@ AWS(EC2) 서버로 배포하였다.
 
 - Frontend
 - Client
+- Design
 
 
 
@@ -163,6 +167,7 @@ AWS(EC2) 서버로 배포하였다.
 - Server
 - Database
 - Meeting Recorder
+- Presentation
 
 
 
@@ -173,6 +178,8 @@ AWS(EC2) 서버로 배포하였다.
 - Frontend
 - Client
 - Notion
+- Design
+- Presentation
 
 
 
