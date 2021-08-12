@@ -1,9 +1,11 @@
 import { createStore } from 'vuex'
 import profile from './profile'
+import user from './user'
 
 export default createStore({
   modules: {
-    profile
+    profile,
+    user
   },
   state: {
     user: JSON.parse(localStorage.getItem("currentUser")),
