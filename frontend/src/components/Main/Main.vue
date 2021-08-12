@@ -22,10 +22,16 @@
       </div>
     </section>
     <div class="menu">
-      <div class="subtitle">
+      <div
+        class="subtitle"
+        data-aos="fade-right"
+        data-aos-duration="1000">
         <h3>OOO 님이 운동하는 동안.. </h3>
       </div>
-      <div class="search push">
+      <div
+        class="search push"
+        data-aos="fade-left"
+        data-aos-duration="1000">
         <input
           type="text"
           @focus="searchFocus"
@@ -47,7 +53,9 @@
         :key="index">
         <div
           class="card"
-          @click="detailOn">
+          @click="detailOn"
+          data-aos="zoom-in-up"
+          data-aos-durations="1000">
           <img
             src="https://url.kr/jekuoa"
             class="card-img-top"
