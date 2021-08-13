@@ -18,7 +18,10 @@
           v-for="{slide} in slides"
           :key="slide"
           class="slide">
-          <div class="carousel__item">
+          <div
+            class="carousel__item"
+            data-aos="flip-left"
+            data-aos-duration="1000">
             <div
               @click="modalOnOff"
               class="challengeCard">
@@ -78,11 +81,13 @@
         </div>
       </div>
     </section>
-    <section
-      class="detail"
-      v-if="cModal">
-      <ChallengeModal />
-    </section>
+    <transition name="slide-fade">
+      <section
+        class="detail"
+        v-if="cModal">
+        <ChallengeModal @close="modalOnOff" />
+      </section>
+    </transition>
   </div>
 </template>
 
@@ -270,5 +275,16 @@ export default defineComponent({
   background-color: rgba(189, 186, 186, 0.7);
   border-radius: 20px;
   box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);
+  &.slide-fade-enter-active {
+    transition: all .5s ease-out;
+  }
+  &.slide-fade-leave-active {
+    transition: all 0.3s translateY(-20px);;
+  }
+  &.slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="black-bg">
-    <div class="white-bg">
+    <div
+      class="white-bg"
+      data-aos="fade-up"
+      data-aos-duration="1000">
       <div class="modal-header">
         <button
           @click="close"
@@ -44,11 +47,15 @@
   </div>
 </template>
 <script>
+import AOS from 'aos'
 export default {
+    created() {
+      AOS.init()
+    },
     name: 'MedalModal',
     methods: {
       close() {
-        this.$parent.showModal()
+        this.$emit('close')
       },
     },
     data() {

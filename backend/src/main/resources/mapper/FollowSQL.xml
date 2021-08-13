@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hellingers.mapper.FollowMapper">
+
+    <!--      남이 나를 팔로우하면 1(ture)가 출력  -->
+    <select id="checkFollows" resultType="int">
+        select count(*)
+        from followings
+        where to_id=#{from_id} and from_id=#{to_id}
+    </select>
+
+    <!--         where (to_id=#{to_id} and from_id=#{from_id})
+               and (from_id=#{to_id} and to_id=#{from_id})  -->
+
+    <select id="followingList" parameterType="int" resultType="int">
+        select to_id
+        from followings
+        where from_id=#{from_id}
+    </select>
+
+    <select id="followerList" parameterType="int" resultType="int">
+        select from_id
+        from followings
+        where to_id=#{to_id}
+    </select>
+
+    <!--    맞팔이 아니야..   -->
+    <insert id="onewayFollows">
+        insert into followings(from_id, to_id, follows)
+        values (#{from_id}, #{to_id}, 0)
+
+    </insert>
+
+    <!--    맞팔이얌. 상대 맞팔 상태도 업데이트 해줘야함. 따라서 밑에 이어짐.    -->
+    <insert id="willFollows">
+        insert into followings(from_id, to_id, follows)
+        values (#{from_id}, #{to_id}, 1)
+    </insert>
+
+    <!--    맞팔일 때, 상대방의 맞팔 상태 update를 해줘야해.   -->
+    <update id="updateFollows">
+        update followings set follows=1
+        where to_id=#{from_id} and from_id=#{to_id}
+    </update>
+
+    <!--    내가 팔로우를 취소했어. -> 상대의 맞팔 상태를 0으로 해줘야.. 내 값은 삭제.   -->
+    <update id="deleteFollows">
+        update followings set follows=0
+        where to_id=#{from_id} and from_id=#{to_id}
+    </update>
+
+    <delete id="unfollow">
+        delete from followings
+        where from_id=#{from_id} and to_id=#{to_id}
+    </delete>
+
+
+</mapper>

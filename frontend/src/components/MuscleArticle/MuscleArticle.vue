@@ -15,12 +15,18 @@
       </div>
     </section>
     <div class="menu">
-      <div class="subtitle col-8">
+      <div
+        class="subtitle col-8"
+        data-aos="fade-right"
+        data-aos-duration="1000">
         <h3>
           전문가들의 운동 꿀팁 챙기기!
         </h3>
       </div>
-      <div class="search col-4">
+      <div
+        class="search col-4"
+        data-aos="fade-left"
+        data-aos-duration="1000">
         <input
           type="text"
           @focus="searchFocus"
@@ -40,17 +46,21 @@
       v-for="article in articles"
       @click="toSingle"
       :key="article.user">
-      <div class="ArticleHeader">
-        <p>{{ article.category }}</p>
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.user }} . {{ article.date }}</p>
-      </div>
-      <div class="ArticleContent">
-        <p>{{ article.content }}</p>
-        <img
-          :src="article.img"
-          alt="ArtileImg"
-          class="card-img" />
+      <div
+        data-aos="zoom-in-up"
+        data-aos-duration="1000">
+        <div class="ArticleHeader">
+          <p>{{ article.category }}</p>
+          <h1>{{ article.title }}</h1>
+          <p>{{ article.user }} . {{ article.date }}</p>
+        </div>
+        <div class="ArticleContent">
+          <p>{{ article.content }}</p>
+          <img
+            :src="article.img"
+            alt="ArtileImg"
+            class="card-img" />
+        </div>
       </div>
     </div>
   </div>

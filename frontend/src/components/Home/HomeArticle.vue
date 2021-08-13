@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     toMusclearticlelist() {
-      this.$router.push('/musclearticlelist')
+      this.$router.push('/musclearticle')
     },
   }
 }

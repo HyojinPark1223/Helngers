@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="modalChk">
-      <MedalModal />
+      <MedalModal @close="showModal" />
     </div>
     <section>
       <div class="header">
@@ -20,7 +20,9 @@
           class="slide">
           <div
             class="carousel__item"
-            @click="showModal">
+            @click="showModal"
+            data-aos="flip-left"
+            data-aos-duration="1000">
             {{ slide }}
           </div>
           <div class="progress">
@@ -56,7 +58,10 @@
           v-for="slide in slides"
           :key="slide"
           class="slide">
-          <div class="carousel__item">
+          <div
+            class="carousel__item"
+            data-aos="flip-left"
+            data-aos-duration="1000">
             {{ slide }}
           </div>
           <div class="progress">
@@ -92,7 +97,10 @@
           v-for="slide in slides"
           :key="slide"
           class="slide">
-          <div class="carousel__item">
+          <div
+            class="carousel__item"
+            data-aos="flip-left"
+            data-aos-duration="1000">
             {{ slide }}
           </div>
           <div class="progress">
@@ -115,6 +123,7 @@
   </div>
 </template>
 <script>
+import AOS from 'aos'
 import MedalModal from './MedalModal';
 import { defineComponent } from 'vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
@@ -129,6 +138,9 @@ export default defineComponent({
     Slide,
     Navigation,
 	},
+  created() {
+    AOS.init()
+  },
 	data() {
 		return {
       modalChk: false,
@@ -172,6 +184,7 @@ export default defineComponent({
 .carousel__pagination-button--active {
   background-color: #333;
 }
+
 </style>
 <style lang="scss" scoped>
 .material-icons {
