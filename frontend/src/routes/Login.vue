@@ -13,7 +13,7 @@
             <label
               for="email">email&nbsp;</label>
             <input
-              v-model="formData.email"
+              v-model="email"
               id="email"
               placeholder="email을 입력하세요"
               type="text" />
@@ -23,7 +23,7 @@
             <label
               for="password">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="formData.password"
+              v-model="password"
               id="password"
               placeholder="비밀번호를 입력하세요"
               type="password" />
@@ -32,12 +32,11 @@
           <div class="button-div">
             <button
               class="btn btn-primary"
-              @click="login">
+              @click="login({email, password})">
               LOGIN
             </button>
             <button
-              class="btn btn-secondary"
-              @click="toSignup">
+              class="btn btn-secondary">
               SIGN UP
             </button>
           </div>
@@ -67,9 +66,8 @@
 <script>
 import AOS from 'aos'
 import Logo from '../components/Logo'
-import UserService from '../services/user.service'
-import User from '../models/user'
-import vuex from 'vuex'
+
+import { mapState, mapActions } from "vuex"
 
 export default {
   created() {
@@ -80,32 +78,21 @@ export default {
   },
   data() {
     return {
-      formData: new User('', ''),
+      email: null,
+      password: null,
     }
   },
+  computed: {
+    ...mapState(["isLogin", "isLoginError"])
+  },
   methods: {
-    ...vuex.mapActions(['updateUser']),
-    login() {
-      console.log('로긴 누른 state')
-      console.log(this.$store.state)
-      UserService.login(this.formData).then(
-        response => {
-          // console.log(response)
-          console.log(response.data)
-          console.log('id')
-          console.log(response.data.id)
-          console.log(this.$store.state)
-          console.log('업데이트 전')
-
-          this.updateUser(response.data)
-        },
-        // response.data.password = this.FormData.password
-        console.log('로긴')
-      )
-    },
     toSignup() {
       this.$router.push('/signup')
-    }
+    },
+    toMain() {
+      this.$router.push('/main')
+    },
+    ...mapActions('user', ["login"]),
   }
 }
 </script>
