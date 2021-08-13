@@ -21,18 +21,34 @@
         </div>
         <div class="nav nav-pills push">
           <div
-            v-for="nav in user_navigations"
-            :key="nav.name"
             class="user-nav-item">
             <RouterLink
-              :to="nav.href"
+              to="/login"
+              v-if="isLogin === false"
               active-class="active"
               class="nav-link">
-              {{ nav.name }}
+              Login
+            </RouterLink>
+            <RouterLink
+              to="/home"
+              v-if="isLogin === true"
+              active-class="active"
+              @click="$store.dispatch('user/logout')"
+              class="nav-link">
+              Logout
+            </RouterLink>
+            <RouterLink
+              to="/signup"
+              v-if="isLogin === false"
+              active-class="active"
+              class="nav-link">
+              SignUp
             </RouterLink>
           </div>
         </div>
-        <MyModal class="mymodal" />
+        <MyModal
+          v-if="isLogin === true"
+          class="mymodal" />
         <span
           class="material-icons hamburgerBtn push"
           @click="toggleClass()">
@@ -99,6 +115,8 @@
 import Logo from './Logo'
 import MyModal from './MyPage/MyModal.vue'
 
+import {mapState} from 'vuex'
+
 export default {
   components: {
     Logo,
@@ -145,14 +163,11 @@ export default {
           href: '/musclearticle'
         },
       ],
-      user_navigations: [
-        {
-          name: 'Login',
-          href: '/login'
-        },
-      ]
     }
   },
+  computed: {
+    ...mapState("user", ["isLogin"])
+  }
 }
 </script>
 
@@ -220,6 +235,7 @@ export default {
         bottom: 0;
         right: 40px;
         margin: auto;
+        display: flex;
       }
       .push {
         margin-left: auto;

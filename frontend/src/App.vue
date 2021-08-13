@@ -8,6 +8,9 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 export default {
+  beforeCreate() {
+    this.$store.dispatch('getMemberInfo')
+  },
   components:{
     Header,
     Footer,

@@ -15,3 +15,4 @@ createApp(App)
   .use(ImageUploader)
   .component('YouTube', YouTube)
   .mount('#app')
+
