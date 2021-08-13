@@ -20,16 +20,15 @@ public class ProfileService {
         return user;
     }
 
-    public User updateUser(User user) {
-        user.setId(user.getId());
-        user.setPassword(user.getPassword());
-        user.setIntroduce(user.getIntroduce());
-        user.setNickname(user.getNickname());
+    public User updateUser(Long id, User user) {
 
-        if(user.getNickname().equals("Helngers")||user.getNickname().equals("Helngers1")){
-            user.setRole(Role.ROLE_ADMIN);
-        }
-        return userRepository.save(user);
+        User targetUser = userRepository.findById(id).get();
+        targetUser.setPassword(user.getPassword());
+        targetUser.setIntroduce(user.getIntroduce());
+        targetUser.setNickname(user.getNickname());
+
+
+        return userRepository.save(targetUser);
     }
 
     public User deleteUser(Long id)

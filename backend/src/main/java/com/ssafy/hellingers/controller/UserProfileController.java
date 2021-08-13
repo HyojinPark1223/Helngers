@@ -17,7 +17,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/profile")
-public class ProfileController {
+public class UserProfileController {
 
 //    private UserRepository userRepository;
 //
@@ -59,9 +59,9 @@ public class ProfileController {
 
     // 수정하기 (PUT)
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editProfile (@PathVariable String email, @RequestBody @Valid UserDto user) {
+    public ResponseEntity<?> editProfile (@PathVariable Long id, @RequestBody @Valid UserDto user) {
 
-        profileService.updateUser(user.convertToUser());
+        profileService.updateUser(id, user.convertToUser());
 
         String temp = user.getEmail();
         System.out.println(temp);
