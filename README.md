@@ -48,7 +48,7 @@
 
 ## 📝 ERD & Component structure
 
-
+![](./images/README/002.png)
 
 
 
@@ -62,7 +62,9 @@
 
 ## 🔧 Features
 
-### 1.
+### 1. Login
+
+
 
 
 
@@ -106,8 +108,6 @@ AWS(EC2) 서버로 배포하였다.
         <li>E2C</li>
     </ul>
 </details>
-
-
 <details>
     <summary>ETC</summary>
     <ul>
@@ -119,8 +119,6 @@ AWS(EC2) 서버로 배포하였다.
         <li>Discord</li>
     </ul>
 </details>
-
-
 
 
 ### Contributor
