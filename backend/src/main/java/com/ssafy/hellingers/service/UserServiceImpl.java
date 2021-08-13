@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+
     @Override
     public Optional<User> login(String email, String password) throws Exception {
         Optional<User> user = userRepository.findByEmail(email);
@@ -46,6 +48,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
+
     @Override
     public User changeRole(Role newRole, String nickname)
     {
@@ -55,23 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email)
+    public Optional<User> findByEmail(String email)
     {
-        return userRepository.findByEmail(email).orElse(null);
+        Optional<User> user = userRepository.findByEmail(email);
+        System.out.println("email로 유저 정보 호출!");
+        return user;
     }
 
     @Override
-    public User findByNickname(String nickname) {
-        return userRepository.findByNickname(nickname).orElse(null);
+    public Optional<User> findByNickname(String nickname) {
+        Optional<User> user = userRepository.findByNickname(nickname);
+        System.out.println("nickname으로 유저 정보 호출!");
+        return user;
     }
 
     @Override
-    public User deleteUser(String email)
+    public User deleteUser(Long id)
     {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException());
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException());
         userRepository.delete(user);
         return user;
     }
+
 
     @Override
     public List<User> findAllUsers()

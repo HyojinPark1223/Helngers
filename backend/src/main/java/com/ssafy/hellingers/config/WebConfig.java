@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    private final String[] EXCLUDE_PATH = {"/api/**"};
 
     @Autowired
     private JwtInterceptor jwtInterceptor;

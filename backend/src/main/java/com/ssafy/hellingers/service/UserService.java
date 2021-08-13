@@ -12,15 +12,19 @@ public interface UserService
 {
     User saveUser(User user);
 
+//    User updateUser(User user);
+
     Optional<User> login(String email, String password) throws Exception ;
 
     User changeRole(Role newRole, String username);
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
-    User findByNickname(String nickname);
+    Optional<User> findByNickname(String nickname);
 
-    User deleteUser(String email);
+//    Optional<User> findById(Long id);
+
+    User deleteUser(Long id);
 
     List<User> findAllUsers();
 }

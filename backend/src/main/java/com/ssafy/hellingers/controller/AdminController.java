@@ -23,10 +23,10 @@ public class AdminController
     }
 
     //DELETE http://localhost:8080/api/admin/{userId}
-    @DeleteMapping("{userId}")
-    public ResponseEntity<?> deleteUser(@PathVariable String email)
+    @DeleteMapping("{user_id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id)
     {
-        User user = userService.deleteUser(email);
+        User user = userService.deleteUser(id);
         return ResponseEntity.ok(user);
     }
 }
