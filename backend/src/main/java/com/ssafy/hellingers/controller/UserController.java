@@ -31,7 +31,7 @@ public class UserController
     private EmailService emailService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
     JwtService jwtService;
@@ -59,7 +59,7 @@ public class UserController
 
         String temp = user.getEmail();
         System.out.println(temp);
-        Optional<User> returnUser =  userService.findByEmail(temp);
+        User returnUser =  userService.findByEmail(temp);
 
         return new ResponseEntity<>(returnUser, HttpStatus.CREATED);
     }
