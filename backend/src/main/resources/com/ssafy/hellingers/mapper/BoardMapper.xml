@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.ssafy.hellingers.mapper.BoardMapper">
+	<!-- 게시글 등록 -->
+
+	<insert id="insert">
+		Insert Into board (title,writer,content)
+		values(#{title},#{writer},#{content})
+	</insert>
+
+	<!-- 게시글 목록 -->
+	<select id="list" resultType="Board">
+		SELECT *
+		FROM board b LEFT JOIN 
+		         (SELECT r.board_no, COUNT(*) reply_count FROM board_reply r GROUP BY board_no) reply
+		         ON b.board_no = reply.board_no
+		ORDER BY b.board_no DESC
+      ,reg_date DESC
+	</select>
+
+	<!-- 게시글 조회 -->
+	<select id="read" resultType="Board">
+		select *
+		from board
+		where board_no =
+		#{boardNo}
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="update">
+		update board
+		set title = #{title}
+		,writer = #{writer}
+		,content=#{content}
+		,upd_date=now()
+		where board_no = #{boardNo}
+	</update>
+	<!-- 게시글 삭제 -->
+	<delete id="delete">
+		delete from board
+		where board_no =#{boardNo}
+	</delete>
+
+	<!-- 게시글 검색 -->
+	<select id="search" resultType="Board">
+	<![CDATA[
+	
+	select *
+	from board 
+	
+	where title like concat('%', #{keyword},'%')
+		or content like concat('%', #{keyword},'%')
+	    or writer like concat('%', #{keyword},'%')
+	]]>
+	</select>
+
+	<!-- 전체 게시글 수 -->
+	<select id="totalCount" resultType="int">
+		select count(*)
+		from board;
+
+	</select>
+
+	<!-- 페이지 게시글 목록 -->
+
+	<select id="listWithPage" resultType="board">
+	 
+	<![CDATA[
+	select @rownum := @rownum+1 row_no, b.* , r.reply_count
+		from 
+		(select @rownum:= #{startRowIndex} from dual) 
+		tmp,
+			board b left join
+							(select board_no, count(*) reply_count from board_reply group by board_no) r
+							on b.board_no = r.board_no
+			order by group_no desc
+					, seq_no ASC
+					, depth_no ASC
+					, reg_date DESC
+		limit #{startRowIndex}, #{rowsPerPage}
+		
+	]]>
+	</select>
+
+	<!-- [검색어] 게시글 검색 -->
+	<select id="totalCountByKeyword" resultType="INT">	<!-- 게시글수니까 int -->
+		select count(*)
+		from board
+		where title like concat('%',#{keyword},'%')	<!-- 
+			타이틀에 키워드가 포함된 경우 -->
+		or writer like concat('%',#{keyword},'%')	<!-- 작성자 키워드가 포함된 경우 -->
+		or content like concat('%',#{keyword},'%')	<!-- 내용에 키워드가 포함된 경우 -->
+	</select>
+
+
+	<!-- 페이지 검색어 게시글 검색 -->
+
+	<select id="searchWithPage" resultType="board">
+	
+	<![CDATA[
+	select @rownum := @rownum+1 row_no, b.*
+		from 
+		(select @rownum:= #{startRowIndex} from dual) 
+		tmp,
+		board b left join
+				(select board_no, count(*) reply_count from board_reply group by board_no) r
+		on b.board_no = r.board_no;
+		
+		where title like concat('%',#{keyword},'%')	
+		or writer like concat('%',#{keyword},'%')	
+		or content like concat('%',#{keyword},'%')	
+		
+		
+			order by group_no desc
+							, seq_no ASC
+							, depth_no ASC
+							, reg_date DESC
+		limit #{startRowIndex}, #{rowsPerPage}
+	]]>
+	</select>
+
+	<!-- 파일 업로드 -->
+
+	<insert id="uploadFile" parameterType="BoardAttach">
+
+		<selectKey resultType="int" keyProperty="boardNo"
+			order="BEFORE">
+			SELECT MAX(board_no) from board;
+
+		</selectKey>
+
+		insert into board_attach (full_name,file_name, board_no)
+		values(#{fullName},#{fileName},#{boardNo})
+
+	</insert>
+
+	<!-- 파일 목록 -->
+
+	<select id="readFileList" resultType="BoardAttach">
+		select *
+		from board_attach
+		where board_no = #{boardNo}
+
+	</select>
+
+	<!-- 파일 삭제 -->
+
+	<delete id="deleteFile">
+		delete from board_attach
+		where file_no = #{fileNo}
+
+	</delete>
+
+
+	<!-- 댓글 목록 조회 -->
+	<select id="replyList" resultType="Reply">
+		select *
+		from board_reply
+		where
+		board_no = #{boardNo}
+		order by reg_date desc
+
+	</select>
+
+	<!-- 댓글 등록 -->
+
+	<insert id="replyCreate">
+		Insert into board_reply(board_no, content, writer)
+		values (#{boardNo}, #{content}, #{writer})
+	</insert>
+
+	<!-- 댓글 수정 -->
+
+	<update id="replyUpdate">
+		update board_reply
+		set writer = #{writer}
+		, content=
+		#{content}
+		where reply_no = #{replyNo}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		delete from board_reply
+		where reply_no = #{replyNo}
+	</delete>
+	
+	
+	<!--  계층번호 조회  -->
+	<select id = "readDepthNo" resultType = "int">
+		select depth_no
+		from board
+		where board_no = ${boardNo}
+	</select>
+	<!--  같은 그룹번호, Max(seq_no) -->
+	<select id="maxSeqNoByGroupNo" resultType="int">
+		select max(seq_no)
+		from board
+		where group_no =#{groupNo}
+	</select>
+	
+	<!--  답글 쓰기 -->
+	<insert id = "answerCreate">
+		Insert into board (title, content, writer, group_no, depth_no, seq_no)
+		values(#{title}, #{content},#{writer}, #{groupNo}, #{depthNo}, #{seqNo})
+	</insert>
+	
+	
+	<!--  MAX(글번호) -->
+	<select id = "maxBoardNo" resultType="int">
+		select max(board_no)
+		from board
+	</select>
+	
+	<!--  그룹 번호 수정  -->
+	<update id = "updateGroupNo" >
+		update board
+		set group_no =#{groupNo}
+		where board_no = #{boardNo}
+	</update>
+	
+	
+	<!--  게시글 첨부파일 전체 삭제  -->
+	
+	<delete id = "deleteFiles">
+		Delete from board where board_no = #{boardNo}
+	</delete>
+	
+	<!--  댓글 읽기  -->
+	<select id = "replyRead" resultType = "Reply">
+		SELECT * 
+		FROM board_reply
+		WHERE board_no = #{boardNo}
+		AND reply_no=#{replyNo}
+	
+	</select>
+	
+	<!--  댓글 전체 삭제(해당 게시글)  -->
+	<delete id = "replyRemoveAll">
+		DELETE FROM board_reply WHERE board_no = #{boardNo}
+	</delete>
+	
+	
+	<!--  파일 읽기  -->
+	
+	<select id = "readFile" resultType = "BoardAttach">
+		SELECT * 
+		FROM board_attach
+		WHERE board_no = #{boardNo}
+		AND file_no = #{fileNo}
+	</select>
+	
+	
+	<!--  좋아요 여부 조회 -->
+	
+	<select id = "readLikes" resultType = "int">
+		select count(*)
+		from board_like
+		where type_no = #{boardNo}
+		And user_no = #{userNo}
+	</select>
+	
+	<!--  좋아요 개수 조회 -->
+		<select id = "readLikeCount" resultType = "int">
+		select count(*)
+		from board_like
+		where type_no = #{boardNo}
+	</select>
+	
+	
+		<!--  댓글 좋아요 여부 조회 -->
+	
+	<select id = "readReplyLikes" resultType = "int">
+		select count(*)
+		from board_like
+		where type_no = #{replyNo}
+		And user_no = #{userNo}
+	</select>
+	
+	<!--  댓글 좋아요 개수 조회 -->
+		<select id = "readReplyLikeCount" resultType = "int">
+		select count(*)
+		from board_like
+		where type_no = #{replyNo}
+	</select>
+	
+	<!--  좋아요 추가 -->
+	<insert id = "insertLikes">
+		INSERT INTO board_like(like_type, type_no, user_no)
+		VALUES(#{likeType}, #{typeNo}, #{userNo})
+	</insert>
+	
+	<!--  좋아요 취소  -->
+	<delete id = "deleteLikes">
+		DELETE FROM board_like
+		WHERE type_no = #{boardNo}
+		AND user_no = #{userNo}
+	</delete>	
+	
+	
+		<!-- 계층번호 조회 -->
+	<select id="readReplyDepthNo" resultType="int"> 
+		SELECT depth_no
+		FROM board_reply
+		WHERE reply_no = ${replyNo}
+	</select>
+	
+	
+	<!--  같은 그룹번호, Max(seq_no) -->
+	<select id="replyMaxSeqNoByGroupNo" resultType="int">
+		select max(seq_no)
+		from  board_reply
+		where group_no =#{groupNo}
+	</select>
+	
+	
+		<!--  댓글의 답글 쓰기 -->
+	<insert id = "replyAnswerCreate">
+		Insert into board_reply (content, writer, board_no, group_no, depth_no, seq_no)
+		values(#{content},#{writer}, #{boardNo},#{groupNo}, #{depthNo}, #{seqNo})
+	</insert>
+	
+	<!--  댓글 번호 최대값 -->
+	<select id = "maxReplyNo" resultType = "int">
+		select Max(reply_no)
+		FROM board_reply
+	</select>
+	
+	<!-- 댓글 그룹번호 수정 -->
+	<update id="replyUpdateGroupNo">
+		UPDATE board_reply
+		SET group_no = #{groupNo}
+		WHERE reply_no = #{replyNo}
+	</update>
+	
+	<!-- 댓글 그룹 번호 조회 -->
+	
+	<select id = "replyReadGroupNo" resultType="int">
+		select group_no
+		from board_reply
+		where reply_no = #{replyNo}
+	</select>
+</mapper>
+
+
+
+

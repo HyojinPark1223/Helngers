@@ -1,0 +1,696 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>글쓰기</title>
+	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script>
+	
+		$(function() {
+			
+			/* 게시글 목록	*/
+			$("#listBtn").on("click", function() {
+				
+				let pageNum = $('#pageNum').val();
+				let rowsPerPage = $('#rowsPerPage').val();
+				let pageCount = $('#pageCount').val();
+				let keyword = $('#keyword').val();
+				
+				let query = "?pageNum=" + pageNum + "&"
+				          + "rowsPerPage=" + rowsPerPage + "&"
+				          + "pageCount=" + pageCount + "&"
+				          + "keyword=" + keyword;
+				
+				$.get("/board" + query, function(data) {
+					console.log(data);
+					$("#result").empty();
+					$("#result").val(JSON.stringify(data));
+				});
+			});
+			
+			
+			/* 게시글 읽기 */
+			$("#readBtn").on("click", function() {
+				
+				let boardNo = $('#boardNo').val();
+				
+				$.get("/board/" + boardNo, function(data) {
+					console.log(data);
+					$("#result").empty();
+					$("#result").val(JSON.stringify(data));
+					
+					let json = JSON.stringify(data);
+					let board = JSON.parse(json).board;
+					let attachList = JSON.parse(json).attachList;
+					let replyList = JSON.parse(json).replyList;
+					
+					
+					//좋아요
+					let like = JSON.parse(json).like;
+					let likeCount = JSON.parse(json).likeCount;
+					
+					console.log("like:" + like);
+					console.log("likeCount:" + likeCount);
+					
+					if(like) {
+						$("#like img").attr("src", "/img/like-32.png");
+
+						$("#like").attr("like", "true");
+					} else {
+						$("#like img").attr("src", "/img/nolike-32.png");
+
+						$("#like").attr("like", "false");
+					}
+					
+					$("#title").val(board.title);
+					$("#writer").val(board.writer);
+					$("#content").val(board.content);
+					
+					//이미지/파일 리스트
+					$(".imgList").empty();
+					$(".fileList").empty();
+					$(attachList).each(function(index, item){
+						console.log("data : " + JSON.stringify(this));
+						
+						
+						
+						
+						let attach = item;						// 파일
+						let fileNo = attach.fileNo;			// 파일 경로
+						let fullName = attach.fullName;			// 파일 경로
+						let fileName = attach.fileName;			// 파일 이름
+						let imgStr = '';
+						let fileStr = '';
+						
+						if(checkImageType(fullName)){
+							imgStr  = "<div><a href='/file/image?fullName=" + fullName + "' target='_blank'>"
+									+ "<img src='/file/image?fullName=" + fullName + "' class='thumbnail'/>"
+									+ "</a>"
+									+ "<a href='javascript:;' class='fileDelete' fileNo='" + fileNo +  "'><img src='/img/cancel.png' alt='x' /></a>"
+									+ "</div>";
+						}
+						else{
+							fileStr = "<div><a href='/file/fileDownload?fileNo=" + fileNo +"&boardNo=" + boardNo + "'>" 
+									+ fileName + "</a>"
+									+ "<a href='javascript:;' class='fileDelete' fileNo='" + fileNo +  "'><img src='/img/cancel.png' alt='x' /></a>"
+									+ "</div>";
+						}
+						
+						$(".imgList").append(imgStr);
+						$(".fileList").append(fileStr);
+					});
+					
+					
+					/* 이미지 삭제 */
+					$(".fileDelete").on("click", function() {
+
+						let boardNo = $('#boardNo').val();
+						let fileNo = $(this).attr("fileNo");
+						console.log(fileNo);
+						
+						$.ajax({
+							url : "/board/" + boardNo + "/files/" + fileNo,
+							type : "DELETE",
+							contentType : "application/json; charset=UTF-8",
+							success : function() {
+								alert("파일 삭제 성공!");
+								$(".imgList").empty();
+								$("#readBtn").trigger('click');
+							},
+							error : function(xhr, status, error) {
+								alert("code:" + xhr.status + "\n"
+									+ "message:" + xhr.responseText + "\n"
+									+ "error:" + error);
+							}
+						});
+						
+					});
+					//이미지 /파일리스트(끝);
+					
+					
+					/* 댓글 리스트 */
+					
+					$(".replyList").empty();
+					$(".replyList").append("<ul></ul>");
+					$(replyList).each(function(index, item){
+						
+						
+						let reply = item;			//댓글
+						let replyNo = reply.replyNo;			
+						let content = reply.content;
+						let writer = reply.writer;
+						let regDate = reply.regDate;
+						
+						let tag = "<li>"
+							+ "<input type='number' value='" + replyNo + "' />"
+	                          + "<span class='replyWriter'>" + writer + "</span> "
+	                          + "<span class='replyDate'>" + regDate + "</span> "
+	                          + "<a href='javascript:;' title class='btnReplyModify' data='" + replyNo + "'>수정</a> "
+	                          + "<a href='javascript:;' title class='btnReplyRemove' data='" + replyNo + "'>삭제</a> "
+	                          + "<br>"
+	                          + "<span class='replyContent'>" + content + "</span> "
+	                          + "</li>";
+						$(".replyList ul").append(tag);
+					});
+				});
+				
+			});
+			
+			/* 게시글 쓰기 */
+			$("#registerBtn").on("click", function() {
+				var formData = new FormData($("#form")[0]);
+				
+				$.ajax({
+					url: "/board",
+					type: "POST",
+					data: formData,
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function() {
+						alert("글 쓰기 성공!");
+						$("#listBtn").trigger('click');
+						$("#resetBtn").trigger('click');
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+			
+			/* 게시글 삭제 */
+			$("#deleteBtn").on("click", function() {
+				
+				let boardNo = $('#boardNo').val();
+	
+				$.ajax({
+					url : "/board/" + boardNo,
+					type : "DELETE",
+					contentType : "application/json; charset=UTF-8",
+					success : function() {
+						alert("글 삭제 성공!");
+						$("#listBtn").trigger('click');
+					},
+					error : function(xhr, status, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+			
+			
+			/* 게시글 수정 */
+			$("#updateBtn").on("click", function() {
+				var formData = new FormData($("#form")[0]);
+				
+				let boardNo = $('#boardNo').val();
+				
+				$.ajax({
+					url: "/board/" + boardNo,
+					type: "PUT",
+					data: formData,	//화면에서 서버로 요청시
+					dataType:"text",	//
+					processData: false,
+					contentType: false,
+					success : function() {
+						alert("글 수정 성공!");
+						$("#resetBtn").trigger('click');
+						$("#readBtn").trigger('click');
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+			
+			
+			//좋아요 표시 /해제 클릭
+			$("#like").on("click", function(){
+				let like = $(this).attr("like");
+				let boardNo = $('#boardNo').val();
+				
+				
+				like= like == 'true' ? true:false;
+				// 좋아요 추가
+				if( !like ){
+
+					const formData = new FormData();
+					formData.append('typeNo',boardNo);
+					formData.append('likeType',1);
+					formData.append('userNo',100);
+					
+					$.ajax({
+						url: "/board/" + boardNo+ "/likes",
+						type: "POST",
+						data: formData,
+						dataType:"text",
+						processData: false,
+						contentType: false,
+						success : function() {
+							alert("좋아요 성공!");
+							$("#like").attr("like","true");
+							$("#like img").attr("src","/img/like-32.png");
+						},
+						error : function(xhr, textStatus, error) {
+							alert("code:" + xhr.status + "\n"
+								+ "message:" + xhr.responseText + "\n"
+								+ "error:" + error);
+						}
+					});
+				}
+				
+				
+				//좋아요 삭제
+				else{
+
+/* 					const formData = new FormData();
+					formData.append('typeNo',boardNo);
+					formData.append('userNo',100); */
+
+					const userNo=100;	//임시
+					
+					$.ajax({
+						
+						
+						url : "/board/" + boardNo +"/likes/" + userNo,
+						type : "DELETE",
+						contentType : "application/json; charset=UTF-8",
+						success : function() {
+							alert("좋아요 삭제 성공!");
+							$("#like").attr("like","false");
+							$("#like img").attr("src","/img/nolike-32.png");
+						},
+						error : function(xhr, status, error) {
+							alert("code:" + xhr.status + "\n"
+								+ "message:" + xhr.responseText + "\n"
+								+ "error:" + error);
+						}
+					});
+				}
+			})	;
+			
+			//댓글 읽기
+			$("#readReplyBtn").on("click",function(){
+				let boardNo = $("#boardNo").val();
+				let replyNo = $("#replyNo").val();
+				
+				$.ajax({
+					url: "/board/" + boardNo + "/replys/" + replyNo,
+					type: "GET",
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function(data) {
+						alert("댓글 읽기 성공!");
+						$("#replyWriter").val("");
+						$("#replyContent").val("");
+						
+						if(data==undefined) return;
+						
+						let replyNo = JSON.parse(data).replyNo;
+						let content = JSON.parse(data).content;
+						let writer = JSON.parse(data).writer;
+						let regDate = JSON.parse(data).regDate;
+					
+						$("#replyWriter").val(writer);
+						$("#replyContent").val(content);
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+
+			//댓글 수정
+			$("#updateReplyBtn").on("click",function(){
+				let boardNo = $("#boardNo").val();
+				let replyNo = $("#replyNo").val();
+				let content = $("#replyContent").val();
+				let writer = $("#replyWriter").val();
+				
+				const formData = new FormData();
+				formData.append('replyNo', replyNo);
+				formData.append('boardNo', boardNo);
+				formData.append('content', content);
+				formData.append('writer', writer);
+				
+				$.ajax({
+					url: "/board/" + boardNo + "/replys/" + replyNo,
+					type: "PUT",
+					data: formData,
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function(data) {
+						//$("#replyWriter").val("");
+						//$("#replyContent").val("");
+						alert("댓글 수정 성공!");
+
+						$("#readBtn").trigger("click");
+						$("#replyReplyBtn").trigger("click");
+					
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+			
+			
+			//댓글 등록
+			$("#btnReplyRegister").on("click",function(){
+				let boardNo = $("#boardNo").val();
+				let content = $("#replyContent").val();
+				let writer = $("#replyWriter").val();
+				
+				alert(content);
+				
+				const formData = new FormData();
+
+				formData.append('boardNo', boardNo);
+				formData.append('content', content);
+				formData.append('writer', writer);
+				
+				$.ajax({
+					url: "/board/" + boardNo + "/replys/",
+					type: "POST",
+					data:formData,
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function(data) {
+						$("#replyWriter").val("");
+						$("#replyContent").val("");
+						alert("댓글 등록 성공!");
+
+						$("#readBtn").trigger("click");
+					
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+			//댓글 삭제
+			$("#deleteReplyBtn").on("click",function(){
+				let boardNo = $("#boardNo").val();
+				let replyNo = $("#replyNo").val();
+				
+				$.ajax({
+					url: "/board/" + boardNo + "/replys/" + replyNo,
+					type: "DELETE",
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function(data) {
+						$("#replyWriter").val("");
+						$("#replyContent").val("");
+						
+						alert("댓글 삭제 성공!");
+						$("#replyReplyBtn").trigger("click");
+						$("#readBtn").trigger("click");
+						
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+				
+			});
+			
+			//댓글의 답글 쓰기
+			$("#answerReplyBtn").on("click",function(){
+				let boardNo = $("#boardNo").val();
+				let replyNo = $("#replyNo").val();
+				let content = $("#replyContent").val();
+				let writer = $("#replyWriter").val();
+				
+				alert(content);
+				
+				const formData = new FormData();
+	
+				formData.append('boardNo', boardNo);
+				formData.append('replyNo', replyNo);
+				formData.append('content', content);
+				formData.append('writer', writer);
+				
+				$.ajax({
+					url: "/board/" + boardNo + "/replys/" + replyNo,
+					type: "POST",
+					data:formData,
+					dataType:"text",
+					processData: false,
+					contentType: false,
+					success : function(data) {
+						$("#replyWriter").val("");
+						$("#replyContent").val("");
+						alert("댓글의 답글 등록 성공!");
+	
+						$("#readBtn").trigger("click");
+					
+					},
+					error : function(xhr, textStatus, error) {
+						alert("code:" + xhr.status + "\n"
+							+ "message:" + xhr.responseText + "\n"
+							+ "error:" + error);
+					}
+				});
+			});
+		});
+		
+		
+		
+		
+		
+		// 이미지 타입인지 확인
+		function checkImageType( fileName ){
+			console.log(fileName);
+			var pattern = /jpg|gif|png|jpeg/i;
+			
+			return fileName.match(pattern);
+		}
+		
+		
+		// 파일 이름 확인
+		function getOriginalName( fileName ){
+			var idx = fileName.indexOf("_") + 1;
+			return fileName.substr(idx);
+		}
+	
+	</script>
+	
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.form-wrap {
+			float: left;
+			padding: 20px;
+			border: 1px solid gray;
+			width: 50%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+		
+		.result-wrap {
+			float: right;
+			border: 1px solid gray;
+			width: 50%;
+			height: 100%;
+			box-sizing: border-box;
+		}
+		
+		.result-wrap textarea.result {
+			height: 50%;
+			resize: vertical;
+		}
+		
+		table, textarea, table textarea {
+			width: 100%;
+		}
+		
+		input[type='number'] {
+			max-width: 60px;
+		}
+		
+		.imgList {
+			height: 200px;
+			overflow: auto;
+		}
+		.imgList div {
+			display: inline-block;
+			position: relative;
+		}
+		.imgList div img.thumbnail  {
+			width: 100px;
+			height: 100px;
+			border: 1px solid gray;
+			object-fit: cover;
+			box-sizing: border-box;
+		}
+		
+		.imgList div .fileDelete {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+		
+		
+		.fileList {
+			height: 200px;
+			overflow: auto;
+		}
+		.fileList div {
+			position: relative;
+		}
+		
+		.txt-right {
+			text-align:right;
+		}
+		
+		.control {
+		padding :15px;
+		
+		}
+		
+		.replyList {
+			height: 200px;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>REST BOARD</h1>
+	<div class="form-wrap">
+		<form id="form" action="/board" method="post" enctype="multipart/form-data" >
+			<table>
+				<tr>
+					<td><label for="title">title</label></td>
+					<td><input type="text" name="title" value="" id="title"></td>
+				</tr>
+				<tr>
+					<td><label for="writer">writer</label></td>
+					<td><input type="text" name="writer" value="" id="writer"></td>
+				</tr>
+				<tr>
+					<td><label for="content">content</label></td>
+					<td><textarea id="content" name="content" rows="10" ></textarea></td>
+				</tr>
+				<tr>
+					<td><label for="file">file</label></td>
+					<td><input type="file" name="file" id="file" multiple="multiple"/></td>
+				</tr>
+				
+			</table>
+			
+			<div class = "txt-right">
+				<button type="submit" id="submitBtn">등록</button>
+				<button type="reset" id="resetBtn">리셋</button>
+				
+				<th:block th:if ="${like}">
+					<a href= "javascript:;" id="like"  th:data="${like}">
+						<img src= "/img/like-32.png"/>
+					</a>
+				</th:block>
+				
+			
+				<th:block th:if ="!${like}">
+					<a href= "javascript:;"  id="like" th:data="${like}">
+						<img src= "/img/nolike-32.png"/>
+					</a>
+				</th:block>
+		
+	
+			
+			
+			
+			
+			</div>
+			
+			
+			
+			<div class="imgList">
+				
+			</div>
+			<div class="fileList">
+				
+			</div>
+			
+			<div class= "replyList">
+			
+				
+			</div>
+		</form>
+	</div>
+	
+	
+	<div class="result-wrap">
+		<textarea id="result" class="result"></textarea>
+		
+		<div class="control">
+			<h5>게시글 목록</h5>
+			<label for="pageNum">pageNum</label>
+			<input type="number" id="pageNum" value="0" />
+			
+			<label for="rowsPerPage">rowsPerPage</label>
+			<input type="number" id="rowsPerPage" value="0" />
+			
+			<label for="pageCount">pageCount</label>
+			<input type="number" id="pageCount" value="0" />
+			
+			<label for="keyword">keyword</label>
+			<input type="text" id="keyword" />
+			
+			<button id="listBtn">LIST</button>
+		</div>
+		<div class="control">	
+			<h5>게시글 쓰기 (ajax)</h5>
+			<button id="registerBtn">REGISTER</button>
+		</div>
+		<div class="control">
+			<h5>게시글 읽기/수정/삭제</h5>
+			<label for="boardNo">boardNo</label>
+			<input type="number" id="boardNo" value="0" />
+			<button id="readBtn">READ</button>
+			<button id="deleteBtn">DELETE</button>
+			<button id="updateBtn">UPDATE</button>
+		</div>
+		<!--  댓글 입력 -->
+	<div class="control">
+	<h5>댓글</h5>
+	<label for="replyNo">replyNo</label>
+			<input type="number" id="replyNo" value="0" />
+			<button id="readReplyBtn">READ</button>
+			<button id="deleteReplyBtn">DELETE</button>
+			<button id="updateReplyBtn">UPDATE</button>
+			<button id="answerReplyBtn">answer</button>
+			<br>
+		<input type="text" name="replyWriter" id="replyWriter"
+			placeholder="작성자" class="writer"> </br>
+		<textarea rows="5" cols="80" placeholder="댓글입력" id="replyContent"></textarea>
+		<div>
+			<button type="button" id="btnReplyRegister">Reigister</button>
+		</div>
+	</div>
+	<br>
+	</div>
+	
+
+</body>
+</html>
