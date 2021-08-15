@@ -13,7 +13,7 @@
             <label
               for="nickName">nickname&nbsp;&nbsp;</label>
             <input
-              v-model="formData.nickname"
+              v-model="nickname"
               placeholder="nickname을 입력하세요."
               type="text" />
             <div clss="error-text"></div>
@@ -22,7 +22,7 @@
             <label
               for="email">email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="formData.email"
+              v-model="email"
               placeholder="email을 입력하세요"
               type="text" />
             <div clss="error-text"></div>
@@ -31,7 +31,7 @@
             <label
               for="password">password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
-              v-model="formData.password"
+              v-model="password"
               placeholder="password를 입력하세요"
               type="text" />
             <div clss="error-text"></div>
@@ -40,7 +40,7 @@
             <label
               for="introduce">introduce</label>
             <input
-              v-model="formData.introduce"
+              v-model="introduce"
               placeholder="introduce를 입력하세요"
               type="text" />
             <div clss="error-text"></div>
@@ -48,7 +48,7 @@
           <div class="button-div">
             <button
               class="btn btn-primary"
-              @click="Signup"
+              @click="signup({email, password, nickname, introduce})"
               :disabled="loading">
               SIGN UP
             </button>
@@ -78,11 +78,13 @@
 
 <script>
 import AOS from 'aos'
-import UserService from '../services/user.service';
-import User from '../models/user';
+// import UserService from '../services/user.service';
+// import User from '../models/user';
 import Logo from '../components/Logo'
 // import axios from 'axios'
 // import vuex from 'vuex'
+
+import { mapActions } from "vuex"
 
 export default {
   created() {
@@ -93,23 +95,28 @@ export default {
   },
   data() {
     return {
-        formData: new User('', '', '', ''),
-        loading: false,
-        submitted: false,
+        // formData: new User('', '', '', ''),
+        // loading: false,
+        // submitted: false,
+        email: null,
+        password: null,
+        nickname: null,
+        introduce: null
     }
   },
   methods: {
-    Signup() {
-      UserService.signUp(this.formData).then(
-        () => {
-          console.log('요청')
-          this.$router.push('/login')
-        },
+    // Signup() {
+    //   UserService.signUp(this.formData).then(
+    //     () => {
+    //       console.log('요청')
+    //       this.$router.push('/login')
+    //     },
 
-      ).then(() => {
-        this.loading = false
-      })
-    }
+    //   ).then(() => {
+    //     this.loading = false
+    //   })
+    // }
+    ...mapActions('user', ["signup"]),
   }
 }
 </script>
