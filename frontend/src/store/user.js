@@ -36,17 +36,19 @@ export default {
   // context : state 데이터 접근, payload : 입력받은 값의 매개변수
   actions: {
     // 로그인 시도
-    login({ dispatch }, loginObj) {
+    login(loginObj) {
       // 로그인 -> 토큰반환
       axios
-        .post("https://reqres.in/api/login", loginObj) // email, password
+        .post("http://localhost:8080/login", loginObj) // email, password
         .then(res => {
+          console.log(res)
+          console.log(res.data)
           // 성공 시 token이 돌아옴.
           // 토킁을 헤더에 포함시켜서 유저정보를 요청
-          let token = res.data.token
+          let token = res.data
           // 토큰을 로컬 스토리지에 저장
           localStorage.setItem("access_token", token) // key - value
-          dispatch("getMemberInfo")
+          //dispatch("getMemberInfo")
         })
         // 로그인 실패했을 때.
         .catch(() => {
@@ -84,6 +86,35 @@ export default {
     logout({ commit }) {
       commit("logout")
       router.push({ name: "home"})
+    },
+    signup({dispatch}, signupObj) {
+      axios
+        .post('http://localhost:8080/signup', signupObj)
+        .then(res => {
+          // "id": 5,
+          // "email": "test2@ssafy.com",
+          // "password": "test",
+          // "nickname": "test2",
+          // "count": 0,
+          // "comment_count": 0,
+          // "level": 0,
+          // "introduce": "test",
+          // "point": 0,
+          // "period": 0,
+          // "purpose": 0,
+          // "createdAt": "2021-08-15T20:07:29.1377038",
+          // "role": "ROLE_USER"
+          let email = res.email
+          let password = res.password
+          let loginObj = {
+            email: email,
+            password: password
+          }
+          //dispatch('login', loginObj)
+        })
+        .catch(() => {
+          alert('다시 입력해주세요!')
+        })
     }
   }
 }

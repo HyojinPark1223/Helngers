@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### My ignore ###
+
+# **/src/main/resources/application.properties
+# **/src/main/java/com/ssafy/hellingers/config/EmailConfig.java
+# **/backend/build.gradle
+# **/backend/helngers_DB_0809
