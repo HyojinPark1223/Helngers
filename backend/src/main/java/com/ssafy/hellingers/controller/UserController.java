@@ -2,6 +2,7 @@ package com.ssafy.hellingers.controller;
 
 import com.ssafy.hellingers.dto.FollowDto;
 import com.ssafy.hellingers.dto.UserDto;
+import com.ssafy.hellingers.model.LoginData;
 import com.ssafy.hellingers.model.Role;
 import com.ssafy.hellingers.model.User;
 import com.ssafy.hellingers.service.EmailService;
@@ -71,7 +72,9 @@ public class UserController
         try {
             Optional<User> loginUser = userService.login(user.getEmail(), user.getPassword());
             String jwt = jwtService.create("email", user.getEmail(), "access_token");
-            return new ResponseEntity<>(jwt, HttpStatus.OK);
+
+            LoginData loginData = new LoginData(loginUser.get().getId(),jwt);
+            return new ResponseEntity<>(loginData, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
         }
