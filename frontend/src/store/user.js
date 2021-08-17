@@ -36,7 +36,7 @@ export default {
   // context : state 데이터 접근, payload : 입력받은 값의 매개변수
   actions: {
     // 로그인 시도
-    login(loginObj) {
+    login({dispatch}, loginObj) {
       // 로그인 -> 토큰반환
       axios
         .post("http://localhost:8080/login", loginObj) // email, password
@@ -44,7 +44,7 @@ export default {
           console.log(res)
           console.log(res.data)
           // 성공 시 token이 돌아옴.
-          // 토킁을 헤더에 포함시켜서 유저정보를 요청
+          // 토큰을 헤더에 포함시켜서 유저정보를 요청
           let token = res.data
           // 토큰을 로컬 스토리지에 저장
           localStorage.setItem("access_token", token) // key - value
