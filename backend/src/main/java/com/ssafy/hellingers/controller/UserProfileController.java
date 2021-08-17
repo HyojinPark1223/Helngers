@@ -32,6 +32,8 @@ public class UserProfileController {
     // 마이페이지 데이터  (nickname, introduce, purpose, point, created_at,
     // + 같은 메달을 설정한 3명의 랜덤 유저 nickname, 그 유저들이 갖고 있는 메달)
 
+
+
     // 상세
     @GetMapping("/{id}")
     public User profileDetail(@PathVariable Long id){

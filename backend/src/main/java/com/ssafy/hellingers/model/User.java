@@ -40,10 +40,6 @@ public class User
     @Column(name = "comment_count")
     private int comment_count;
 
-    @ColumnDefault("1")
-    @Column(name = "level")
-    private int level;
-
     @Column(name = "introduce")
     private String introduce;
 
