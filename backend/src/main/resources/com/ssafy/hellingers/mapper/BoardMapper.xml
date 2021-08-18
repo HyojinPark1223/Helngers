@@ -12,6 +12,20 @@
 		values(#{title},#{writer},#{content})
 	</insert>
 
+	<!-- 게시글 등록 시 유저에서 board_count값 +1 -->
+	<update id="countPlus" parameterType="long">
+		update users
+		set board_count = board_count+1
+		where id = #{id}
+	</update>
+
+	<!-- 댓글 등록 시 유저에서 comment_count값 +1 -->
+	<update id="replyCountPlus" parameterType="long">
+		update users
+		set comment_count = comment_count+1
+		where id = #{id}
+	</update>
+
 	<!-- 게시글 목록 -->
 	<select id="list" resultType="Board">
 		SELECT *

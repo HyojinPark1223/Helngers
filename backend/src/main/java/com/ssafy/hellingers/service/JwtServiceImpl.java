@@ -2,6 +2,7 @@ package com.ssafy.hellingers.service;
 
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -10,7 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
 
-@Component
+
+@Service
 public class JwtServiceImpl implements JwtService {
 
     private final String TK = "ASDFASDFLNNWELRNKLANSDFLKASDFNKLKLNASWERNLASDNKL";
