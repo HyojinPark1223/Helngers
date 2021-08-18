@@ -9,22 +9,16 @@ import javax.persistence.*;
 
 @Getter
 @Data
-@Table
 public class MedalResponse {
 
-    private String title;
+    Long medals_id;
+    Long users_id;
+    Integer present;
 
-    private String content;
-
-    private Integer goal;
-
-    private Integer level;
-
-    private String url;
-
-    private Integer present;
-
-//    private boolean isAchieve;
-
+    public MedalResponse(Long mid, Long uid, int present){
+        this.medals_id = mid;
+        this.users_id = uid;
+        this.present = present;
+    }
 
 }
