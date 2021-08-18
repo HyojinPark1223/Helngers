@@ -6,19 +6,38 @@
     <select id="random3People" parameterType="Long" resultType="User">
         select *
         from users
-        where selected_medal=#{selected_medal}
+        where selected_medal= #{selected_medal}
         order by RAND()
         limit 3
     </select>
 
     <!--    DB에 저장되어있는 챌린지 중에서 랜덤으로 5개를 뽑아온다.  -->
-    <insert id="random5Challenges">
-        insert into challenges_has_users (users_id, challenges_id)
-        values #{id}
-        order by RAND()
-        limit 5
+    <insert id="insertRandom5Challenges">
+        insert into challenges_has_users (challenges_id, users_id, isAchieve)
+        select a.id, b.id, 0 from challenges a, users b
+        where b.id = #{id}
+        order by rand() limit 5;
     </insert>
 
+    <select id="selectRandom5Challenges" parameterType="Long" resultType="Challenge">
+        select a.title, a.content, a.url, a.id
+        from challenges a, challenges_has_users b
+        where a.id = b.challenges_id
+        and b.users_id = #{id};
+    </select>
+
+    <insert id="insertMedalstoUser">
+        insert into medals_has_users (medals_id, users_id, present, isAchieve)
+        select a.id, b.id, 0, 0 from medals a, users b
+        where b.id = #{id};
+    </insert>
+
+    <select id="selectAllMedalsofUser" parameterType="Long" resultType="Medal">
+        select title, content, goal, url
+        from medals_has_users a, medals b
+        where a.users_id=#{id}
+        and a.medals_id = b.id;
+    </select>
 <!--    &lt;!&ndash;    맞팔이얌. 상대 맞팔 상태도 업데이트 해줘야함. 따라서 밑에 이어짐.    &ndash;&gt;-->
 <!--    <insert id="willFollows">-->
 <!--        insert into challenges_has_users(from_id, to_id, follows)-->

@@ -1,10 +1,12 @@
 package com.ssafy.hellingers.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Data
 public class LoginData {
     Long user_id;
     String token;

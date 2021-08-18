@@ -3,13 +3,11 @@ package com.ssafy.hellingers.controller;
 import com.ssafy.hellingers.model.Challenge;
 import com.ssafy.hellingers.repository.ChallengeRepository;
 import com.ssafy.hellingers.service.ChallengeService;
+import com.ssafy.hellingers.service.RandomPickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,8 @@ public class ChallengeController {
     @Autowired
     ChallengeService challengeService;
 
+    @Autowired
+    RandomPickService randomPickService;
 
     @GetMapping("/list")
     public List<Challenge> printAll(){
@@ -35,4 +35,26 @@ public class ChallengeController {
 //        return challengeRepository.findAll();
     }
 
+
+    @PostMapping("/list/{id}")
+    public String updateChallengeList(@PathVariable Long id) throws Exception {
+        try {
+            randomPickService.insertRandom5Challenges(id);
+            return "챌린지 리스트 갱신 성공!";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "챌린지 리스트 갱신 실패ㅜㅜ";
+    }
+
+    @GetMapping("/list/{id}")
+    public List<Challenge> printAllChallenges(@PathVariable Long id) throws Exception {
+        try {
+            List<Challenge> challengeList = randomPickService.selectRandom5Challenges(id);
+            return challengeList;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
