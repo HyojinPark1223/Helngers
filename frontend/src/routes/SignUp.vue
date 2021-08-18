@@ -10,40 +10,48 @@
         <div class="form-wrap">
           <Logo class="Logo" />
           <div class="input-with-label">
-            <label
-              for="nickName">nickname&nbsp;&nbsp;</label>
-            <input
-              v-model="nickname"
-              placeholder="nickname을 입력하세요."
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>닉네임 : </p>
+            </div>
+            <div>
+              <input
+                v-model="nickname"
+                placeholder="닉네임을 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="email">email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input
-              v-model="email"
-              placeholder="email을 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>이메일 : </p>
+            </div>
+            <div>
+              <input
+                v-model="email"
+                placeholder="이메일을 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="password">password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input
-              v-model="password"
-              placeholder="password를 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>비밀번호 : </p>
+            </div>
+            <div>
+              <input
+                v-model="password"
+                placeholder="비밀번호를 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="introduce">introduce</label>
-            <input
-              v-model="introduce"
-              placeholder="introduce를 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>자기소개 : </p>
+            </div>
+            <div>
+              <input
+                v-model="introduce"
+                placeholder="자기소개를 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="button-div">
             <button
@@ -181,8 +189,10 @@ export default {
           }
           .input-with-label {
             margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            width: 40%;
             input {
-              margin-left: 15px;
               background-color: #f1e5e5;
               border-radius: 10px;
               border: 0;

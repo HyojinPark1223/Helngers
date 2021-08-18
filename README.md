@@ -50,13 +50,19 @@
 
 ![](./images/README/002.png)
 
+![](./images/README/003.png)
+
 
 
 ## 🎨 UI Design
 
 *Figma 사용 / [UI 보러가기](https://www.figma.com/file/IHWkQyXMkvZwEM1JWKrzQ3/%EC%8B%B8%ED%94%BC-2%ED%95%99%EA%B8%B0-%EB%B6%80%ED%8A%B8%EC%BA%A0%ED%94%84?node-id=0%3A1)*
 
+![](./images/README/005_1.png)
 
+![](./images/README/005_2.png)
+
+![](./images/README/005_3.png)
 
 
 

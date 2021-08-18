@@ -114,7 +114,7 @@ public class UserController
                         "		<span style=\"color: #F8B75B\">메일인증</span> 안내입니다."																																				+
                         "	</h1>\n"																																																+
                         "	<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">"																													+
-                        "		Helngers에 가입해 주셔서 진심으로 감사드립니다.<br />"																																						+
+                        "		안녕하세요, Helngers에 가입해 주셔서 진심으로 감사드립니다.<br />"																																						+
                         "		아래 <b style=\"color: #F8B75B\">인증코드</b> 를 입력하여 회원가입을 완료해 주세요.<br />"																													+
                         "		감사합니다."																																															+
                         "	</p>"																																																	+
