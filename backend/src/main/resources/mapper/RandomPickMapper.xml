@@ -33,10 +33,9 @@
     </insert>
 
     <select id="selectAllMedalsofUser" parameterType="Long" resultType="MedalResponse">
-        select title, content, goal, level, url, present
-        from medals_has_users a, medals b
-        where a.users_id=#{id}
-        and a.medals_id = b.id;
+        select medals_id, users_id, present
+        from medals_has_users
+        where users_id = #{id};
     </select>
 <!--    &lt;!&ndash;    맞팔이얌. 상대 맞팔 상태도 업데이트 해줘야함. 따라서 밑에 이어짐.    &ndash;&gt;-->
 <!--    <insert id="willFollows">-->
