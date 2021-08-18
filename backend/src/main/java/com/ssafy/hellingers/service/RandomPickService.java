@@ -2,6 +2,7 @@ package com.ssafy.hellingers.service;
 
 import com.ssafy.hellingers.mapper.RandomPickMapper;
 import com.ssafy.hellingers.model.Medal;
+import com.ssafy.hellingers.model.MedalResponse;
 import com.ssafy.hellingers.model.User;
 import com.ssafy.hellingers.model.Challenge;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class RandomPickService {
         randomPickMapper.insertMedalstoUser(user_id);
     }
 
-    public List<Medal> selectAllMedalsofUser(Long user_id) throws Exception {
+    public List<MedalResponse> selectAllMedalsofUser(Long user_id) throws Exception {
         return randomPickMapper.selectAllMedalsofUser(user_id);
     }
 }

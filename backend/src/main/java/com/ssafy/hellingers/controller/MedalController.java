@@ -1,6 +1,7 @@
 package com.ssafy.hellingers.controller;
 
 import com.ssafy.hellingers.model.Medal;
+import com.ssafy.hellingers.model.MedalResponse;
 import com.ssafy.hellingers.repository.MedalRepository;
 import com.ssafy.hellingers.service.MedalService;
 import com.ssafy.hellingers.service.RandomPickService;
@@ -41,9 +42,9 @@ public class MedalController {
     }
 
     @GetMapping("/list/{id}")
-    public List<Medal> printMedalsofUser(@PathVariable Long id) throws Exception {
+    public List<MedalResponse> printMedalsofUser(@PathVariable Long id) throws Exception {
         try {
-            List<Medal> listMedal = randomPickService.selectAllMedalsofUser(id);
+            List<MedalResponse> listMedal = randomPickService.selectAllMedalsofUser(id);
             System.out.println("메달 프린트 성공");
             return listMedal;
         }catch (Exception e){
