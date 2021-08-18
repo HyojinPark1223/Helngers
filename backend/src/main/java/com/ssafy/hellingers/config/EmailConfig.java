@@ -29,8 +29,8 @@ public class EmailConfig {
         //구글
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("보낼 이메일 주소");
-        mailSender.setPassword("비밀번호");
+        mailSender.setUsername("phj971223@gmail.com");
+        mailSender.setPassword("Hj160527^^!");
         mailSender.setDefaultEncoding("utf-8");
         mailSender.setJavaMailProperties(properties);
 
