@@ -32,8 +32,8 @@
         where b.id = #{id};
     </insert>
 
-    <select id="selectAllMedalsofUser" parameterType="Long" resultType="Medal">
-        select title, content, goal, url
+    <select id="selectAllMedalsofUser" parameterType="Long" resultType="MedalResponse">
+        select title, content, goal, level, url, present
         from medals_has_users a, medals b
         where a.users_id=#{id}
         and a.medals_id = b.id;

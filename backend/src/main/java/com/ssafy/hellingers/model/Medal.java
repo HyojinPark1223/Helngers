@@ -29,6 +29,9 @@ public class Medal {
     @Column(name = "goal")
     private Integer goal;
 
+    @Column(name = "level")
+    private Integer level;
+
     @Column(name = "url")
     private String url;
 }
