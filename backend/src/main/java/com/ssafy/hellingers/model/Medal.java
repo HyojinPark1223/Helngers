@@ -1,5 +1,6 @@
 package com.ssafy.hellingers.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
+@Data
 @Table(name = "medals")
 public class Medal {
 
@@ -27,5 +29,9 @@ public class Medal {
     @Column(name = "goal")
     private Integer goal;
 
+    @Column(name = "level")
+    private Integer level;
 
+    @Column(name = "url")
+    private String url;
 }

@@ -14,7 +14,7 @@ import FileUploader from './components/fileUploader.vue'
 
 export default {
   beforeCreate() {
-    this.$store.dispatch('user/getMemberInfo')
+    this.$store.dispatch('getMemberInfo')
   },
   components:{
     Header,

@@ -15,19 +15,18 @@
         :breakpoints="breakpoints"
         class="carousel">
         <Slide
-          v-for="(challenge) in challenges"
-          :key="challenge.id"
+          v-for="{slide} in slides"
+          :key="slide"
           class="slide">
           <div
             class="carousel__item"
             data-aos="flip-left"
-            @click="getChallengeId(challenge.id)"
             data-aos-duration="1000">
             <div
               @click="modalOnOff"
               class="challengeCard">
               <div class="challengeCard__inner">
-                <h2>{{ challenge.title }}</h2>
+                <h2>오늘의 챌린지!</h2>
                 <br />
                 <img
                   src="../../assets/fitness.png"
@@ -95,15 +94,12 @@
 <script>
 import ChallengeModal from './ChallengeModal.vue'
 import { defineComponent } from 'vue';
-import { mapState, mapActions } from 'vuex'
 import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import AOS from 'aos'
 
+
 export default defineComponent({
-  beforeCreate() {
-    this.$store.dispatch('challenges/getChallenge')
-  },
   created() {
     AOS.init()
   },
@@ -143,20 +139,13 @@ export default defineComponent({
       // },
     },
   }),
-  computed: {
-    ...mapState("challenges", ["challenges"])
-  },
   methods: {
     toggleOnOff() {
       this.isStatusOn = !this.isStatusOn
     },
     modalOnOff() {
       this.cModal = !this.cModal
-    },
-    getId(id) {
-      console.log(id)
-    },
-    ...mapActions("challenges", ['getChallengeId'])
+    }
   }
 });
 </script>

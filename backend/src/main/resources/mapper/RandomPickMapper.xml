@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hellingers.mapper.RandomPickMapper">
+
+    <!--    나랑 같은 메달을 지정한 유저를 세명 랜덤으로 뽑아온다.  -->
+    <select id="random3People" parameterType="Long" resultType="User">
+        select *
+        from users
+        where selected_medal= #{selected_medal}
+        order by RAND()
+        limit 3
+    </select>
+
+    <!--    DB에 저장되어있는 챌린지 중에서 랜덤으로 5개를 뽑아온다.  -->
+    <insert id="insertRandom5Challenges">
+        insert into challenges_has_users (challenges_id, users_id, isAchieve)
+        select a.id, b.id, 0 from challenges a, users b
+        where b.id = #{id}
+        order by rand() limit 5;
+    </insert>
+
+    <select id="selectRandom5Challenges" parameterType="Long" resultType="Challenge">
+        select a.title, a.content, a.url, a.id
+        from challenges a, challenges_has_users b
+        where a.id = b.challenges_id
+        and b.users_id = #{id};
+    </select>
+
+    <insert id="insertMedalstoUser">
+        insert into medals_has_users (medals_id, users_id, present, isAchieve)
+        select a.id, b.id, 0, 0 from medals a, users b
+        where b.id = #{id};
+    </insert>
+
+    <select id="selectAllMedalsofUser" parameterType="Long" resultType="MedalResponse">
+        select medals_id, users_id, present
+        from medals_has_users
+        where users_id = #{id};
+    </select>
+<!--    &lt;!&ndash;    맞팔이얌. 상대 맞팔 상태도 업데이트 해줘야함. 따라서 밑에 이어짐.    &ndash;&gt;-->
+<!--    <insert id="willFollows">-->
+<!--        insert into challenges_has_users(from_id, to_id, follows)-->
+<!--        values (#{from_id}, #{to_id}, 1)-->
+<!--    </insert>-->
+
+
+</mapper>

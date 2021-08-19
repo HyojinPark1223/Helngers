@@ -1,5 +1,6 @@
 package com.ssafy.hellingers.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
+@Data
 @Table(name = "challenges")
 public class Challenge {
     @Id // 기본키 (Primary Key)로 사용할 Value 값에 지정

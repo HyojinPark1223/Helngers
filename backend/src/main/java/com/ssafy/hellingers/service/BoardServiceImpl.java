@@ -25,6 +25,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void register(Board board) throws Exception {
 		mapper.insert(board);
+
 		
 		int boardNo = mapper.maxBoardNo();
 		board.setGroupNo(boardNo);

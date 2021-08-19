@@ -7,6 +7,7 @@ import com.ssafy.hellingers.model.Role;
 import com.ssafy.hellingers.model.User;
 import com.ssafy.hellingers.service.EmailService;
 import com.ssafy.hellingers.service.FollowServiceImpl;
+import com.ssafy.hellingers.service.RandomPickService;
 import com.ssafy.hellingers.service.UserService;
 import com.ssafy.hellingers.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserController
     private UserService userService;
 
     @Autowired
+    RandomPickService randomPickService;
+
+    @Autowired
     JwtService jwtService;
 
     // 운동 경력이 들어가는 API (POST)
@@ -43,7 +47,7 @@ public class UserController
 
     //POST http://localhost:8080/api/user -data {user form}
     @PostMapping("/signup")
-    public ResponseEntity<?> register(@RequestBody @Valid UserDto user) //@Valid provides validation check
+    public ResponseEntity<?> register(@RequestBody @Valid UserDto user) throws Exception //@Valid provides validation check
     {
         if(userService.findByEmail(user.getEmail()) != null) {
 
@@ -55,12 +59,16 @@ public class UserController
             //Nickname은 유니크해야
             return new ResponseEntity<>("NICKNAME_ERROR", HttpStatus.CONFLICT);//409
         }
+
         //dto를 모델 객체로 변환한 다음 서비스와 함께 저장합니다.
         userService.saveUser(user.convertToUser());
 
         String temp = user.getEmail();
         System.out.println(temp);
         User returnUser =  userService.findByEmail(temp);
+
+        // 회원가입을 하면서부터 메달리스트는 배정하고 시작
+        randomPickService.insertMedalstoUser(returnUser.getId());
 
         return new ResponseEntity<>(returnUser, HttpStatus.CREATED);
     }
@@ -114,7 +122,7 @@ public class UserController
                         "		<span style=\"color: #F8B75B\">메일인증</span> 안내입니다."																																				+
                         "	</h1>\n"																																																+
                         "	<p style=\"font-size: 16px; line-height: 26px; margin-top: 50px; padding: 0 5px;\">"																													+
-                        "		Helngers에 가입해 주셔서 진심으로 감사드립니다.<br />"																																						+
+                        "		안녕하세요, Helngers에 가입해 주셔서 진심으로 감사드립니다.<br />"																																						+
                         "		아래 <b style=\"color: #F8B75B\">인증코드</b> 를 입력하여 회원가입을 완료해 주세요.<br />"																													+
                         "		감사합니다."																																															+
                         "	</p>"																																																	+
