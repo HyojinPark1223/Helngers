@@ -14,7 +14,7 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
-                :src="image"
+                src="../../assets/hello.jpg"
                 class="img-fluid rounded-start"
                 :alt="name" />
             </div>
@@ -38,30 +38,25 @@
           </div>
           <div class="mypage_footer">
             <div class="footer_top">
-              <h2>
-                보유 뱃지
-              </h2>
+            </div>
+            <div
+              class="footer_bottom">
               <button
                 type="button"
-                class="btn btn-danger push"
+                class="btn btn-danger"
                 @click="toChallenge">
                 진행 챌린지
               </button>
               <button
                 type="button"
                 class="btn btn-primary"
+                style="color: #fff"
                 @click="toBadgeNow">
                 뱃지 더보기
               </button>
-            </div>
-            <div>
-              <h1>badge Image</h1>
-            </div>
-            <div
-              class="footer_bottom">
               <button
                 type="button"
-                class="btn btn-secondary push"
+                class="btn btn-secondary"
                 @click="toggleOnOff">
                 프로필 수정하기
               </button>
@@ -86,10 +81,10 @@
                   그리즐리
                 </h5>
                 <p class="card-text">
-                  This 
+                  보유 메달 : 하체 마스터, 등 마스터, 헬스장 개근상
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">운동시작일 : 2020.06.24</small>
                 </p>
               </div>
             </div>
@@ -111,10 +106,10 @@
                   판다
                 </h5>
                 <p class="card-text">
-                  This 
+                  보유 메달 : 최고의 다이어터, 런닝 마스터
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">운동시작일 : 2021.02.14</small>
                 </p>
               </div>
             </div>
@@ -136,10 +131,10 @@
                   아이스베어
                 </h5>
                 <p class="card-text">
-                  This 
+                  보유메달 : 벤치 프레스 마스터, 턱걸이 왕
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">운동시작일 : 2021.01.24</small>
                 </p>
               </div>
             </div>
@@ -224,7 +219,8 @@ export default {
     color: #333;
     margin-top: 80px;
     h4 {
-      color: #333;
+      color: #fff;
+      text-shadow: #333 1px 0 10px;;
       margin-bottom: 0;
     }
   }
@@ -239,8 +235,8 @@ export default {
       .myprofilecard{
         width: 500px;
         height: 456px;
-        margin-left: 150px;
-        padding: 30px;
+        margin-left: 200px;
+        padding: 100px 30px 0 30px;
         .card-body {
           padding: 20px 60px;
         }
@@ -274,12 +270,14 @@ export default {
           }
           .footer_bottom {
             display: flex;
-            .push {
-              margin-left: auto;
-            }
+            justify-content: center;
+            align-content: center;
+            margin-top: 20px;
             .btn {
               font-size: 0.9rem;
               padding: 3px;
+              margin: 10px;
+              min-width: 100px;
             }
           }
         }
@@ -289,7 +287,7 @@ export default {
       .friend {
         height: 140px;
         width: 500px;
-        margin-right: 150px;
+        margin-right: 200px;
         img {
           padding: 10px 10px 26px 10px;
           width: 150px;

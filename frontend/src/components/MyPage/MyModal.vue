@@ -30,7 +30,7 @@
           </div>
           <div class="modal-body">
             <img 
-              :src="image" 
+              src="../../assets/hello.jpg"
               :alt="name" />
             <h3>사용자 이름</h3>
           </div>
@@ -43,7 +43,7 @@
               MyPage
             </button>
             <button
-              type="button"
+              type="button" 
               class="btn btn-secondary"
               @click="logOut">
               Logout

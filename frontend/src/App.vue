@@ -1,12 +1,17 @@
 <template>
-  <Header />
-  <RouterView />
-  <Footer />
+  <div>
+    <Header />
+    <FileUploader />
+    <RouterView />
+    <Footer />
+  </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Footer from './components/Footer'
+import FileUploader from './components/fileUploader.vue'
+
 export default {
   beforeCreate() {
     this.$store.dispatch('getMemberInfo')
@@ -14,6 +19,7 @@ export default {
   components:{
     Header,
     Footer,
+    FileUploader
   }
 }
 </script>
