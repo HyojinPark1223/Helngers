@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
 import profile from './profile'
 import user from './user'
+import challenges from './challenges'
 
 export default createStore({
   modules: {
     profile,
+    challenges,
     user
   },
   state: {

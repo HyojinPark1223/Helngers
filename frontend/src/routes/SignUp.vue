@@ -39,7 +39,7 @@
               <input
                 v-model="password"
                 placeholder="비밀번호를 입력하세요."
-                type="text" />
+                type="password" />
             </div>
           </div>
           <div class="input-with-label">
