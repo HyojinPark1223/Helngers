@@ -92,34 +92,18 @@
               to="/login"
               tag="div"
               class="routerlink"
-              @click="toggleClass"
-              v-if="isLogin === false">
+              @click="toggleClass">
               <p>Login</p>
             </RouterLink>
+            <!-- <p>Logout</p> -->
             <RouterLink
               to="/signup"
               tag="div"
               class="routerlink"
-              @click="toggleClass"
-              v-if="isLogin === false">
+              @click="toggleClass">
               <p>Signup</p>
             </RouterLink>
-            <RouterLink
-              to="/mypage"
-              tag="div"
-              class="routerlink"
-              @click="toggleClass"
-              v-if="isLogin">
-              <p>MyPage</p>
-            </RouterLink>
-            <RouterLink
-              to="/home"
-              tag="div"
-              class="routerlink"
-              @click="[$store.dispatch('user/logout'), toggleClass]"
-              v-if="isLogin">
-              <p>LogOut</p>
-            </RouterLink>
+            <!-- <p>MyPage</p> -->
           </div>
         </div>
       </transition>

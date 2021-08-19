@@ -56,7 +56,6 @@ export default createRouter({
     {
       path: '/medal',
       name: "medal",
-      beforeEnter: onlyAuthUser,
       component: Medal
     },
     {
