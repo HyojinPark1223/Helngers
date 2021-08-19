@@ -9,29 +9,25 @@
         class="for-sns">
         <div class="form-wrap">
           <Logo class="Logo" />
-          <dv class="input-with-label">
-            <div>
-              <p>이메일 : </p>
-            </div>
-            <div>
-              <input
-                v-model="email"
-                id="email"
-                placeholder="email을 입력하세요"
-                type="text" />
-            </div>
-          </dv>
           <div class="input-with-label">
-            <div>
-              <p>비밀번호 : </p>
-            </div>
-            <div>
-              <input
-                v-model="password"
-                id="password"
-                placeholder="비밀번호를 입력하세요"
-                type="password" />
-            </div>
+            <label
+              for="email">email&nbsp;</label>
+            <input
+              v-model="email"
+              id="email"
+              placeholder="email을 입력하세요"
+              type="text" />
+            <div clss="error-text"></div>
+          </div>
+          <div class="input-with-label">
+            <label
+              for="password">비밀번호&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input
+              v-model="password"
+              id="password"
+              placeholder="비밀번호를 입력하세요"
+              type="password" />
+            <div clss="error-text"></div>
           </div>
           <div class="button-div">
             <button
@@ -161,13 +157,9 @@ export default {
           }
           .input-with-label {
             margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            width: 40%;
-            p {
-              margin: 0;
-              font-size: 17px;
-            }}
+            input {
+              margin-left: 15px;
+            }
           }
           #password, #email {
             background-color: #f1e5e5;
@@ -179,7 +171,7 @@ export default {
             display: flex;
             button {
               margin: 15px 10px;
-              width: 110px;
+              width: 100px;
               height: 32px;
               font-size: 15px;
             }
@@ -202,4 +194,5 @@ export default {
         }
       }
     }
+  }
 </style>

@@ -1,18 +1,15 @@
 <template>
-  <div>
-    <Header />
-    <RouterView />
-    <Footer />
-  </div>
+  <Header />
+  <RouterView />
+  <Footer />
 </template>
 
 <script>
 import Header from './components/Header'
 import Footer from './components/Footer'
-
 export default {
   beforeCreate() {
-    this.$store.dispatch('user/getMemberInfo')
+    this.$store.dispatch('getMemberInfo')
   },
   components:{
     Header,

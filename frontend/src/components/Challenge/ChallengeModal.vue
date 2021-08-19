@@ -17,13 +17,13 @@
             @click="toChallenge"
             aria-label="Close"></button>
           <h2 class="card-title">
-            {{ title }}
+            챌린지 제목
           </h2>
           <p class="card-text">
-            {{ content }}
+            ~~한 챌린지 입니다!
           </p>
           <p class="text-muted">
-            취득가능 기간: 2021 8월 20일 00:00 ~ 11:59
+            취득가능 기간: 2021 0월 0일 ~ 2021 0월 0일
           </p>
         </div>
         <div class="filebox">
@@ -35,7 +35,6 @@
             id="ex_file" />
           <button
             type="submit"
-            @click="toChallenge"
             class="btn btn-danger">
             작성 완료
           </button>
@@ -46,15 +45,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
       previewImage: null
     };
-  },
-  computed: {
-    ...mapState('challenges', ['title','content','id', 'url'])
   },
   methods: {
     toChallenge() {

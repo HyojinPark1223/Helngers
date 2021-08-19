@@ -1,7 +1,13 @@
 <template>
   <div>
+    <button @click="chkchk">
+      메달보기
+    </button>
     <div v-if="modalChk">
-      <MedalModal @close="showModal" />
+      <MedalModal
+        @close="close"
+        :index="now_index"
+        :level="medals_level" />
     </div>
     <section>
       <div class="header">
@@ -14,27 +20,21 @@
         :settings="settings"
         :breakpoints="breakpoints"
         class="carousel">
+        <!-- 아니 시벌 왜 index랑 slide의 역할이 반대냐? -->
         <Slide
-          v-for="slide in slides"
-          :key="slide"
+          v-for="(slide, index) in level_0_user_medal_url"
+          :key="index"
           class="slide">
           <div
             class="carousel__item"
-            @click="showModal"
+            @click="showModal_0(index)"
             data-aos="flip-left"
             data-aos-duration="1000">
-            {{ slide }}
-          </div>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%;"
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100">
-              50%
-            </div>
+            <!-- {{ slide }} -->
+            <img
+              :src="slide"
+              width="100"
+              height="100" />
           </div>
         </Slide>
         <template #addons>
@@ -52,28 +52,22 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
-        @click="showModal"
         class="carousel">
         <Slide
-          v-for="slide in slides"
-          :key="slide"
+          v-for="(slide, index) in level_1_user_medal_url"
+          :key="index"
           class="slide">
           <div
             class="carousel__item"
+            @click="showModal_1(index)"
             data-aos="flip-left"
             data-aos-duration="1000">
-            {{ slide }}
-          </div>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%;"
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100">
-              50%
-            </div>
+            <!-- {{ slide }} -->
+            <img
+              :src="slide"
+              alt="" 
+              width="100"
+              height="100" />
           </div>
         </Slide>
         <template #addons>
@@ -91,28 +85,22 @@
       <Carousel
         :settings="settings"
         :breakpoints="breakpoints"
-        @click="showModal"
         class="carousel">
         <Slide
-          v-for="slide in slides"
-          :key="slide"
+          v-for="(slide, index) in level_2_user_medal_url"
+          :key="index"
           class="slide">
           <div
             class="carousel__item"
+            @click="showModal_2(index)"
             data-aos="flip-left"
             data-aos-duration="1000">
-            {{ slide }}
-          </div>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: 50%;"
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100">
-              50%
-            </div>
+            <!-- {{ slide }} -->
+            <img
+              :src="slide"
+              alt="" 
+              width="100"
+              height="100" />
           </div>
         </Slide>
         <template #addons>
@@ -124,11 +112,15 @@
 </template>
 <script>
 import AOS from 'aos'
-import MedalModal from './MedalModal';
+// import axios from 'axios'
+import MedalModal from './MedalModal'
+// import medal from '@/store/medal'
+// import { mapState } from "vuex" 
 import { defineComponent } from 'vue'
-import { Carousel, Navigation, Slide } from 'vue3-carousel';
+import { Carousel, Navigation, Slide } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css';
+import { mapState } from 'vuex';
 
 export default defineComponent({
 	name: 'Breakpoints',
@@ -140,16 +132,40 @@ export default defineComponent({
 	},
   created() {
     AOS.init()
+    console.log('created')
+
+
+    
   },
+  mounted() {
+    this.$store.dispatch('medal/medalData', null, { root: true})
+    this.$store.dispatch('medal/upDate', null, { root: true})
+
+  },
+  computed: {
+    ...mapState('medal', ['medals_has_user_id']),
+    ...mapState('medal', ['medals']),
+    ...mapState('medal', ['level_0_user_medal']),
+    ...mapState('medal', ['level_1_user_medal']),
+    ...mapState('medal', ['level_2_user_medal']),
+  },
+
 	data() {
 		return {
+      now_index:-1,
       modalChk: false,
-      slides: 10,
+      slides:10,
+      medals_level:-1,
+      medals_id_has_user_url:[],
+      level_0_user_medal_url:[],
+      level_1_user_medal_url:[],
+      level_2_user_medal_url:[],
       isStatusOn: false,
       settings: {
         itemsToShow: 1,
         snapAlign: 'center',
       },
+      
       // breakpoints are mobile first
       // any settings not specified will fallback to the carousel settings
       breakpoints: {
@@ -167,11 +183,57 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		showModal() {
+    close() {
+      this.modalChk = !this.modalChk
+    },
+    chkchk() {
+      console.log(this.level_0_user_medal)
+      console.log(this.level_1_user_medal)
+      console.log(this.level_2_user_medal)
+      for (let i of this.level_0_user_medal) {
+        console.log('i')
+        console.log(i.url)
+        this.level_0_user_medal_url.push(i.url)
+      }
+      for (let i of this.level_1_user_medal) {
+        console.log('i')
+        console.log(i.url)
+        this.level_1_user_medal_url.push(i.url)
+      }
+      for (let i of this.level_2_user_medal) {
+        console.log('i')
+        console.log(i.url)
+        this.level_2_user_medal_url.push(i.url)
+      }
+      console.log('url데이터')
+      console.log(this.level_1_user_medal_url)
+      console.log(this.level_2_user_medal_url)
+      console.log(this.level_3_user_medal_url)
+    },
+		showModal_0(index) {
+      // console.log('modal')
+      // console.log(e.target)
+      this.now_index = index
+      this.medals_level = 0
+			this.modalChk = !this.modalChk
+		},
+    showModal_1(index) {
+      // console.log('modal')
+      // console.log(e.target)
+      this.now_index = index
+      this.medals_level = 1
+			this.modalChk = !this.modalChk
+		},
+    showModal_2(index) {
+      // console.log('modal')
+      // console.log(e.target)
+      this.now_index = index
+      this.medals_level = 2
 			this.modalChk = !this.modalChk
 		}
-	},
-});
+    
+	}
+})
 </script>
 <style>
 .carousel__prev,
