@@ -66,8 +66,15 @@
 <script>
 import AOS from 'aos'
 import Logo from '../components/Logo'
+<<<<<<< HEAD
 
 import { mapState, mapActions } from "vuex"
+=======
+import UserService from '../services/user.service'
+import User from '../models/user'
+import vuex from 'vuex'
+import axios from 'axios'
+>>>>>>> ba4c521e16edcee148f70ad8ef90501ee469db42
 
 export default {
   created() {
@@ -86,6 +93,47 @@ export default {
     ...mapState(["isLogin", "isLoginError"])
   },
   methods: {
+<<<<<<< HEAD
+=======
+    ...vuex.mapActions(['updateUser']),
+    login() {
+      console.log('로긴 누른 state')
+      console.log(this.$store.state)
+      UserService.login(this.formData).then(
+        response => {
+          // console.log(response)
+          console.log(response.data)
+          console.log('id')
+          // console.log(response.id)
+          console.log(this.$store.state.user_id)
+          console.log(this.$store.state.user)
+          console.log('업데이트 전')
+        
+          this.updateUser(response.data)
+
+          this.$router.push('/main')
+          let token = this.$store.state.user
+          let config = {
+            headers: {
+              "access-token": token
+            }
+          }
+          let id = this.$store.state.user_id
+          axios
+            .get(`http://localhost:8080/medals/${id}`, config)
+            .then(res => {
+              console.log(res)
+            })
+            .catch(err => {
+              console.log(err)
+            })
+
+        },
+        
+        console.log('로긴')
+      )
+    },
+>>>>>>> ba4c521e16edcee148f70ad8ef90501ee469db42
     toSignup() {
       this.$router.push('/signup')
     },
