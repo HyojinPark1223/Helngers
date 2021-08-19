@@ -19,7 +19,6 @@
 
 #### Documents
 
-- [Docs](#📜-Docs)
 - [Issues](#💬-Issues)
 
 
@@ -71,7 +70,19 @@
 
 ## 🔧 Features
 
-### 1. Login
+### 1. Signup
+
+### 2. Login
+
+### 3. Article
+
+### 4. Comment
+
+### 5. Challenge
+
+### 6. Medal
+
+
 
 
 
@@ -82,12 +93,6 @@
 📌[Helngers](i5c206.p.ssafy.io)
 
 AWS(EC2) 서버로 배포하였다.
-
-
-
-## 📜 Docs
-
-
 
 
 
@@ -204,3 +209,8 @@ AWS(EC2) 서버로 배포하였다.
 
 ### Bug & Problem
 
+✅ Code Mail 형식을 html로 변경하기
+
+✅ `SQL.xml` mapper 연결(마이바티스 설정)
+
+⬜ 전문 게시판을 따로 생성하기
