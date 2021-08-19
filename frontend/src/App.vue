@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <FileUploader />
     <RouterView />
     <Footer />
   </div>
@@ -9,6 +10,7 @@
 <script>
 import Header from './components/Header'
 import Footer from './components/Footer'
+import FileUploader from './components/fileUploader.vue'
 
 export default {
   beforeCreate() {
@@ -17,6 +19,7 @@ export default {
   components:{
     Header,
     Footer,
+    FileUploader
   }
 }
 </script>

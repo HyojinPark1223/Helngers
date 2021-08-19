@@ -280,9 +280,9 @@ export default defineComponent({
 .detail {
   position: fixed;
   top: 20%;
-  left: 20%;
+  left: 25%;
   z-index: 500;
-  width: 60%; height: 60%;
+  width: 50%; height: 60%;
   background-color: rgba(189, 186, 186, 0.7);
   border-radius: 20px;
   box-shadow: 0 0 999px 999px rgba(189, 186, 186, 0.7);

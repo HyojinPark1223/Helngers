@@ -2,14 +2,24 @@
   <div
     class="card mb-3">
     <div class="row g-0">
-      <div class="col-md-5 image">
+      <div class="col-md-6 image">
         <div
+          v-if="previewImage"
           class="imagePreviewWrapper"
           :style="{ 'background-image': `url(${previewImage})` }"
           @click="selectImage">
         </div>
+        <div
+          class="imagePreviewWrapper"
+          v-if="previewImage === null"
+          @click="selectImage">
+          <h4
+            style="padding-top: 55%; color: rgb(158, 149, 149);">
+            Click!
+          </h4>
+        </div>
       </div>
-      <div class="col-md-7 content">
+      <div class="col-md-6 content">
         <div class="card-body">
           <button
             type="button"
@@ -72,6 +82,7 @@ export default {
           this.previewImage = e.target.result
         }
         reader.readAsDataURL(file[0])
+        console.log(file[0])
         this.$emit('input', file[0])
       }
     }
@@ -92,17 +103,21 @@ export default {
       .imagePreviewWrapper {
         width: 100%;
         height: 100%;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-content: center;
         cursor: pointer;
         margin: 0 auto 30px;
         background-size: cover;
+        z-index: 100;
+        background-color: rgba(241, 234, 234, 0.438);
         background-position: center center;
       }
     }
     .content { 
       padding: 20px;
       .card-body {
-        height: 90%;
+        height: 70%;
         display: flex;
         flex-direction: column;
         .btn-close {
@@ -110,15 +125,15 @@ export default {
           padding: 10px
         }
         .card-title {
-          margin-top: 20px;
+          margin-top: 60px;
         }
         .card-text {
-          min-height: 50%;
+          min-height: 30%;
         }
       }
       .filebox {
         display: flex;
-        justify-content: space-between;
+        margin: 10px;
         label { 
         display: inline-block;
         padding: .5em .75em; 
@@ -141,7 +156,7 @@ export default {
         border: 0; 
         }
         .btn {
-          margin-right: 30px;
+          margin-left: 30px;
         }
       }
     }
