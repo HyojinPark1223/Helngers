@@ -74,13 +74,13 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  height: 600px;
+  height: 580px;
   border: 0;
   margin: 16px;
   .cardImage {
     padding: 10px 20px 20px 20px;
     .detailImg {
-      height: 500px;
+      height: 560px;
       width: 100%;
       border-radius: 15px;
       box-shadow: 2px 2px 5px 3px rgba(189, 186, 186, 0.5);
