@@ -55,27 +55,27 @@
     <div class="rating-wrap">
       <div
         class="content"
-        v-for="index in contents"
-        :key="index">
+        v-for="content in contents"
+        :key="content">
         <div
           class="card"
           @click="detailOn"
           data-aos="zoom-in-up"
           data-aos-durations="1000">
           <img
-            src="https://url.kr/jekuoa"
+            :src="content.imgurl"
             class="card-img-top"
-            alt="..." />
+            alt="thumbnail" />
           <div class="card-body">
             <h5 class="card-title">
-              title
+              {{ content.title }}
             </h5>
             <p class="card-text">
-              Text
+              {{ content.text }}
             </p>
           </div>
           <div class="sub-bottom">
-            <p>2021. 7월 26일 / 6개의 댓글</p>
+            <p>{{ content.time }} / {{ content.commentCount }}</p>
           </div>
           <div class="card-body bottom">
             <img
@@ -83,7 +83,7 @@
               alt="profile" 
               @click="toProfile" />
             <h6>
-              코어는 국력, OOO 님
+              {{ content.user }}
             </h6>
             <img
               class="push"
@@ -123,7 +123,72 @@ export default {
   },
   data() {
     return {
-      contents: 50,
+      contents: [
+        {
+          title: "오늘은 운동 첫날!",
+          text: "벤치프레스 10set, 시티드프레스 10set",
+          time: "2021. 8월 20일",
+          commentCount: "6개의 댓글",
+          user: "코어는 국력님",
+          imgurl: "https://url.kr/jekuoa"
+        },
+        {
+          title: "다이어트 10일째!",
+          text: "식단관리하면서 PT받는 중!!",
+          time: "2021. 8월 19일",
+          commentCount: "10개의 댓글",
+          user: "유지어터",
+          imgurl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          title: "등운동 하는날~",
+          text: "등운동할때는 허리조심!",
+          time: "2021. 8월 19일",
+          commentCount: "3개의 댓글",
+          user: "나는등신이다",
+          imgurl: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1049&q=80"
+        },
+        {
+          title: "하체 먹는날!",
+          text: "이번주에 한번 있는 하체니까 야무지게 먹어야지!ㅎ",
+          time: "2021. 8월 15일",
+          commentCount: "11개의 댓글",
+          user: "김싸피",
+          imgurl: "https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80"
+        },
+        {
+          title: "출첵",
+          text: "주 6일 출첵찍는 중 토요일은 프리운동해야지.",
+          time: "2021. 8월 10일",
+          commentCount: "14개의 댓글",
+          user: "박인싸",
+          imgurl: "https://images.unsplash.com/photo-1598136490941-30d885318abd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1049&q=80"
+        },
+        {
+          title: "안녕하세요 헬린이입니다.",
+          text: "요즘 운동에 빠졌는데.. 혹시 같이 운동하실 분 있나요??",
+          time: "2021. 8월 8일",
+          commentCount: "39개의 댓글",
+          user: "헬린이",
+          imgurl: "https://images.unsplash.com/photo-1579758629938-03607ccdbaba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          title: "불금에는 어디~? 헬스클럽!",
+          text: "여러분 불금에는 클럽 가야죠. 헬스클럽..:)",
+          time: "2021. 8월 8일",
+          commentCount: "24개의 댓글",
+          user: "죽돌이",
+          imgurl: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+        },
+        {
+          title: "기분좋은날~모두 코로나 조심!",
+          text: "운동할때에도 마스크는 필수입니다!:)",
+          time: "2021. 8월 7일",
+          commentCount: "7개의 댓글",
+          user: "코로나사라져",
+          imgurl: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        }
+      ],
       isStatusOn: false,
       isDetailOn: false,
       scrollY : 0

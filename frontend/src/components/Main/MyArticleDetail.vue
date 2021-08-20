@@ -16,7 +16,7 @@
               alt="profile" 
               @click="toProfile" />
             <h4>
-              코어는 국력, OOO 님
+              코어는 국력님
             </h4>
             <button
               type="button"
@@ -26,11 +26,7 @@
           </div>
           <div class="cardbody">
             <p class="card-text">
-              체지방 걷어내려고 오늘은 유산소 위주로 진행했습니다!
-              내일은 근력운동을 해볼까 하는데, 무게를 높게 못해서 속상ㅠ
-              그런데 다들 유산소는 어떻게 운동하시나요? 저는 보통 러닝,
-              사이클 위주로 진행하는데 시간이 너무 안 가요ㅠㅠ
-              러닝 노래도 추천해주세요!!
+              벤치프레스 10set, 시티드프레스 10set
             </p>
             <div class="control">
               <button class="btn btn-primary">
@@ -41,7 +37,7 @@
               </button>
             </div>
             <div class="like">
-              <h6>20명의 사람이 좋아합니다.</h6>
+              <h6>1명의 사람이 좋아합니다.</h6>
               <img
                 class="push"
                 src="../../assets/heart.png"

@@ -8,7 +8,7 @@
         v-for="item of displayList"
         :key="item.index"
         :item="item.index">
-        {{ item.name }}&nbsp;{{ item.description }}
+        {{ item.name }} : &nbsp;{{ item.description }}
       </li>
     </ul>
   </div>
@@ -20,11 +20,11 @@ export default {
     return {
       dummy: [],
       sample: {
-        name: 'User',
-        description: '저는 00년대 메들리 들어요!! 유산소 힘들죠ㅠ',
+        name: '김싸피',
+        description: '오 저랑 비슷하게 운동하시네요!',
       },
       startIdx: 0,
-      endIdx: 10,
+      endIdx: 1,
       paddingTop: 0,
       paddingBottom: 0,
       scrollY: 0,
@@ -61,7 +61,7 @@ export default {
     onScroll() {
       this.scrollY = window.scrollY;
       this.startIdx = Math.floor(this.scrollY / this.defaultHeight);
-      this.endIdx = Math.min(this.dummy.length, this.startIdx + 10);
+      this.endIdx = Math.min(this.dummy.length, this.startIdx + 1);
       this.paddingTop = this.defaultHeight * this.startIdx;
       this.paddingBottom = this.defaultHeight * (this.dummy.length - this.endIdx);
     }
