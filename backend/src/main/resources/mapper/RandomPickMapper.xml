@@ -27,8 +27,8 @@
     </select>
 
     <insert id="insertMedalstoUser">
-        insert into medals_has_users (medals_id, users_id, present, isAchieve)
-        select a.id, b.id, 0, 0 from medals a, users b
+        insert into medals_has_users (medals_id, users_id, present)
+        select a.id, b.id, 0 from medals a, users b
         where b.id = #{id};
     </insert>
 
