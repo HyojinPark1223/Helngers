@@ -10,45 +10,53 @@
         <div class="form-wrap">
           <Logo class="Logo" />
           <div class="input-with-label">
-            <label
-              for="nickName">nickname&nbsp;&nbsp;</label>
-            <input
-              v-model="formData.nickname"
-              placeholder="nickname을 입력하세요."
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>닉네임 : </p>
+            </div>
+            <div>
+              <input
+                v-model="nickname"
+                placeholder="닉네임을 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="email">email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input
-              v-model="formData.email"
-              placeholder="email을 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>이메일 : </p>
+            </div>
+            <div>
+              <input
+                v-model="email"
+                placeholder="이메일을 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="password">password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input
-              v-model="formData.password"
-              placeholder="password를 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>비밀번호 : </p>
+            </div>
+            <div>
+              <input
+                v-model="password"
+                placeholder="비밀번호를 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="input-with-label">
-            <label
-              for="introduce">introduce</label>
-            <input
-              v-model="formData.introduce"
-              placeholder="introduce를 입력하세요"
-              type="text" />
-            <div clss="error-text"></div>
+            <div>
+              <p>자기소개 : </p>
+            </div>
+            <div>
+              <input
+                v-model="introduce"
+                placeholder="자기소개를 입력하세요."
+                type="text" />
+            </div>
           </div>
           <div class="button-div">
             <button
               class="btn btn-primary"
-              @click="Signup"
+              @click="signup({email, password, nickname, introduce})"
               :disabled="loading">
               SIGN UP
             </button>
@@ -78,11 +86,13 @@
 
 <script>
 import AOS from 'aos'
-import UserService from '../services/user.service';
-import User from '../models/user';
+// import UserService from '../services/user.service';
+// import User from '../models/user';
 import Logo from '../components/Logo'
 // import axios from 'axios'
 // import vuex from 'vuex'
+
+import { mapActions } from "vuex"
 
 export default {
   created() {
@@ -93,23 +103,28 @@ export default {
   },
   data() {
     return {
-        formData: new User('', '', '', ''),
-        loading: false,
-        submitted: false,
+        // formData: new User('', '', '', ''),
+        // loading: false,
+        // submitted: false,
+        email: null,
+        password: null,
+        nickname: null,
+        introduce: null
     }
   },
   methods: {
-    Signup() {
-      UserService.signUp(this.formData).then(
-        () => {
-          console.log('요청')
-          this.$router.push('/login')
-        },
+    // Signup() {
+    //   UserService.signUp(this.formData).then(
+    //     () => {
+    //       console.log('요청')
+    //       this.$router.push('/login')
+    //     },
 
-      ).then(() => {
-        this.loading = false
-      })
-    }
+    //   ).then(() => {
+    //     this.loading = false
+    //   })
+    // }
+    ...mapActions('user', ["signup"]),
   }
 }
 </script>
@@ -174,8 +189,10 @@ export default {
           }
           .input-with-label {
             margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            width: 40%;
             input {
-              margin-left: 15px;
               background-color: #f1e5e5;
               border-radius: 10px;
               border: 0;

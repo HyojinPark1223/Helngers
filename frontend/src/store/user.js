@@ -4,13 +4,18 @@ import router from "../routes/index"
 export default {
   namespaced: true,
   // data
-  state: {
+  state:{
     userInfo: null,
     isLogin: false,
+    email: null,
     isLoginError: false
   },
   // computed
-  getters: {},
+  getters: {
+    // user_email: (state) => {
+    //   return state.userInfo.email
+    // }
+  },
   // 변이 : state값 변경은 여기서만 가능
   // 실행할 때  .commit() 메소드 사용
   mutations: {
@@ -19,6 +24,7 @@ export default {
       state.isLogin = true
       state.isLoginError = false
       state.userInfo = payload
+      state.email = payload.email
     },
     // 로그인이 실패했을 때,
     LoginError(state) {
@@ -29,6 +35,7 @@ export default {
       state.isLogin = false
       state.isLoginError = false
       state.userInfo = null
+      state.email = null
     }
   },
   // 비동기 처리
@@ -36,17 +43,21 @@ export default {
   // context : state 데이터 접근, payload : 입력받은 값의 매개변수
   actions: {
     // 로그인 시도
-    login({ dispatch }, loginObj) {
+    login({dispatch}, loginObj) {
       // 로그인 -> 토큰반환
+      console.log(loginObj)
       axios
         .post("http://localhost:8080/login", loginObj) // email, password
         .then(res => {
           // 성공 시 token이 돌아옴.
-          // 토킁을 헤더에 포함시켜서 유저정보를 요청
+          // 토큰을 헤더에 포함시켜서 유저정보를 요청
           let token = res.data.token
+          let user_id = res.data.user_id
           // 토큰을 로컬 스토리지에 저장
           localStorage.setItem("access_token", token) // key - value
+          localStorage.setItem("user_id", user_id)
           dispatch("getMemberInfo")
+          console.log('로그인 완료')
         })
         // 로그인 실패했을 때.
         .catch(() => {
@@ -56,6 +67,7 @@ export default {
     getMemberInfo({ commit }) {
       // 로컬 스토리지에 저장되어 있는 토큰을 불러온다.
       let token = localStorage.getItem("access_token")
+      let user_id = localStorage.getItem("user_id")
       let config = {
         headers: {
           "access-token": token
@@ -64,26 +76,69 @@ export default {
       // 토큰 -> 멤버 정보를 반환
       // 새로 고침 -> 토큰만 가지고 멤버정보를 요청
       axios
-        .get("https://reqres.in/api/users/2", config) // 헤더에 담아보내주기 위해 config 사용
-        .then(response => {
-          console.log(response)
+        .get("http://localhost:8080/profile/"+ user_id, config) // 헤더에 담아보내주기 위해 config 사용
+        .then(res => {
           let userInfo = {
-            id: response.data.data.id,
-            first_name: response.data.data.first_name,
-            last_name: response.data.data.last_name,
-            email: response.data.data.email,
-            avatar: response.data.data.avatar
+            email: res.data.email,
+            id: res.data.id,
+            introduce: res.data.introduce,
+            nickname: res.data.nickname,
+            comment_count: res.data.comment_count,
+            boardcount: res.data.boardcount,
+            password: res.data.password,
+            period: res.data.period,
+            point: res.data.point,
+            purpose: res.data.purpose,
+            role: res.data.role,
+            selected_medal: res.data.selected_medal,
+            createdAt: res.data.createdAt
           }
+          console.log('회원정보 불러오기 완료')
           commit('loginSuccess', userInfo)
+          console.log('로그인 상태 : 완료')
           router.push({ name: "main" })
+          console.log('메인으로 이동')
+          console.log(userInfo)
         })
         .catch(() => {
-          alert('이메일과 비밀번호를 확인하세요.')
+          router.push({ name: "home" })
         })
     },
     logout({ commit }) {
       commit("logout")
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('user_id')
       router.push({ name: "home"})
+    },
+    signup({dispatch}, signupObj) {
+      axios
+        .post('http://localhost:8080/signup', signupObj)
+        .then(res => {
+          let email = res.data.email
+          let password = res.data.password
+          let loginObj = {
+            email: email,
+            password: password
+          }
+          console.log('회원가입 완료')
+          dispatch('login', loginObj)
+        })
+        .catch(() => {
+          alert('다시 입력해주세요!')
+        })
+    },
+    profileUpdate({ commit }, profileObj) {
+      let user_id = localStorage.getItem("user_id")
+      console.log(profileObj)
+      axios
+        .put('http://localhost:8080/profile/edit/'+ user_id, profileObj)
+        .then(() => {
+          console.log('수정 완료!')
+          router.push({ name: "main" })
+        })
+        .catch(() => {
+          alert('프로필 수정을 다시 입력해주세요!')
+        })
     }
   }
 }

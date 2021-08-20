@@ -20,17 +20,24 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">
-                  환영합니다. OOO님!
-                </h5>
+                <div class="card-title">
+                  <h5>환영합니다. &nbsp;</h5>
+                  <h5 v-if="userInfo">
+                    {{ userInfo.nickname }} 님!
+                  </h5>
+                  <h5 v-if="userInfo === null">
+                    OOO 님!
+                  </h5>
+                </div>
                 <p class="card-text">
-                  Point : 2000 
+                  My Point : {{ userInfo.point }}
                 </p>
                 <p class="card-text">
                   <small class="text-muted">
-                    관심운동 : 헬스, 축구 <br />
-                    운동시작일 : 2019.7.20 <br />
-                    3대 : 400 <br />
+                    소개 : <br />
+                  </small>
+                  <small class="text-muted">
+                    {{ userInfo.introduce }}
                   </small>
                 </p>
               </div>
@@ -45,14 +52,14 @@
                 type="button"
                 class="btn btn-danger"
                 @click="toChallenge">
-                진행 챌린지
+                챌린지
               </button>
               <button
                 type="button"
                 class="btn btn-primary"
                 style="color: #fff"
                 @click="toBadgeNow">
-                뱃지 더보기
+                메달
               </button>
               <button
                 type="button"
@@ -178,7 +185,8 @@ export default {
     ...mapState('profile', [ // vuex helper
       'image',
       'name'
-    ])
+    ]),
+    ...mapState("user", ["userInfo"])
   },
   methods: {
     toChallenge() {
@@ -239,6 +247,9 @@ export default {
         padding: 100px 30px 0 30px;
         .card-body {
           padding: 20px 60px;
+          .card-title {
+            display: flex;
+          }
         }
         img {
           width: 200px;

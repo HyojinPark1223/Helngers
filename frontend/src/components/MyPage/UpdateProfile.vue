@@ -9,22 +9,22 @@
             <div class="mb-3">
               <label
                 for="exampleInputEmail1"
-                class="form-label">이름</label>
+                class="form-label">닉네임</label>
+              <input
+                type="text"
+                class="form-control"
+                :placeholder="userInfo.nickname"
+                v-model="nickname" />
+            </div>
+            <!-- <div class="mb-3">
+              <label
+                for="exampleInputPassword1"
+                class="form-label">이메일</label>
               <input
                 type="email"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp" />
-            </div>
-            <div class="mb-3">
-              <label
-                for="exampleInputPassword1"
-                class="form-label">아이디</label>
-              <input
-                type="password"
-                class="form-control"
                 id="exampleInputPassword1" />
-            </div>
+            </div> -->
             <div class="mb-3">
               <label
                 for="exampleInputPassword1"
@@ -32,38 +32,33 @@
               <input
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1" />
+                placeholder="새로운 비밀번호를 입력해주세요."
+                v-model="password" />
             </div>
             <div class="mb-3">
               <label
                 for="exampleInputPassword1"
-                class="form-label">관심운동</label>
+                class="form-label">자기소개</label>
               <input
-                type="password"
+                type="text"
                 class="form-control"
-                id="exampleInputPassword1" />
+                :placeholder="userInfo.introduce"
+                v-model="introduce" />
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label
                 for="exampleInputPassword1"
-                class="form-label">3대</label>
-              <input
-                type="password"
-                class="form-control"
-                id="exampleInputPassword1" />
-            </div>
-            <div class="mb-3">
-              <label
-                for="exampleInputPassword1"
+                class="form-label">운동 시작날짜 </label>
                 class="form-label">운동 시작날짜</label>
               <Datepicker
                 class="datepicker"
                 v-model="picked" />
-            </div>
+            </div> -->
             <div class="submit_button">
               <button
                 type="submit"
-                class="btn btn-primary">
+                class="btn btn-primary"
+                @click="profileUpdate({ email, nickname, password, introduce })">
                 <h4>수정하기</h4>
               </button>
               <button
@@ -81,24 +76,33 @@
 </template>
 
 <script>
-import Datepicker from 'vue3-datepicker'
-import { ref } from 'vue'
-const picked = ref(new Date())
+// import Datepicker from 'vue3-datepicker'
+// import { ref } from 'vue'
+import { mapActions, mapState } from 'vuex'
+// const picked = ref(new Date())
 export default {
   name: 'UpdateProfile',
   components: {
-    Datepicker
+    //Datepicker
   },
   data() {
     return {
-      picked,
+      // picked,
+      nickname: null,
+      password: null,
+      introduce: null,
     }
+  },
+  computed: {
+    ...mapState('user', ['email']),
+    ...mapState('user', ['userInfo'])
   },
   methods: {
     toggleOnOff() {
       this.$emit('toggleOnOff');
     }
-  }
+  },
+  ...mapActions('user', ["profileUpdate"]),
 }
 </script>
 
@@ -107,6 +111,7 @@ export default {
   font-family: 'Do Hyeon', sans-serif;
   z-index: 1;
   position: relative;
+  padding: 100px 0 0 0;
     &::before {
       width: 100%;
       height: 100%;

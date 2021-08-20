@@ -27,7 +27,7 @@
         data-aos="fade-right"
         data-aos-duration="1000">
         <h3 v-if="userInfo">
-          {{ userInfo.first_name }}
+          {{ userInfo.nickname }}
         </h3>
         <h3 v-if="userInfo === null">
           OOO
@@ -227,7 +227,7 @@ export default {
   .create {
     position: fixed;
     margin: 0 auto;
-    top: 80px;
+    top: 50px;
     left: 0;
     right: 0;
     z-index: 500;
