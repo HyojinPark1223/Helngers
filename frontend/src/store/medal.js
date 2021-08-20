@@ -66,7 +66,7 @@ export default {
         
         console.log('axios 전')
         axios
-        .get(`http://localhost:8080/medals/list`)
+        .get(`http://i5c206.p.ssafy.io/api/medals/list`)
         .then(res => {
           console.log('메달 정보')
           console.log(res.data)
@@ -88,7 +88,7 @@ export default {
         
         let id = 11
         axios
-          .get(`http://localhost:8080/medals/list/${id}`, config)
+          .get(`http://i5c206.p.ssafy.io/api/medals/list/${id}`, config)
           .then(res => {
             console.log('얍')
             console.log(res.data)

@@ -47,7 +47,7 @@ export default {
       // 로그인 -> 토큰반환
       console.log(loginObj)
       axios
-        .post("http://localhost:8080/login", loginObj) // email, password
+        .post("http://i5c206.p.ssafy.io/api/login", loginObj) // email, password
         .then(res => {
           // 성공 시 token이 돌아옴.
           // 토큰을 헤더에 포함시켜서 유저정보를 요청
@@ -76,7 +76,7 @@ export default {
       // 토큰 -> 멤버 정보를 반환
       // 새로 고침 -> 토큰만 가지고 멤버정보를 요청
       axios
-        .get("http://localhost:8080/profile/"+ user_id, config) // 헤더에 담아보내주기 위해 config 사용
+        .get("http://i5c206.p.ssafy.io/api/profile/"+ user_id, config) // 헤더에 담아보내주기 위해 config 사용
         .then(res => {
           let userInfo = {
             email: res.data.email,
@@ -112,7 +112,7 @@ export default {
     },
     signup({dispatch}, signupObj) {
       axios
-        .post('http://localhost:8080/signup', signupObj)
+        .post('http://i5c206.p.ssafy.io/api/signup', signupObj)
         .then(res => {
           let email = res.data.email
           let password = res.data.password
@@ -131,7 +131,7 @@ export default {
       let user_id = localStorage.getItem("user_id")
       console.log(profileObj)
       axios
-        .put('http://localhost:8080/profile/edit/'+ user_id, profileObj)
+        .put('http://i5c206.p.ssafy.io/api/profile/edit/'+ user_id, profileObj)
         .then(() => {
           console.log('수정 완료!')
           router.push({ name: "main" })
