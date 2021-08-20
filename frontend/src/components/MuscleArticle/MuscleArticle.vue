@@ -82,20 +82,20 @@ export default {
       isStatusOn: false,
       articles: [
         {
-          category: '카테고리',
-          title: 'Title',
-          user: '작성자 이름',
-          date: '2021.07.27',
-          content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sapiente accusamus ducimus voluptates. Vitae, alias quidem delectus saepe eveniet illum nihil dicta minus in nostrum hic dolorum minima? Distinctio, alias?',
-          img: 'https://url.kr/rjuqsh'
-        },
+        category: '어깨운동',
+        title: '태평양 어깨를 만들 사이드 레터럴 레이즈',
+        user: '김머니',
+        date: '2021.07.27',
+        content: '오늘은 태평양 어깨를 만들 수 있는 가장 좋은 운동인 사이드 레터럴 레이즈 를 한번 배워보겠습니다!',
+        img: 'https://drive.google.com/uc?id=1RRhHxvTao7wI73b9-GM7xKfz5Fhd4f2K'
+      },
         {
-          category: '카테고리',
-          title: 'Title',
-          user: '작성자 이름',
-          date: '2021.07.27',
-          content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sapiente accusamus ducimus voluptates. Vitae, alias quidem delectus saepe eveniet illum nihil dicta minus in nostrum hic dolorum minima? Distinctio, alias?',
-          img: 'https://url.kr/rjuqsh'
+          category: '승모근운동',
+          title: '자네 승모근 운동이라고 들어봤나',
+          user: '이싸피',
+          date: '2021.08.01',
+          content: '모두가 승모근 운동을 기피 합니다.',
+          img: 'https://drive.google.com/uc?id=1Oa9Sh1yBIqhKkneSD0diKdhWkZQvrUiB'
         }
       ]
     }
