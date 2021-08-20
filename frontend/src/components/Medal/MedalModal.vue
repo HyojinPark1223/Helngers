@@ -42,7 +42,7 @@
         </div>
         <div class="body-right">
           <div>
-            <h2>90퍼나!!!!</h2>
+            <h2>{{ achievement_rate }}퍼나!!!!</h2>
             <img
               src="https://drive.google.com/uc?id=1rCxu8Okv1ukv9baQMG-jDyOzrGg2oVaG"
               alt="" 
