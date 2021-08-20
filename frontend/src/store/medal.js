@@ -13,26 +13,32 @@ export default {
     level_0_user_medal: [],
     level_1_user_medal: [],
     level_2_user_medal: [],
-    
+    level_0_user_medal_url: [],
+    level_1_user_medal_url: [],
+    level_2_user_medal_url: [],
 
   },
   getters: {
-    // 1. 10개의 메달들의 정보 리스트를 전부 뽑아다가 
-    // 2. 유저가 가지고 있는 메달 리스트들을 뽑아다가 
-    // 3. for문으로 유저 메달 리스트들을 돌리며 10개의 메달들과 id값을 비교해서
-    // 4. 일치하는 친구들을 state의 출력 메달 데이터에 배열로 넣는다.
-    // 5. 또한 process 데이터를 저장하여 goal 데이터와 비교해서 state의 달성률 데이터를 반영한다.
-
-    // medals_has_users_1 : function (state) {
-    //   let a = state.medals_has_users.filter(m => m.kind === 1)
-    //   return a
+    // level_0_user_medal_url : function (state) {
+    //   for (let i of state.level_0_user_medal) {
+    //     let tmp = []
+    //     state.level_0_user_medal_url.push(i.url)
+    //   }
+    //   return state.level_0_user_medal_url
     // },
-    // medals_has_users_2 : function (state) {
-    //   return state.medals_has_users.filter(m => m.kind === 2)
+    // level_1_user_medal_url : function (state) {
+    //   for (let i of state.level_1_user_medal) {
+    //     state.level_1_user_medal_url.push(i.url)
+    //   }
+    //   return state.level_0_user_medal_url
     // },
-    // medals_has_users_3 : function (state) {
-    //   return state.medals_has_users.filter(m => m.kind === 3)
-    // },
+    // level_2_user_medal_url : function (state) {
+    //   for (let i of state.level_2_user_medal) {
+    //     state.level_2_user_medal_url.push(i.url)
+    //   }
+    //   return state.level_2_user_medal_url
+    // }
+    
   },
   mutations: {
     MEDALS(state, medals) {

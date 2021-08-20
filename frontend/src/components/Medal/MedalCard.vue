@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button @click="chkchk">
-      메달보기
-    </button>
+    <!-- <button @click="chkchk">
+      메달 증식
+    </button> -->
     <div v-if="modalChk">
       <MedalModal
         @close="close"
@@ -22,7 +22,7 @@
         class="carousel">
         <!-- 아니 시벌 왜 index랑 slide의 역할이 반대냐? -->
         <Slide
-          v-for="(slide, index) in level_0_user_medal_url"
+          v-for="(slide, index) in level_0_user_medal"
           :key="index"
           class="slide">
           <div
@@ -32,7 +32,7 @@
             data-aos-duration="1000">
             <!-- {{ slide }} -->
             <img
-              :src="slide"
+              :src="slide.url"
               width="100"
               height="100" />
           </div>
@@ -54,7 +54,7 @@
         :breakpoints="breakpoints"
         class="carousel">
         <Slide
-          v-for="(slide, index) in level_1_user_medal_url"
+          v-for="(slide, index) in level_1_user_medal"
           :key="index"
           class="slide">
           <div
@@ -64,7 +64,7 @@
             data-aos-duration="1000">
             <!-- {{ slide }} -->
             <img
-              :src="slide"
+              :src="slide.url"
               alt="" 
               width="100"
               height="100" />
@@ -87,7 +87,7 @@
         :breakpoints="breakpoints"
         class="carousel">
         <Slide
-          v-for="(slide, index) in level_2_user_medal_url"
+          v-for="(slide, index) in level_2_user_medal"
           :key="index"
           class="slide">
           <div
@@ -97,7 +97,7 @@
             data-aos-duration="1000">
             <!-- {{ slide }} -->
             <img
-              :src="slide"
+              :src="slide.url"
               alt="" 
               width="100"
               height="100" />
@@ -133,13 +133,30 @@ export default defineComponent({
   created() {
     AOS.init()
     console.log('created')
+    console.log(this.level_0_user_medal)
+    // level_0_user_medal
 
-
-    
   },
   mounted() {
     this.$store.dispatch('medal/medalData', null, { root: true})
     this.$store.dispatch('medal/upDate', null, { root: true})
+    // console.log('mounted')
+    // console.log(this.level_0_user_medal)
+    // for (let i of this.level_0_user_medal) {
+    //   console.log('i')
+    //   console.log(i.url)
+    //   this.level_0_user_medal_url.push(i.url)
+    // }
+    // for (let i of this.level_1_user_medal) {
+    //   console.log('i')
+    //   console.log(i.url)
+    //   this.level_1_user_medal_url.push(i.url)
+    // }
+    // for (let i of this.level_2_user_medal) {
+    //   console.log('i')
+    //   console.log(i.url)
+    //   this.level_2_user_medal_url.push(i.url)
+    // }
 
   },
   computed: {
@@ -148,6 +165,9 @@ export default defineComponent({
     ...mapState('medal', ['level_0_user_medal']),
     ...mapState('medal', ['level_1_user_medal']),
     ...mapState('medal', ['level_2_user_medal']),
+    // ...mapState('medal', ['level_0_user_medal_url']),
+    // ...mapState('medal', ['level_1_user_medal_url']),
+    // ...mapState('medal', ['level_2_user_medal_url']),
   },
 
 	data() {
@@ -157,9 +177,6 @@ export default defineComponent({
       slides:10,
       medals_level:-1,
       medals_id_has_user_url:[],
-      level_0_user_medal_url:[],
-      level_1_user_medal_url:[],
-      level_2_user_medal_url:[],
       isStatusOn: false,
       settings: {
         itemsToShow: 1,
