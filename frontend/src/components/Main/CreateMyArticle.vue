@@ -21,6 +21,7 @@
         <input
           type="text"
           autofocus
+          v-model="title"
           class="form-control"
           placeholder="제목을 입력해주세요." />
       </div>
@@ -46,6 +47,7 @@
       <div class="mb-3 articleText">
         <textarea
           class="form-control"
+          v-model="content"
           id="exampleFormControlTextarea1"
           placeholder="게시글을 작성해주세요."
           rows="3"></textarea>
@@ -59,7 +61,8 @@
         </div>
         <button
           type="submit"
-          class="btn btn-primary">
+          class="btn btn-primary"
+          @click="createBoard({title, writer, content,})">
           작성 완료
         </button>
       </div>
@@ -68,6 +71,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import FileSelect from './FileSelect.vue'
 export default {
   components: {
@@ -75,7 +79,10 @@ export default {
   },
   data() {
     return {
-      file: null
+      file: null,
+      title: null,
+      writer: null,
+      content: null,
     }
   },
   methods: {
@@ -84,7 +91,8 @@ export default {
     },
     input(value) {
       this.file = value;
-    }
+    },
+    ...mapActions('board', ["createBoard"]),
   }
 }
 </script>

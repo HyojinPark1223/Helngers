@@ -111,6 +111,9 @@ import AOS from 'aos'
 import { mapState } from "vuex"
 
 export default {
+  beforeCreate() {
+    this.$store.dispatch('board/getBoards')
+  },
   created() {
     AOS.init()
   },
@@ -127,7 +130,8 @@ export default {
     }
   },
   computed: {
-    ...mapState("user", ["userInfo"])
+    ...mapState("user", ["userInfo"]),
+    ...mapState("board", ["boardList"])
   },
   methods: {
     searchFocus() {
