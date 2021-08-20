@@ -122,6 +122,7 @@ export default {
           }
           console.log('회원가입 완료')
           dispatch('login', loginObj)
+          router.push({ name: "main" })
         })
         .catch(() => {
           alert('다시 입력해주세요!')
