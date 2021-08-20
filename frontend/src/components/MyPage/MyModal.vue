@@ -32,7 +32,7 @@
             <img 
               src="../../assets/hello.jpg"
               :alt="name" />
-            <h3>사용자 이름</h3>
+            <h3>{{ userInfo.nickname }}</h3>
           </div>
           <div class="modal-footer">
             <button
@@ -45,7 +45,7 @@
             <button
               type="button" 
               class="btn btn-secondary"
-              @click="logOut">
+              @click="logout()">
               Logout
             </button>
           </div>
@@ -56,11 +56,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-<<<<<<< HEAD
+import { mapState, mapActions } from 'vuex'
 // import UserService from '../../services/user.service'
-=======
->>>>>>> ba4c521e16edcee148f70ad8ef90501ee469db42
 import vuex from 'vuex'
 
 export default {
@@ -73,7 +70,8 @@ export default {
     ...mapState('profile', [ // vuex helper
       'image',
       'name'
-    ])
+    ]),
+    ...mapState("user", ["userInfo"])
   },
   methods: {
     ...vuex.mapActions(['updateUser']),
@@ -84,10 +82,7 @@ export default {
     tomodalOnOff() {
       this.modalStatusOn = !this.modalStatusOn
     },
-    logOut() {
-      console.log('로그아웃')
-      localStorage.removeItem("currentUser")
-    }
+    ...mapActions('user', ["logout"]),
 
   }
 }

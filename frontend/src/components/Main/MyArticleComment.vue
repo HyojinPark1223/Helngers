@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow:auto; height: 200px;">
+  <div style="overflow:auto; height: 160px;">
     <!-- <span class="scroll">{{ scrollY }}</span> -->
     <ul
       ref="list"

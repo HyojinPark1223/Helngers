@@ -92,18 +92,34 @@
               to="/login"
               tag="div"
               class="routerlink"
-              @click="toggleClass">
+              @click="toggleClass"
+              v-if="isLogin === false">
               <p>Login</p>
             </RouterLink>
-            <!-- <p>Logout</p> -->
             <RouterLink
               to="/signup"
               tag="div"
               class="routerlink"
-              @click="toggleClass">
+              @click="toggleClass"
+              v-if="isLogin === false">
               <p>Signup</p>
             </RouterLink>
-            <!-- <p>MyPage</p> -->
+            <RouterLink
+              to="/mypage"
+              tag="div"
+              class="routerlink"
+              @click="toggleClass"
+              v-if="isLogin">
+              <p>MyPage</p>
+            </RouterLink>
+            <RouterLink
+              to="/home"
+              tag="div"
+              class="routerlink"
+              @click="[$store.dispatch('user/logout'), toggleClass]"
+              v-if="isLogin">
+              <p>LogOut</p>
+            </RouterLink>
           </div>
         </div>
       </transition>
@@ -114,9 +130,7 @@
 <script>
 import Logo from './Logo'
 import MyModal from './MyPage/MyModal.vue'
-
 import {mapState} from 'vuex'
-
 export default {
   components: {
     Logo,
@@ -292,5 +306,4 @@ export default {
     }
   }
 }
-
 </style>
