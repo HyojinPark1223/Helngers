@@ -30,7 +30,7 @@ export default {
   actions: {
     getChallenge({ commit }) {
       axios
-        .get('http://localhost:8080/challenges/list')
+        .get('http://i5c206.p.ssafy.io/api/challenges/list')
         .then(res => {
           let challenge_info = res.data
           console.log(res.data)
